@@ -140,7 +140,7 @@ const Cart = () => {
           <h4>Calculate Shipping</h4>
           <div>
             {/* drropdown button */}
-            <button>sleect country</button>
+            <button>select country</button>
             <input type="text" name="" id="" placeholder='post code' />
           </div>
         </div>
@@ -149,7 +149,7 @@ const Cart = () => {
           <h4>$365</h4>
         </div>
         <div>
-          <button>Procced to Checkout</button>
+          <button>process to Checkout</button>
         </div>
       </div>
       

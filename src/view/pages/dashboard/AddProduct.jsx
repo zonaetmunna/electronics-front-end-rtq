@@ -1,8 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useAddProductMutation } from '../../../features/api/apiSlice';
-import { postProduct } from '../../../features/products/productSlices';
 
 
 const AddProduct = () => {
@@ -44,7 +42,7 @@ const AddProduct = () => {
           </label>
           <input type='text' name='image' id='image' {...register("image")} required/>
         </div>
-        {/* brabd */}
+        {/* brand */}
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-3' htmlFor='brand'>
             Brand

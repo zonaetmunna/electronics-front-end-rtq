@@ -1,12 +1,12 @@
 import React from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 
-const Products = ({products}) => {
-  console.log(products);
+const Products = ({data}) => {
+  console.log(data);
 
   return (
     <div className='grid grid-cols-4 gap-2'>
-      {products.map(product=><ProductCard key={product._id} product={product} />)}
+      {/* {data.map(product=><ProductCard key={data._id} product={data} />)} */}
     </div>
   );
 };
