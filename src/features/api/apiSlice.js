@@ -1,48 +1,46 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productsApi = createApi({
-  reducerPath: 'productsApi',
-  baseQuery: fetchBaseQuery({ 
-    baseUrl: 'https://electronics-backend-zonaetmunna.vercel.app/api' 
-    }),
-  tagTypes:["products"],
+  reducerPath: "productsApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://electronics-backend-zonaetmunna.vercel.app/api",
+  }),
+  tagTypes: ["products"],
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => ({
-        url:"/products"
+        url: "/products",
       }),
-      providesTags:["products"]
+      providesTags: ["products"],
     }),
     getSingleProduct: builder.query({
       query: (id) => ({
-        url:`/products/${id}`
+        url: `/products/${id}`,
       }),
-      providesTags:["products"]
+      providesTags: ["products"],
     }),
     addProduct: builder.mutation({
       query: (data) => ({
-        url:"/products",
-        method:"POST",
-        body:data
+        url: "/products",
+        method: "POST",
+        body: data,
       }),
-      invalidatesTags:["products"]
+      invalidatesTags: ["products"],
     }),
     removeProduct: builder.mutation({
       query: (id) => ({
-        url:`/products/${id}`,
-        method:"DELETE",
-        body:id
+        url: `/products/${id}`,
+        method: "DELETE",
+        body: id,
       }),
-      invalidatesTags:["products"]
+      invalidatesTags: ["products"],
     }),
   }),
 });
 
-export const { 
+export const {
   useGetProductsQuery,
   useGetSingleProductQuery,
   useAddProductMutation,
-  useRemoveProductMutation} = productsApi;
-
-
-
+  useRemoveProductMutation,
+} = productsApi;

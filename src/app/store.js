@@ -1,15 +1,16 @@
-import { configureStore} from '@reduxjs/toolkit';
-import { productsApi } from '../features/api/apiSlice';
-import cartSlice from '../features/cart/cartSlice';
-import counterReducer from '../features/counter/counterSlice';
-import filterSlice from '../features/filter/filterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { productsApi } from "../features/api/apiSlice";
+import cartSlice from "../features/cart/cartSlice";
+import counterReducer from "../features/counter/counterSlice";
+import filterSlice from "../features/filter/filterSlice";
 
 export const store = configureStore({
   reducer: {
-    [productsApi.reducerPath]:productsApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
     counter: counterReducer,
-    cart:cartSlice,
-    filter:filterSlice,
+    cart: cartSlice,
+    filter: filterSlice,
   },
-  middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(productsApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productsApi.middleware),
 });
