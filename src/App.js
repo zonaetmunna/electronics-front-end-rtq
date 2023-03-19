@@ -15,7 +15,7 @@ function App() {
       if (user) {
         dispatch(getUser(user.email));
       } else {
-        dispatch(toggleLoading());
+        // dispatch(toggleLoading());
       }
     });
   }, []);

@@ -6,10 +6,15 @@ import { useGetProductsQuery, useRemoveProductMutation } from '../../../features
 const AllProducts = () => {
 
 
-  const {data,isLoading}=useGetProductsQuery();
+  const { data, isLoading } = useGetProductsQuery();
+  console.log(data);
 
   const [removeProduct,{isError}]=useRemoveProductMutation();
 
+
+  if (isLoading) {
+    <h1>this page is loading</h1>
+  }
 
 
   return (

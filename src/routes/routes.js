@@ -3,19 +3,23 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../view/layout/Dashboard";
 import Error from "../view/layout/Error";
 import Main from "../view/layout/Main";
-// import AddProduct from "../view/pages/dashboard/AddProduct";
-// import AllProducts from "../view/pages/dashboard/AllProducts";
-// import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
-// import About from "../view/pages/main/About";
-// import Cart from "../view/pages/main/Cart";
-// import Checkout from "../view/pages/main/Checkout";
-// import Contact from "../view/pages/main/Contact";
-// import Home from "../view/pages/main/Home";
-// import Login from "../view/pages/main/Login";
-// import Signup from "../view/pages/main/Signup";
-// import SingleProduct from "../view/pages/main/SingleProduct";
-// import WishList from "../view/pages/main/WishList";
-const AddProduct = React.lazy(() =>
+import AddProduct from "../view/pages/dashboard/AddProduct";
+import AdminDashboard from "../view/pages/dashboard/adminDashboard/AdminDashboard";
+import AllProducts from "../view/pages/dashboard/AllProducts";
+import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
+import MerchantDashboard from "../view/pages/dashboard/merchantDashboard/MerchantDashboard";
+import About from "../view/pages/main/About";
+import Cart from "../view/pages/main/Cart";
+import Checkout from "../view/pages/main/Checkout";
+import Contact from "../view/pages/main/Contact";
+import Home from "../view/pages/main/Home";
+import Login from "../view/pages/main/Login";
+import AccountCreator from "../view/pages/main/register/AccountCreator";
+import Signup from "../view/pages/main/Signup";
+import SingleProduct from "../view/pages/main/SingleProduct";
+import WishList from "../view/pages/main/WishList";
+import PrivateRoute from "./privateRoutes";
+/* const AddProduct = React.lazy(() =>
   import("../view/pages/dashboard/AddProduct")
 );
 const AllProducts = React.lazy(() =>
@@ -32,7 +36,7 @@ const Signup = React.lazy(() => import("../view/pages/main/Signup"));
 const SingleProduct = React.lazy(() =>
   import("../view/pages/main/SingleProduct")
 );
-const WishList = React.lazy(() => import("../view/pages/main/WishList"));
+const WishList = React.lazy(() => import("../view/pages/main/WishList")); */
 
 export const router = createBrowserRouter([
   // main
@@ -79,25 +83,53 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <Signup />,
       },
+      {
+        path: "/register",
+        element: (
+          <PrivateRoute>
+            <AccountCreator />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/register/:type",
+        element: (
+          <PrivateRoute>
+            <AccountCreator />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   // dashboard
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     errorElement: <Error />,
     children: [
       {
-        path: "/dashboard",
+        path: "all-products",
         element: <AllProducts />,
       },
       {
-        path: "addProduct",
+        path: "add-products",
         element: <AddProduct />,
       },
       {
-        path: "makeAdmin",
+        path: "make-Admin",
         element: <MakeAdmin />,
+      },
+      {
+        path: "admin-dashboard",
+        element: <AdminDashboard />,
+      },
+      {
+        path: "merchant-dashboard",
+        element: <MerchantDashboard />,
       },
     ],
   },

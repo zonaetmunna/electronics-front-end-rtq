@@ -55,6 +55,7 @@ export const authSlice = createSlice({
       .addCase(signupUser.pending, (state, action) => {
         state.isLoading = true;
         state.isError = false;
+        state.error = "";
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.user.email = action.payload;

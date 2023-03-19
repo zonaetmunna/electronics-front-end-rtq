@@ -12,6 +12,8 @@ const Home = () => {
   const {data,isLoading,isError}=useGetProductsQuery();
   console.log(data);
 
+   
+
   return (
     <div className='px-2'>
       <div className="">
@@ -26,7 +28,9 @@ const Home = () => {
             <h3 className='text-center text-yellow-500 my-2'>ALL Products</h3>
           </div>
           <div>
-            {/* <Products products={data} /> */}
+            {isLoading && <h1>this page loading</h1>}
+            {isError && <h1>this is error</h1>}
+            <Products products={data} />
           </div>
           
         </div>
