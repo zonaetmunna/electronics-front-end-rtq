@@ -15,20 +15,24 @@ import Main from "../view/layout/Main";
 // import Signup from "../view/pages/main/Signup";
 // import SingleProduct from "../view/pages/main/SingleProduct";
 // import WishList from "../view/pages/main/WishList";
-const AddProduct=React.lazy(()=>import("../view/pages/dashboard/AddProduct"));
-const AllProducts=React.lazy(()=>import("../view/pages/dashboard/AllProducts"));
-const MakeAdmin=React.lazy(()=>import("../view/pages/dashboard/MakeAdmin"));
-const About=React.lazy(()=>import("../view/pages/main/About"));
-const Cart=React.lazy(()=>import("../view/pages/main/Cart"));
-const Checkout=React.lazy(()=>import("../view/pages/main/Checkout"));
-const Contact=React.lazy(()=>import("../view/pages/main/Contact"));
-const Home=React.lazy(()=>import("../view/pages/main/Home"));
-const Login =React.lazy(()=>import("../view/pages/main/Login"));
-const Signup =React.lazy(()=>import("../view/pages/main/Signup"));
-const SingleProduct =React.lazy(()=>import("../view/pages/main/SingleProduct"));
-const WishList =React.lazy(()=>import("../view/pages/main/WishList"));
-
-
+const AddProduct = React.lazy(() =>
+  import("../view/pages/dashboard/AddProduct")
+);
+const AllProducts = React.lazy(() =>
+  import("../view/pages/dashboard/AllProducts")
+);
+const MakeAdmin = React.lazy(() => import("../view/pages/dashboard/MakeAdmin"));
+const About = React.lazy(() => import("../view/pages/main/About"));
+const Cart = React.lazy(() => import("../view/pages/main/Cart"));
+const Checkout = React.lazy(() => import("../view/pages/main/Checkout"));
+const Contact = React.lazy(() => import("../view/pages/main/Contact"));
+const Home = React.lazy(() => import("../view/pages/main/Home"));
+const Login = React.lazy(() => import("../view/pages/main/Login"));
+const Signup = React.lazy(() => import("../view/pages/main/Signup"));
+const SingleProduct = React.lazy(() =>
+  import("../view/pages/main/SingleProduct")
+);
+const WishList = React.lazy(() => import("../view/pages/main/WishList"));
 
 export const router = createBrowserRouter([
   // main
@@ -38,68 +42,63 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: '/',
-        element:<Home />
-        
+        path: "/",
+        element: <Home />,
       },
       {
         path: "product/:id",
-        element: <SingleProduct />
-    
+        element: <SingleProduct />,
       },
       {
         path: "cart",
-        element: <Cart />
+        element: <Cart />,
       },
       {
         path: "checkout",
-        element:<Checkout />
-
+        element: <Checkout />,
       },
-      
+
       {
         path: "wishlist",
-        element: <WishList />
+        element: <WishList />,
       },
-      
+
       {
         path: "about",
-        element: <About />
+        element: <About />,
       },
       {
         path: "contact",
-        element: <Contact />
+        element: <Contact />,
       },
       {
         path: "/login",
-        element:<Login />
+        element: <Login />,
       },
       {
         path: "/signup",
-        element:<Signup />
-      }
-      
-    ]
+        element: <Signup />,
+      },
+    ],
   },
   // dashboard
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: <Dashboard />,
     errorElement: <Error />,
     children: [
       {
-        path: '/dashboard',
-        element:<AllProducts />
+        path: "/dashboard",
+        element: <AllProducts />,
       },
       {
-        path: 'addProduct',
-        element:<AddProduct />
+        path: "addProduct",
+        element: <AddProduct />,
       },
       {
-        path: 'makeAdmin',
-        element:<MakeAdmin />
-      }
-    ]
-  }
-  
+        path: "makeAdmin",
+        element: <MakeAdmin />,
+      },
+    ],
+  },
 ]);

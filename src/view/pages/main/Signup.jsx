@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import loginImage from "../../../assets/images/login-image.jpg";
+import { signupUser } from '../../../features/auth/authSlice';
 
 const Signup = () => {
   const { handleSubmit, register, reset, control } = useForm();
@@ -9,6 +11,8 @@ const Signup = () => {
   const confirmPassword = useWatch({ control, name: "confirmPassword" });
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (
@@ -25,6 +29,9 @@ const Signup = () => {
   }, [password, confirmPassword]);
 
   const onSubmit = (data) => {
+    dispatch(signupUser({
+      email: data.email, password: data.password
+    }));
     console.log(data);
   };
 

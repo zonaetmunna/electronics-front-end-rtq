@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useGetProductsQuery, useRemoveProductMutation } from '../../../features/api/apiSlice';
+import { useGetProductsQuery, useRemoveProductMutation } from '../../../features/product/productApi';
 
 
 const AllProducts = () => {

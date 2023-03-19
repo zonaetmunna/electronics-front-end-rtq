@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useAddProductMutation } from '../../../features/api/apiSlice';
+import { useAddProductMutation } from '../../../features/product/productApi';
 
 
 const AddProduct = () => {

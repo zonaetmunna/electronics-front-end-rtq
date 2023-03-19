@@ -4,7 +4,7 @@ import Sidebar from '../../components/main/sidebar/Sidebar';
 import Products from '../../components/main/products/Products';
 import MiddleBanner from '../../components/main/home/MiddleBanner';
 import DiscountBanner from '../../components/common/DiscountBanner/DiscountBanner';
-import { useGetProductsQuery } from '../../../features/api/apiSlice';
+import { useGetProductsQuery } from '../../../features/product/productApi';
 
 
 

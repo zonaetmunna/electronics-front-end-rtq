@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useGetSingleProductQuery } from '../../../features/api/apiSlice';
 import { addToCart } from '../../../features/cart/cartSlice';
+import { useGetSingleProductQuery } from '../../../features/product/productApi';
 
 
 

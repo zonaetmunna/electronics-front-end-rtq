@@ -1,46 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const productsApi = createApi({
-  reducerPath: "productsApi",
+export const apiSlice = createApi({
+  reducerPath: "pokemonApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://electronics-backend-zonaetmunna.vercel.app/api",
+    baseUrl: process.env.REACT_APP_DEV_API,
   }),
-  tagTypes: ["products"],
-  endpoints: (builder) => ({
-    getProducts: builder.query({
-      query: () => ({
-        url: "/products",
-      }),
-      providesTags: ["products"],
-    }),
-    getSingleProduct: builder.query({
-      query: (id) => ({
-        url: `/products/${id}`,
-      }),
-      providesTags: ["products"],
-    }),
-    addProduct: builder.mutation({
-      query: (data) => ({
-        url: "/products",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["products"],
-    }),
-    removeProduct: builder.mutation({
-      query: (id) => ({
-        url: `/products/${id}`,
-        method: "DELETE",
-        body: id,
-      }),
-      invalidatesTags: ["products"],
-    }),
-  }),
+  tagTypes: ["products", "auth"],
+  endpoints: (builder) => ({}),
 });
-
-export const {
-  useGetProductsQuery,
-  useGetSingleProductQuery,
-  useAddProductMutation,
-  useRemoveProductMutation,
-} = productsApi;
