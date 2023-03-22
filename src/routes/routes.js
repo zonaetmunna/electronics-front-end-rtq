@@ -15,10 +15,10 @@ import Contact from "../view/pages/main/Contact";
 import Home from "../view/pages/main/Home";
 import Login from "../view/pages/main/Login";
 import AccountCreator from "../view/pages/main/register/AccountCreator";
-import Signup from "../view/pages/main/Signup";
+import SignUp from "../view/pages/main/SignUp";
 import SingleProduct from "../view/pages/main/SingleProduct";
 import WishList from "../view/pages/main/WishList";
-import PrivateRoute from "./privateRoutes";
+import PrivateRoutes from "./PrivateRoutes";
 /* const AddProduct = React.lazy(() =>
   import("../view/pages/dashboard/AddProduct")
 );
@@ -81,22 +81,22 @@ export const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <Signup />,
+        element: <SignUp />,
       },
       {
         path: "/register",
         element: (
-          <PrivateRoute>
+          <PrivateRoutes>
             <AccountCreator />
-          </PrivateRoute>
+          </PrivateRoutes>
         ),
       },
       {
         path: "/register/:type",
         element: (
-          <PrivateRoute>
+          <PrivateRoutes>
             <AccountCreator />
-          </PrivateRoute>
+          </PrivateRoutes>
         ),
       },
     ],
@@ -105,9 +105,9 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <PrivateRoute>
+      <PrivateRoutes>
         <Dashboard />
-      </PrivateRoute>
+      </PrivateRoutes>
     ),
     errorElement: <Error />,
     children: [
@@ -116,11 +116,11 @@ export const router = createBrowserRouter([
         element: <AllProducts />,
       },
       {
-        path: "add-products",
+        path: "add-product",
         element: <AddProduct />,
       },
       {
-        path: "make-Admin",
+        path: "make-admin",
         element: <MakeAdmin />,
       },
       {

@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import loginImage from "../../../assets/images/login-image.jpg";
 import { signupUser } from '../../../features/auth/authSlice';
 
-const Signup = () => {
+const SignUp = () => {
+  const {
+    user: { email },
+    isLoading,
+    isError,
+    error,
+  } = useSelector((state) => state.auth);
   const { handleSubmit, register, reset, control } = useForm();
   const password = useWatch({ control, name: "password" });
   const confirmPassword = useWatch({ control, name: "confirmPassword" });
@@ -33,12 +40,29 @@ const Signup = () => {
       email: data.email, password: data.password
     }));
     console.log(data);
+    reset();
   };
+
+  // redirect
+  useEffect(() => {
+    if (!isLoading && email) {
+      navigate("/");
+    }
+  }, []);
+
+  // error
+  useEffect(() => {
+    if (isError) {
+      toast.error(error);
+    }
+  }, [isError, error]);
+
+  
 
   return (
     <div className='flex h-screen items-center pt-14'>
-      <div className='w-1/2'>
-        <img src={loginImage} className='h-full w-full' alt='login' />
+      <div className="w-1/2">
+        <img src={loginImage} className="w-full" alt="" />
       </div>
       <div className='w-1/2 grid place-items-center'>
         <div className='bg-[#FFFAF4] rounded-lg grid place-items-center p-10'>
@@ -106,4 +130,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;<p>comming soon signup </p>
+export default SignUp;<p>comming soon signup </p>

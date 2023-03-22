@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 
 const initialState = {
   user: { email: "", role: "" },
-  isLoading: false,
+  isLoading: true,
   isError: false,
   error: "",
 };
@@ -14,6 +17,15 @@ export const signupUser = createAsyncThunk(
   "auth/signupUser",
   async ({ email, password }) => {
     const data = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(data.user.email);
+    return data.user.email;
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async ({ email, password }) => {
+    const data = await signInWithEmailAndPassword(auth, email, password);
     console.log(data.user.email);
     return data.user.email;
   }
@@ -37,8 +49,8 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signout: (state) => {
-      state.user = {};
+    logOut: (state) => {
+      state.user = { email: "", role: "" };
     },
     // subscribed user
     subscribedUser: (state, action) => {
@@ -69,6 +81,23 @@ export const authSlice = createSlice({
         state.isError = true;
         state.error = action.error.message;
       })
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.error = "";
+      })
+      .addCase(loginUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user.email = payload;
+        state.isError = false;
+        state.error = "";
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.user.email = "";
+        state.isError = true;
+        state.error = action.error.message;
+      })
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
@@ -94,6 +123,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { signout, subscribedUser, toggleLoading } = authSlice.actions;
+export const { logOut, subscribedUser, toggleLoading } = authSlice.actions;
 
 export default authSlice.reducer;

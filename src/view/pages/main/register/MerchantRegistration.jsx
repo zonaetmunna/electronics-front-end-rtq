@@ -4,15 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { FaChevronLeft } from "react-icons/fa";
 import { useRegisterMutation } from '../../../../features/auth/authApi';
+import { useSelector } from 'react-redux';
 
 const MerchantRegistration = () => {
+  const [postUser,{error,isLoading}] = useRegisterMutation();
+  const {user:{email}}=useSelector((state)=>state.auth)
+  const { handleSubmit, register, control } = useForm({defaultValues:{email}});
     const [countries, setCountries] = useState([]);
-  const { handleSubmit, register, control } = useForm();
   const term = useWatch({ control, name: "term" });
   console.log(term);
     const navigate = useNavigate();
 
-    const [postUser,{error,isLoading}] = useRegisterMutation();
     
     useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")

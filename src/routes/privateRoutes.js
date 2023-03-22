@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
-import Loading from "../components/reusable/Loading";
+import Loading from "../view/components/Loading";
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoutes = ({ children }) => {
   const { pathname } = useLocation();
 
   const {
@@ -22,4 +22,4 @@ const PrivateRoute = ({ children }) => {
   return children;
 };
 
-export default PrivateRoute;
+export default PrivateRoutes;

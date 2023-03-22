@@ -6,7 +6,11 @@ import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import auth from "./firebase/firebase.config";
-import { getUser, toggleLoading } from "./features/auth/authSlice";
+import {
+  getUser,
+  subscribedUser,
+  toggleLoading,
+} from "./features/auth/authSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +19,7 @@ function App() {
       if (user) {
         dispatch(getUser(user.email));
       } else {
-        // dispatch(toggleLoading());
+        dispatch(toggleLoading());
       }
     });
   }, []);

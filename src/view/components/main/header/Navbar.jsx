@@ -1,12 +1,25 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { BsCart3, BsHeart, BsSearch } from 'react-icons/bs';
 import { VscAccount } from 'react-icons/vsc';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../../../assets/images/Electronics-logo.png';
+import { logOut } from '../../../../features/auth/authSlice';
+import auth from '../../../../firebase/firebase.config';
 
 
 const Navbar = () => {
-  const user = false;
+  const { user: { email } } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // handle signOut
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      dispatch(logOut());
+    });
+  };
+
   return (
     <div className="py-3 px-3">
       <div className='flex items-center justify-between'>
@@ -28,29 +41,30 @@ const Navbar = () => {
         </div>
         <div className='flex justify-around align-center'>
           {/* wishlist */}
-          <div className='mx-2 rounded-full font-bold'>
+          <div className='mx-2 button" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>
             <Link to="/wishlist">
               <span><BsHeart size={20} className="text-yellow-500" /></span>
             </Link>
           </div>
           {/* cart */}
-          <div className='mx-2'>
+          <div className='mx-2 text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>
             <Link to='/cart'>
               <span><BsCart3 size={20} className="text-yellow-500" /></span>
             </Link>
           </div>
           {/* dashboard link */}
-          <div className='mx-2'>
+          <div className='mx-2 text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>
             <Link to="/dashboard">Dashboard</Link>
           </div>
-          {!user ? <div>
-            <Link to="/account">
+          {/* login and signUp or user */}
+          {email ? (<div>
+            <button type='button' className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={handleSignOut}>
               <span><VscAccount size={20} /></span>
-            </Link>
-          </div> :
-            <div>
+            </button>
+          </div> ):
+            (<div className='text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>
               <Link to="/login">Login</Link>
-            </div>
+            </div>)
           }
         </div>
       </div>

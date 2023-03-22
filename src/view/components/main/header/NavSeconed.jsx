@@ -30,7 +30,7 @@ const NavSeconed = () => {
           </div>
         </div>
         <div>
-          <button type='button' className='text-white bg-black  rounded '><Link to="/" className='px-2 py-2 flex justify-betwen items-center font-bold'><span className='mr-2'>become a Seller</span><span><MdOutlineKeyboardArrowRight size={20}/></span></Link></button>
+          <Link to="/register" className='text-white bg-black  rounded px-2 py-2 flex justify-between items-center font-bold'><span className='mr-2'>become a Seller</span><span><MdOutlineKeyboardArrowRight size={20}/></span></Link>
           
         </div>
         

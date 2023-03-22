@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import loginImage from "../../../assets/images/login-image.jpg";
+import { loginUser } from '../../../features/auth/authSlice';
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {
+    isLoading,
+    isError,
+    error,
+    user: { email },
+  } = useSelector((state) => state.auth);
 
+  // handle submit
   const onSubmit = (data) => {
     console.log(data);
+    dispatch(loginUser({ email: data.email, password: data.password }));
+    reset();
   };
+
+   // redirect
+  useEffect(() => {
+    if (!isLoading && email) {
+      navigate("/");
+    }
+  }, [isLoading,email,navigate]);
+
+  // error
+  useEffect(() => {
+    if (isError) {
+      toast.error(error);
+    }
+  }, [isError, error]);
 
   return (
     <div className='flex h-screen items-center'>
@@ -45,6 +72,7 @@ const Login = () => {
                   Login
                 </button>
               </div>
+              {isError && <span>{error}</span>}
               <div>
                 <p>
                   Don't have an account?{" "}

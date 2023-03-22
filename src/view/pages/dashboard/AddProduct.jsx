@@ -11,6 +11,7 @@ const AddProduct = () => {
   const submitData = (data) => {
     const product = {
       model: data.model,
+      image:data.image,
       brand: data.brand,
       status: data.status === "true" ? true : false,
       price: data.price,

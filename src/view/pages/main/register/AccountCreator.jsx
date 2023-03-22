@@ -14,9 +14,9 @@ const AccountCreator = () => {
     return <MerchantRegistration />;
   }
 
-  if (type === "admin") {
+  /* if (type === "admin") {
     return <AdminRegistration />;
-  }
+  } */
     return (
         <div className='h-screen pt-14'>
       <h1 className='text-center my-10 text-2xl'>Continue as ...</h1>
@@ -28,13 +28,13 @@ const AccountCreator = () => {
           <img className='h-5/6' src={merchant} alt='' />
           <p className='text-center text-3xl'>merchant</p>
         </div>
-        <div
+        {/* <div
           onClick={() => navigate("/register/admin")}
           className='flex flex-col justify-between transition-all rounded-lg p-5 border border-white hover:border-primary hover:shadow-2xl hover:scale-105 group'
         >
           <img className='h-[77%]' src={admin} alt='' />
           <p className='text-center text-3xl'>admin</p>
-        </div>
+        </div> */}
       </div>
     </div>
     );
