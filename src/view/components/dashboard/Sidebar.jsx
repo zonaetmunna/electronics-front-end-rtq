@@ -12,13 +12,14 @@ const Sidebar = () => {
 
   const merchantRoutes = [
     {
-      name: "Add Products",
-      path: "add-products",
-    },
-    {
       name: "all Products",
       path: "all-products",
     },
+    {
+      name: "Add Products",
+      path: "add-products",
+    },
+
   ];
 
   const adminRoutes = [
@@ -52,7 +53,7 @@ const Sidebar = () => {
           <Link to='add-product'> Add-Product </Link>
         </li>
         <li className='text-center font-normal text-gray-900 rounded-lg hover:bg-gray-100'> */}
-          {/* <Link to='make-admin'> make-admin </Link>
+        {/* <Link to='make-admin'> make-admin </Link>
         </li> */}
         <li className='mt-auto text-center font-normal text-gray-900 rounded-lg hover:bg-gray-100'>
           <Link to='/'> Back to Home </Link>

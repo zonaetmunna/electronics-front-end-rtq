@@ -6,15 +6,10 @@ import MiddleBanner from '../../components/main/home/MiddleBanner';
 import DiscountBanner from '../../components/common/DiscountBanner/DiscountBanner';
 import { useGetProductsQuery } from '../../../features/product/productApi';
 
-
-
 const Home = () => {
   const { data, isLoading, isError } = useGetProductsQuery();
-  
-  
-  console.log(data?.products);
+  console.log(data);
 
-   
 
   return (
     <div className='px-2'>

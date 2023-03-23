@@ -5,7 +5,7 @@ import { useAddProductMutation } from '../../../features/product/productApi';
 
 const AddProduct = () => {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
   const [addProduct,{isError,isLoading}]=useAddProductMutation();
   
   const submitData = (data) => {
@@ -13,13 +13,13 @@ const AddProduct = () => {
       model: data.model,
       image:data.image,
       brand: data.brand,
-      status: data.status === "true" ? true : false,
       price: data.price,
-      
-      spec: [data.keyFeature1, data.keyFeature2, data.keyFeature3, data.keyFeature4]
+      status: data.status === "true" ? true : false,
+      keyFeature:[data.keyFeature1, data.keyFeature2, data.keyFeature3, data.keyFeature4],
+      spec: [data.processor, data.motherboard, data.ram, data.graphics,data.storage,data.casing,data.psu]
     };
     console.log(product);
-    addProduct(product);
+    addProduct({product});
     console.log('data added');
   };
 
@@ -138,6 +138,90 @@ const AddProduct = () => {
             name='keyFeature4'
             id='keyFeature4'
             {...register("keyFeature4")}
+          />
+        </div>
+        {/* sec processor */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='processor'>
+           processor
+          </label>
+          <input
+            type='text'
+            name='processor'
+            id='processor'
+            {...register("processor")}
+          />
+        </div>
+        {/* sec motherboard */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='motherboard'>
+            motherboard
+          </label>
+          <input
+            type='text'
+            name='motherboard'
+            id='motherboard'
+            {...register("motherboard")}
+          />
+        </div>
+         {/* sec ram */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='ram'>
+            ram
+          </label>
+          <input
+            type='text'
+            name='ram'
+            id='ram'
+            {...register("ram")}
+          />
+        </div>
+        {/* sec graphics */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='graphics'>
+            graphics
+          </label>
+          <input
+            type='text'
+            name='graphics'
+            id='graphics'
+            {...register("graphics")}
+          />
+        </div>
+        {/* sec storage */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='storage'>
+            storage
+          </label>
+          <input
+            type='text'
+            name='storage'
+            id='storage'
+            {...register("storage")}
+          />
+        </div>
+        {/* sec casing */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='casing'>
+            casing
+          </label>
+          <input
+            type='text'
+            name='casing'
+            id='casing'
+            {...register("casing")}
+          />
+        </div>
+        {/* sec psu */}
+        <div className='flex flex-col w-full max-w-xs'>
+          <label className='mb-2' htmlFor='psu'>
+            psu
+          </label>
+          <input
+            type='text'
+            name='psu'
+            id='psu'
+            {...register("psu")}
           />
         </div>
         {/* submit button */}

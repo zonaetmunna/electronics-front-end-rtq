@@ -19,24 +19,6 @@ import SignUp from "../view/pages/main/SignUp";
 import SingleProduct from "../view/pages/main/SingleProduct";
 import WishList from "../view/pages/main/WishList";
 import PrivateRoutes from "./PrivateRoutes";
-/* const AddProduct = React.lazy(() =>
-  import("../view/pages/dashboard/AddProduct")
-);
-const AllProducts = React.lazy(() =>
-  import("../view/pages/dashboard/AllProducts")
-);
-const MakeAdmin = React.lazy(() => import("../view/pages/dashboard/MakeAdmin"));
-const About = React.lazy(() => import("../view/pages/main/About"));
-const Cart = React.lazy(() => import("../view/pages/main/Cart"));
-const Checkout = React.lazy(() => import("../view/pages/main/Checkout"));
-const Contact = React.lazy(() => import("../view/pages/main/Contact"));
-const Home = React.lazy(() => import("../view/pages/main/Home"));
-const Login = React.lazy(() => import("../view/pages/main/Login"));
-const Signup = React.lazy(() => import("../view/pages/main/Signup"));
-const SingleProduct = React.lazy(() =>
-  import("../view/pages/main/SingleProduct")
-);
-const WishList = React.lazy(() => import("../view/pages/main/WishList")); */
 
 export const router = createBrowserRouter([
   // main
@@ -116,7 +98,7 @@ export const router = createBrowserRouter([
         element: <AllProducts />,
       },
       {
-        path: "add-product",
+        path: "add-products",
         element: <AddProduct />,
       },
       {
