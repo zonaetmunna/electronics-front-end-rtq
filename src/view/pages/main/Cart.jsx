@@ -1,11 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineDelete } from 'react-icons/ai';
-import { removeFromCart } from '../../../features/cart/cartSlice';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineDelete } from "react-icons/ai";
+import { removeFromCart } from "../../../features/cart/cartSlice";
 
 const Cart = () => {
-
-  const cart = useSelector(state => state.products.cart);
+  const cart = useSelector((state) => state.cart.cart);
   console.log(cart);
   const dispatch = useDispatch();
   // remove product from cart
@@ -15,12 +14,11 @@ const Cart = () => {
 
   return (
     <div>
-      <div className='text-center px-5 py-5'>
-        <h5 className='font-bold text-lg'>Your Cart Products</h5>
-        <hr className='bg-yellow-500' />
+      <div className="text-center px-5 py-5">
+        <h5 className="font-bold text-lg">Your Cart Products</h5>
+        <hr className="bg-yellow-500" />
       </div>
       <div>
-        {/* {cart.sort((a, b) => a.cartPosition - b.cartPosition).map(product => <ProductCard key={product._id} product={product}/>)} */}
         <div className="flex flex-col">
           <div className="">
             <div className="py-2 inline-block sm:px-6 lg:px-8">
@@ -40,7 +38,7 @@ const Cart = () => {
                       >
                         price
                       </th>
-                      
+
                       <th
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -53,52 +51,65 @@ const Cart = () => {
                       >
                         Total
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
                         <span className="">remove</span>
                       </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {cart.sort((a, b) => a.cartPosition - b.cartPosition).map(product => (
-                      <tr key={product._id}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0 h-10 w-10">
-                              <img className="h-10 w-10 rounded-full" src={product.image} alt="" />
+                    {cart
+                      .sort((a, b) => a.cartPosition - b.cartPosition)
+                      ?.map((product) => (
+                        <tr key={product._id}>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-10 w-10">
+                                <img
+                                  className="h-10 w-10 rounded-full"
+                                  src={product.image}
+                                  alt=""
+                                />
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">
+                                  {product.model}
+                                </div>
+                              </div>
                             </div>
-                            <div className="ml-4">
-                              <div className="text-sm font-medium text-gray-900">{product.model}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">
+                              {product.price}
                             </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">{product.price}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">{product.quantty}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">Total</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div
-                            className="px-2 inline-flex text-xs leading-5
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">
+                              {product.quantity}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">Total</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div
+                              className="px-2 inline-flex text-xs leading-5
                       font-semibold rounded-full bg-green-100 text-green-800"
-                            onClick={handleRemoveProductCart(product._id)}
-                          >
-                            <AiOutlineDelete size={20}/>
-                          </div>
-                        </td>
-                        
-                      </tr>
-                    ))}
+                              onClick={handleRemoveProductCart(product._id)}
+                            >
+                              <AiOutlineDelete size={20} />
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
-
       </div>
       <div>
         <div>
@@ -108,7 +119,7 @@ const Cart = () => {
       </div>
       <div>
         <div>
-          <button>Conitue shopping</button>
+          <button>Continue shopping</button>
           <button>Update Cart</button>
         </div>
       </div>
@@ -120,31 +131,31 @@ const Cart = () => {
         <hr />
         <div>
           <h4>Shipping</h4>
-          <div className='flex justify-around items-center'>
+          <div className="flex justify-around items-center">
             <input type="checkbox" name="" id="" />
             <span>Free Shipping</span>
             <span>+$000</span>
           </div>
-          <div className='flex justify-around items-center'>
+          <div className="flex justify-around items-center">
             <input type="checkbox" name="" id="" />
             <span>Flat Rate</span>
             <span>+$000</span>
           </div>
-          <div className='flex justify-around items-center'>
+          <div className="flex justify-around items-center">
             <input type="checkbox" name="" id="" />
-            <span>Loacl Delevery</span>
+            <span>Local Delivery</span>
             <span>+$000</span>
           </div>
         </div>
         <div>
           <h4>Calculate Shipping</h4>
           <div>
-            {/* drropdown button */}
+            {/* dropdown button */}
             <button>select country</button>
-            <input type="text" name="" id="" placeholder='post code' />
+            <input type="text" name="" id="" placeholder="post code" />
           </div>
         </div>
-        <div className='flex justify-around items-center'>
+        <div className="flex justify-around items-center">
           <h4>Total</h4>
           <h4>$365</h4>
         </div>
@@ -152,7 +163,6 @@ const Cart = () => {
           <button>process to Checkout</button>
         </div>
       </div>
-      
     </div>
   );
 };

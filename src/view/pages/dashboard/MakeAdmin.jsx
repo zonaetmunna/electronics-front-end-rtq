@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const MakeAdmin = () => {
-  return (
-    <div>
-      cooming soon 
-    </div>
-  );
+  return <div>cooming soon</div>;
 };
 
 export default MakeAdmin;

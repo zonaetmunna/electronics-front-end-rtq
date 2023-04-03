@@ -6,13 +6,13 @@ const productApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/products",
       }),
-      providesTags: ["products"],
+      providesTags: ["product"],
     }),
     getSingleProduct: builder.query({
       query: (id) => ({
         url: `/products/${id}`,
       }),
-      providesTags: ["products"],
+      providesTags: ["product"],
     }),
     addProduct: builder.mutation({
       query: (data) => ({
@@ -20,7 +20,7 @@ const productApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["products"],
+      invalidatesTags: ["product"],
     }),
     removeProduct: builder.mutation({
       query: (id) => ({
@@ -28,7 +28,7 @@ const productApi = apiSlice.injectEndpoints({
         method: "DELETE",
         body: id,
       }),
-      invalidatesTags: ["products"],
+      invalidatesTags: ["product"],
     }),
   }),
 });
