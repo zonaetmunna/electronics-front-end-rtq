@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "../../components/common/slider/Slider";
 import Sidebar from "../../components/main/sidebar/Sidebar";
-import Products from "../../components/main/products/Products";
 import MiddleBanner from "../../components/main/home/MiddleBanner";
 import DiscountBanner from "../../components/common/DiscountBanner/DiscountBanner";
 import { useGetProductsQuery } from "../../../features/product/productApi";
@@ -9,7 +8,7 @@ import ProductCard from "../../components/main/ProductCard/ProductCard";
 
 const Home = () => {
   const { data, isLoading, isError, error } = useGetProductsQuery();
-  const products = data?.data;
+  const products = data;
   console.log(products);
   return (
     <div className="px-2">

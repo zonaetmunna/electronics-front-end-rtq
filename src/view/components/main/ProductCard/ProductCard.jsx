@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
   const { pathname } = useLocation();
 
   // handle add product cart
-  const handleAddProductCart = (product) => {
+  const handleAddProductCart = () => {
     dispatch(addToCart(product));
   };
 
@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
             {/* add to cart button */}
             <div className="flex items-center justify-between px-1 py-1">
               <button
-                onClick={handleAddProductCart(product)}
+                onClick={handleAddProductCart}
                 className="text-black bg-yellow-500 hover:bg-yellow-600 border-orange-600 font-medium rounded-lg text-bold px-3 py-2 flex justify-around items-center"
               >
                 {" "}

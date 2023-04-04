@@ -4,7 +4,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { removeFromCart } from "../../../features/cart/cartSlice";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart.cart);
+  const { cart } = useSelector((state) => state.cart);
   console.log(cart);
   const dispatch = useDispatch();
   // remove product from cart
@@ -60,50 +60,51 @@ const Cart = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {cart
-                      .sort((a, b) => a.cartPosition - b.cartPosition)
-                      ?.map((product) => (
-                        <tr key={product._id}>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="flex-shrink-0 h-10 w-10">
-                                <img
-                                  className="h-10 w-10 rounded-full"
-                                  src={product.image}
-                                  alt=""
-                                />
-                              </div>
-                              <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {product.model}
+                    {cart &&
+                      cart
+                        ?.sort((a, b) => a.cartPosition - b.cartPosition)
+                        .map((product) => (
+                          <tr key={product._id}>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="flex items-center">
+                                <div className="flex-shrink-0 h-10 w-10">
+                                  <img
+                                    className="h-10 w-10 rounded-full"
+                                    src={product.image}
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="ml-4">
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {product.model}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
-                              {product.price}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
-                              {product.quantity}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">Total</div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div
-                              className="px-2 inline-flex text-xs leading-5
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm text-gray-900">
+                                {product.price}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm text-gray-900">
+                                {product.quantity}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm text-gray-900">Total</div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div
+                                className="px-2 inline-flex text-xs leading-5
                       font-semibold rounded-full bg-green-100 text-green-800"
-                              onClick={handleRemoveProductCart(product._id)}
-                            >
-                              <AiOutlineDelete size={20} />
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
+                                onClick={handleRemoveProductCart(product._id)}
+                              >
+                                <AiOutlineDelete size={20} />
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
                   </tbody>
                 </table>
               </div>

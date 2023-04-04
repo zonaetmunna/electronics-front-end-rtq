@@ -15,9 +15,10 @@ import Contact from "../view/pages/main/Contact";
 import Home from "../view/pages/main/Home";
 import Login from "../view/pages/main/Login";
 import AccountCreator from "../view/pages/main/register/AccountCreator";
-import SignUp from "../view/pages/main/SignUp";
+
 import SingleProduct from "../view/pages/main/SingleProduct";
 import WishList from "../view/pages/main/WishList";
+import Signup from "../view/pages/main/Signup";
 import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
@@ -63,7 +64,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: <Signup />,
       },
       {
         path: "/register",

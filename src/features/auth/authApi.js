@@ -15,6 +15,7 @@ const authApi = apiSlice.injectEndpoints({
           dispatch(getUser(data.email));
         } catch (error) {}
       },
+      providesTags: ["auth"],
     }),
   }),
 });
