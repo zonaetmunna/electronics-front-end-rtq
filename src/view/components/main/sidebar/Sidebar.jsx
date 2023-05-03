@@ -1,57 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import Select from "react-select";
 
-const Sidebar = ({ dispatch, filters }) => {
+const options = [
+  { value: "price-desc", label: "Price: High to Low" },
+  { value: "price-asc", label: "Price: Low to High" },
+  { value: "rating-desc", label: "Rating: High to Low" },
+  { value: "rating-asc", label: "Rating: Low to High" },
+];
+
+const Sidebar = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
-    <div className="bg-yellow-500 px-3 py-4 rounded">
-      <div className="text-black text-center font-bold ">
-        <h3>Filter</h3>
+    <div className="md:w-1/4 px-4 py-8 bg-gray-100">
+      <h3 className="text-lg font-medium mb-2">Filter By</h3>
+      <div className="mb-4">
+        <h4 className="text-sm font-medium mb-1">Sort By</h4>
+        <Select
+          options={options}
+          value={selectedOption}
+          onChange={handleChange}
+          className="w-full"
+          placeholder="Select an option"
+        />
       </div>
-      <div className="">
-        <div>
-          <button
-            onClick={() => dispatch(toggleStock())}
-            className={`border px-3 py-2 rounded-full font-semibold ${
-              stock ? activeClass : null
-            } `}
-          >
-            In Stock
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => dispatch(toggleBrand("amd"))}
-            className={`border px-3 py-2 rounded-full font-semibold ${
-              brands.includes("amd") ? activeClass : null
-            }`}
-          >
-            AMD
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => dispatch(toggleBrand("intel"))}
-            className={`border px-3 py-2 rounded-full font-semibold ${
-              brands.includes("intel") ? activeClass : null
-            }`}
-          >
-            Intel
-          </button>
-        </div>
-        <div>
-          <button className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-            Headphone
-          </button>
-        </div>
-        <div>
-          <button className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-            Keyboard
-          </button>
-        </div>
-        <div>
-          <button className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-            Mouse
-          </button>
-        </div>
+      <div className="mb-4">
+        <h4 className="text-sm font-medium mb-1">Price Range</h4>
+        <input type="range" min="0" max="100" step="1" className="w-full" />
+      </div>
+      <div>
+        <h4 className="text-sm font-medium mb-1">Categories</h4>
+        <ul>
+          <li className="py-1">
+            <input type="checkbox" id="category1" />
+            <label htmlFor="category1" className="ml-2">
+              Category 1
+            </label>
+          </li>
+          <li className="py-1">
+            <input type="checkbox" id="category2" />
+            <label htmlFor="category2" className="ml-2">
+              Category 2
+            </label>
+          </li>
+          <li className="py-1">
+            <input type="checkbox" id="category3" />
+            <label htmlFor="category3" className="ml-2">
+              Category 3
+            </label>
+          </li>
+        </ul>
       </div>
     </div>
   );

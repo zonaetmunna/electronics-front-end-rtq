@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FiMaximize, FiMinimize } from "react-icons/fi";
+import { FiMaximize, FiMinimize, FiMoon, FiSun } from "react-icons/fi";
 import { FaUserCircle, FaBell, FaEnvelope } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { BiMessageSquare } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 const DashboardNavbar = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(
-    () =>
-      localStorage.getItem("darkMode") === "true" ||
-      (window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    localStorage.getItem("isDarkMode") === "true"
   );
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -65,6 +63,16 @@ const DashboardNavbar = () => {
       setNewMessage("");
     }
   };
+  const iconVariants = {
+    open: {
+      rotate: 90,
+      transition: { duration: 0.2 },
+    },
+    closed: {
+      rotate: 0,
+      transition: { duration: 0.2 },
+    },
+  };
 
   const {
     user: { email, role },
@@ -88,15 +96,10 @@ const DashboardNavbar = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem("darkMode", isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    localStorage.setItem("isDarkMode", isDarkMode);
   }, [isDarkMode]);
 
-  const handleDarkMode = () => {
+  const handleModeToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
 
@@ -112,7 +115,11 @@ const DashboardNavbar = () => {
     }
   };
   return (
-    <nav className="bg-white shadow">
+    <nav
+      className={`px-4 py-3 ${
+        isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-800"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
@@ -129,12 +136,9 @@ const DashboardNavbar = () => {
           {/*  */}
           <div className="flex justify-around items-center">
             {/* dark mode */}
-            <div className="flex items-center">
-              <button
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-gray-700"
-                onClick={handleDarkMode}
-              >
-                {isDarkMode ? "Light mode" : "Dark mode"}
+            <div>
+              <button className="mr-2" onClick={handleModeToggle}>
+                {isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
               </button>
             </div>
             {/* full screen */}
@@ -153,12 +157,14 @@ const DashboardNavbar = () => {
             {/* message */}
             <div className="relative pl-3">
               <div className="relative">
-                <button
-                  className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                <motion.button
+                  className=" hover:text-gray-300 "
                   onClick={() => setShowMessages(!showMessages)}
+                  variants={iconVariants}
+                  animate={showMessages ? "open" : "closed"}
                 >
                   <BiMessageSquare className="w-6 h-6" />
-                </button>
+                </motion.button>
                 {showMessages && (
                   <div className="absolute right-0 w-64 bg-white shadow-lg rounded-lg mt-2">
                     <div className="p-4">

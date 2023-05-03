@@ -5,6 +5,7 @@ import MiddleBanner from "../../components/main/home/MiddleBanner";
 import DiscountBanner from "../../components/common/DiscountBanner/DiscountBanner";
 import { useGetProductsQuery } from "../../../features/product/productApi";
 import Products from "../../components/main/products/Products";
+import OfferBanner from "../../components/main/Banner/OfferBanner";
 
 const Home = () => {
   const { data, isLoading, isError, error } = useGetProductsQuery();
@@ -36,7 +37,8 @@ const Home = () => {
         <MiddleBanner />
       </div>
       <div>
-        <DiscountBanner />
+        {/* <DiscountBanner /> */}
+        <OfferBanner />
       </div>
     </div>
   );

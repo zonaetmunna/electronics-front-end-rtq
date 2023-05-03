@@ -60,7 +60,7 @@ const SidebarTwo = () => {
     <div
       className={`${
         isCollapsed ? "w-16" : "w-56"
-      } bg-gray-800 text-gray-100 flex flex-col transition-all duration-300 ease-in-out`}
+      } top-0 left-0 h-screen bg-gray-800 text-gray-100 flex flex-col transition-all duration-300 ease-in-out`}
     >
       <div className="flex items-center justify-center h-16">
         <div className="text-2xl font-semibold">Logo</div>

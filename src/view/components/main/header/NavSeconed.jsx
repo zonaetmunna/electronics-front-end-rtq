@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Select from "react-select";
@@ -10,64 +10,64 @@ const options = [
 ];
 
 const NavSeconed = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSelectChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+  };
   return (
-    <div className="bg-yellow-500 py-5">
-      <div className="flex justify-around items-center">
-        <div>
-          {/* <h4>ALL Categories</h4> */}
-          <Select
-            className="basic-single"
-            classNamePrefix="select"
-            defaultValue={options[0]}
-            name="color"
-            options={options}
-          />
-        </div>
-        <div className="flex justify-around items-center">
-          <div>
-            <Link to="/" className="font-bold m-2">
-              Homepage
+    <nav className="flex items-center justify-between flex-wrap bg-white py-3 px-4 shadow-md">
+      <div className="w-48">
+        <Select
+          options={options}
+          value={selectedOption}
+          onChange={handleSelectChange}
+          placeholder="Select language"
+        />
+      </div>
+
+      {/*  */}
+      <div className=" ml-3">
+        <ul className="flex">
+          <li className="mr-6">
+            <Link
+              to="/"
+              className="text-gray-800 hover:text-gray-600 transition duration-200"
+            >
+              Home
             </Link>
-          </div>
-          <div>
-            <Link to="/" className="font-bold m-2">
-              Shop
-            </Link>
-          </div>
-          <div>
-            <Link to="/" className="font-bold m-2">
-              Privecy policy
-            </Link>
-          </div>
-          <div>
-            <Link to="/" className="font-bold m-2">
-              Terms&condition
-            </Link>
-          </div>
-          <div>
-            <Link to="/" className="font-bold m-2">
-              About
-            </Link>
-          </div>
-          <div>
-            <Link to="/" className="font-bold m-2">
+          </li>
+          <li className="mr-6">
+            <Link
+              to="contact"
+              className="text-gray-800 hover:text-gray-600 transition duration-200"
+            >
               Contact
             </Link>
-          </div>
-        </div>
-        <div>
-          <Link
-            to="/register"
-            className="text-white bg-black  rounded px-2 py-2 flex justify-between items-center font-bold"
-          >
-            <span className="mr-2">become a Seller</span>
-            <span>
-              <MdOutlineKeyboardArrowRight size={20} />
-            </span>
-          </Link>
-        </div>
+          </li>
+          <li className="mr-6">
+            <Link
+              to="privacy"
+              className="text-gray-800 hover:text-gray-600 transition duration-200"
+            >
+              Privacy
+            </Link>
+          </li>
+        </ul>
       </div>
-    </div>
+      {/*  */}
+      <div>
+        <Link
+          to="/register"
+          className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded flex justify-between items-center font-bold"
+        >
+          <span className="mr-2">become a Seller</span>
+          <span>
+            <MdOutlineKeyboardArrowRight size={20} />
+          </span>
+        </Link>
+      </div>
+    </nav>
   );
 };
 
