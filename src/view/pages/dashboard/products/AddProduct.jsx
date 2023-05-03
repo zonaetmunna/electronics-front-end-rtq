@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useAddProductMutation } from "../../../features/product/productApi";
+import { useAddProductMutation } from "../../../../features/product/productApi";
 
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();

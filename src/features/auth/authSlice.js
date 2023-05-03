@@ -41,7 +41,7 @@ export const getUser = createAsyncThunk("auth/getUser", async (email) => {
     return data;
   }
 
-  return email;
+  return data;
 });
 
 // slice
@@ -105,18 +105,19 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        if (action.payload.status) {
-          state.user = action.payload.data;
-        } else {
-          state.user = action.payload;
-        }
+        // if (action.payload.status) {
+        state.user.email = action.payload.data.email;
+        state.user.role = action.payload.data.role;
+        // } else {
+        // state.user.email = action.payload;
+        // }
 
         state.isError = false;
         state.error = "";
       })
       .addCase(getUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.user = "";
+        state.user.email = "";
         state.isError = true;
         state.error = action.error.message;
       });

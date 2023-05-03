@@ -8,8 +8,6 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { addToCart } from "../../../../features/cart/cartSlice";
 
 const ProductCard = ({ product }) => {
-  const cart = useSelector((state) => state.cart.cart);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
