@@ -1,16 +1,16 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { useDispatch, useSelector } from "react-redux";
-import { toggle, toggleBrands } from "../../../../features/filter/filterSlice";
+import { useSelector } from "react-redux";
+// import { toggle, toggleBrands } from "../../../../features/filter/filterSlice";
 import Sidebar from "../sidebar/Sidebar";
 
 const Products = ({ products }) => {
   console.log(products);
   const filter = useSelector((state) => state.filter);
   const { stock, brands } = filter;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const activeClass = "text-white bg-indigo-500 border-white";
+  // const activeClass = "text-white bg-indigo-500 border-white";
 
   let content;
 
@@ -38,11 +38,15 @@ const Products = ({ products }) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row">
-      <Sidebar />
-
-      <div className="md:ml-8 flex-grow">
-        {/* <div>
+    <div className="container mx-auto py-8 px-4">
+      <div className="flex flex-wrap -mx-4">
+        {/* Filter sidebar */}
+        <div className="w-full lg:w-1/4 px-4 mb-8 lg:mb-0">
+          <Sidebar />
+        </div>
+        {/* Products listing */}
+        <div className="w-full lg:w-3/4 px-4">
+          {/* <div>
           <button
             onClick={() => dispatch(toggle())}
             className={`border px-3 py-2 rounded-full font-semibold ${
@@ -68,8 +72,9 @@ const Products = ({ products }) => {
             Intel
           </button>
         </div> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {content}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {content}
+          </div>
         </div>
       </div>
     </div>

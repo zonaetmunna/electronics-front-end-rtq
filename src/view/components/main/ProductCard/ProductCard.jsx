@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { FaDollarSign, FaHeart } from "react-icons/fa";
 import Rating from "react-rating";

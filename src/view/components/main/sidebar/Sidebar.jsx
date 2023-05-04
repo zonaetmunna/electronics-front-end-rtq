@@ -16,7 +16,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="md:w-1/4 px-4 py-8 bg-gray-100">
+    <div className=" px-4 py-8 bg-gray-100">
       <h3 className="text-lg font-medium mb-2">Filter By</h3>
       <div className="mb-4">
         <h4 className="text-sm font-medium mb-1">Sort By</h4>

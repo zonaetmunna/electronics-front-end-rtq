@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const PersonalInformation = () => {
   const { user } = useSelector((state) => state.auth);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
   };
