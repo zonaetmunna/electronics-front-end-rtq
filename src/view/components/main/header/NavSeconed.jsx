@@ -47,10 +47,26 @@ const NavSeconed = () => {
           </li>
           <li className="mr-6">
             <Link
-              to="privacy"
+              to="privacy-policy"
               className="text-gray-800 hover:text-gray-600 transition duration-200"
             >
-              Privacy
+              Privacy-Policy
+            </Link>
+          </li>
+          <li className="mr-6">
+            <Link
+              to="terms"
+              className="text-gray-800 hover:text-gray-600 transition duration-200"
+            >
+              Terms&Condition
+            </Link>
+          </li>
+          <li className="mr-6">
+            <Link
+              to="blog"
+              className="text-gray-800 hover:text-gray-600 transition duration-200"
+            >
+              Our-Blog
             </Link>
           </li>
         </ul>

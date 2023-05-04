@@ -29,6 +29,14 @@ import Message from "../view/pages/dashboard/message/Message";
 import AllProducts from "../view/pages/dashboard/products/AllProducts";
 import AddProduct from "../view/pages/dashboard/products/AddProduct";
 import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
+import Blog from "../view/pages/main/Blog";
+import Policy from "../view/pages/main/Policy";
+import Terms from "../view/pages/main/Terms";
+import SingleBlog from "../view/pages/main/SingleBlog";
+import PersonalInformation from "../view/pages/dashboard/setting/PersonalInformation";
+import NotificationSetting from "../view/pages/dashboard/setting/NotificationSetting";
+import LoginActivitySetting from "../view/pages/dashboard/setting/LoginActivitySetting";
+import ConnectMediaSetting from "../view/pages/dashboard/setting/ConnectMediaSetting";
 
 export const router = createBrowserRouter([
   // main
@@ -66,6 +74,22 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "blog",
+        element: <Blog />,
+      },
+      {
+        path: "blog/:id",
+        element: <SingleBlog />,
+      },
+      {
+        path: "privacy-policy",
+        element: <Policy />,
+      },
+      {
+        path: "terms",
+        element: <Terms />,
       },
       {
         path: "/login",
@@ -154,6 +178,24 @@ export const router = createBrowserRouter([
       {
         path: "settings",
         element: <Setting />,
+        children: [
+          {
+            path: "personal-information",
+            element: <PersonalInformation />,
+          },
+          {
+            path: "notification-setting",
+            element: <NotificationSetting />,
+          },
+          {
+            path: "login-activity-settings",
+            element: <LoginActivitySetting />,
+          },
+          {
+            path: "connect-media-setting",
+            element: <ConnectMediaSetting />,
+          },
+        ],
       },
       {
         path: "message",

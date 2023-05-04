@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
-import { FaDollarSign } from "react-icons/fa";
+import { FaDollarSign, FaHeart } from "react-icons/fa";
 import Rating from "react-rating";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { addToCart } from "../../../../features/cart/cartSlice";
+import { addToWishlist } from "../../../../features/wishlist/wishListSlice";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -15,9 +16,13 @@ const ProductCard = ({ product }) => {
   const handleAddProductCart = () => {
     dispatch(addToCart(product));
   };
+  // handle add product wishlist
+  const handleAddToWishlist = () => {
+    dispatch(addToWishlist(product));
+  };
 
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-md hover:bg-amber-200">
+    <div className="max-w-sm bg-white rounded-lg shadow-md hover:bg-gray-200">
       {pathname.includes("/") && (
         <div>
           {/* image */}
@@ -58,15 +63,22 @@ const ProductCard = ({ product }) => {
             <div className="flex items-center justify-between px-1 py-1">
               <button
                 onClick={handleAddProductCart}
-                className="text-black bg-yellow-500 hover:bg-yellow-600 border-orange-600 font-medium rounded-lg text-bold px-3 py-2 flex justify-around items-center"
+                className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full mr-4"
               >
                 {" "}
                 <span>
                   <BsCart3 size={20} />
                 </span>{" "}
-                Add to cart <span> </span>
+              </button>
+              {/* add to wish list */}
+              <button
+                className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
+                onClick={handleAddToWishlist}
+              >
+                <FaHeart />
               </button>
             </div>
+
             {/* remove to cart button */}
           </div>
         </div>
