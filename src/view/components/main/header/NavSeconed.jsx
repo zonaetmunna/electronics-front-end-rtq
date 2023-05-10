@@ -39,6 +39,14 @@ const NavSeconed = () => {
           </li>
           <li className="mr-6">
             <Link
+              to="/shop"
+              className="text-gray-800 hover:text-gray-600 transition duration-200"
+            >
+              Shop
+            </Link>
+          </li>
+          <li className="mr-6">
+            <Link
               to="contact"
               className="text-gray-800 hover:text-gray-600 transition duration-200"
             >

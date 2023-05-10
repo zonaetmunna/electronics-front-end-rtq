@@ -22,25 +22,16 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-md hover:bg-gray-200">
+    <div className="bg-white w-full rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
       {pathname.includes("/") && (
         <div>
-          {/* image */}
-          <div className="w-auto px-2 py-2">
+          <div className="relative">
             <img
-              className="w-full rounded-lg"
+              className="w-full h-64 rounded-t-lg object-cover"
               src={product?.image}
               alt="computer parts"
             />
-          </div>
-          <div className="px-3 py-2">
-            <Link to={`/product/${product?._id}`}>
-              <h5 className="text-md font-semibold tracking-tight text-black hover:text-lime-400">
-                {product?.model}
-              </h5>
-            </Link>
-            {/* rating */}
-            <div className="px-1 py-1">
+            <div className="absolute bottom-0 right-0 bg-white text-black rounded-tl-lg py-1 px-2 m-2">
               <Rating
                 initialRating={product?.rating}
                 readonly
@@ -48,38 +39,37 @@ const ProductCard = ({ product }) => {
                 fullSymbol={<AiFillStar className="text-yellow-500" />}
               />
             </div>
-            {/* price text*/}
-            <div className="px-1 py-1">
-              <div className="flex justify-start items-center">
-                <span>
-                  <FaDollarSign className="text-yellow-500" size={20} />
-                </span>{" "}
-                <span className="text-lg font-bold text-black">
+          </div>
+          <div className="px-4 py-2">
+            <Link to={`/product/${product?._id}`}>
+              <h5 className="text-md font-semibold tracking-tight text-black hover:text-lime-400">
+                {product?.model}
+              </h5>
+            </Link>
+            <div className="flex justify-between items-center mt-2">
+              <div className="flex items-center">
+                <span className="text-yellow-500 text-lg font-bold">
+                  <FaDollarSign />
+                </span>
+                <span className="text-lg font-bold text-black ml-1">
                   {product?.price}
                 </span>
               </div>
+              <div className="flex items-center">
+                <button
+                  onClick={handleAddProductCart}
+                  className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full mr-4"
+                >
+                  <BsCart3 />
+                </button>
+                <button
+                  className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
+                  onClick={handleAddToWishlist}
+                >
+                  <FaHeart />
+                </button>
+              </div>
             </div>
-            {/* add to cart button */}
-            <div className="flex items-center justify-between px-1 py-1">
-              <button
-                onClick={handleAddProductCart}
-                className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full mr-4"
-              >
-                {" "}
-                <span>
-                  <BsCart3 size={20} />
-                </span>{" "}
-              </button>
-              {/* add to wish list */}
-              <button
-                className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
-                onClick={handleAddToWishlist}
-              >
-                <FaHeart />
-              </button>
-            </div>
-
-            {/* remove to cart button */}
           </div>
         </div>
       )}

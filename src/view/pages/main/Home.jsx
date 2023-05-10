@@ -13,22 +13,20 @@ const Home = () => {
   console.log(products);
 
   return (
-    <div className="px-2">
-      <div className="">{/* <Slider products={products} /> */}</div>
-      <div className="grid grid-cols-12 p-3 gap-2">
-        {/* <div className="col-span-2">
-          <Sidebar />
-        </div> */}
-        <div className="col-span-10 rounded-lg">
+    <div className="px-2 bg-gray-100">
+      <div className="p-5 bg-gray-100">
+        {" "}
+        <Slider products={products} />{" "}
+      </div>
+      <div className="">
+        <div>
+          <h3 className="text-center text-yellow-500 my-2">ALL Products</h3>
+        </div>
+        <div>
+          {isLoading && <h1>Page loading...</h1>}
+          {isError && <h1>{error}</h1>}
           <div>
-            <h3 className="text-center text-yellow-500 my-2">ALL Products</h3>
-          </div>
-          <div>
-            {isLoading && <h1>Page loading...</h1>}
-            {isError && <h1>{error}</h1>}
-            <div>
-              <Products products={products} />
-            </div>
+            <Products products={products} />
           </div>
         </div>
       </div>

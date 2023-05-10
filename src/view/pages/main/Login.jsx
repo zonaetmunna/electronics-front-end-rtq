@@ -40,41 +40,53 @@ const Login = () => {
 
   return (
     <div className="flex h-screen items-center">
-      <div className="w-1/2">
-        <img src={loginImage} className="h-full w-full" alt="" />
+      <div className="w-1/2 flex items-center justify-center">
+        <img src={loginImage} className="max-h-96" alt="" />
       </div>
-      <div className="w-1/2 grid place-items-center">
-        <div className="bg-[#FFFAF4] rounded-lg grid place-items-center p-10">
-          <h1 className="mb-10 font-medium text-2xl">Login</h1>
+      <div className="w-1/2 grid place-items-center bg-gray-50">
+        <div className="bg-white shadow-lg rounded-lg p-10">
+          <h1 className="mb-10 font-medium text-2xl text-gray-800">Login</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex flex-col items-start">
-                <label htmlFor="email" className="ml-5">
+                <label
+                  htmlFor="email"
+                  className="mb-1 text-gray-800 font-semibold"
+                >
                   Email
                 </label>
-                <input type="email" {...register("email")} id="email" />
+                <input
+                  type="email"
+                  {...register("email")}
+                  id="email"
+                  className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:border-primary"
+                />
               </div>
               <div className="flex flex-col items-start">
-                <label htmlFor="password" className="ml-5">
+                <label
+                  htmlFor="password"
+                  className="mb-1 text-gray-800 font-semibold"
+                >
                   Password
                 </label>
                 <input
                   type="password"
                   id="password"
                   {...register("password")}
+                  className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:border-primary"
                 />
               </div>
-              <div className="relative !mt-8">
+              <div className="relative">
                 <button
                   type="submit"
-                  className="font-bold text-white py-3 rounded-full bg-primary w-full"
+                  className="font-bold text-white py-3 rounded-full bg-primary w-full hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50"
                 >
-                  Login
+                  {isLoading ? "Loading..." : "Login"}
                 </button>
               </div>
-              {isError && <span>{error}</span>}
+              {isError && <span className="text-red-500">{error}</span>}
               <div>
-                <p>
+                <p className="text-gray-800">
                   Don't have an account?{" "}
                   <span
                     className="text-primary hover:underline cursor-pointer"

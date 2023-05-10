@@ -37,6 +37,7 @@ import PersonalInformation from "../view/pages/dashboard/setting/PersonalInforma
 import NotificationSetting from "../view/pages/dashboard/setting/NotificationSetting";
 import LoginActivitySetting from "../view/pages/dashboard/setting/LoginActivitySetting";
 import ConnectMediaSetting from "../view/pages/dashboard/setting/ConnectMediaSetting";
+import Shop from "../view/pages/main/Shop";
 
 export const router = createBrowserRouter([
   // main
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "shop",
+        element: <Shop />,
       },
       {
         path: "product/:id",
