@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  stoke: false,
+  stock: false,
   brands: [],
-  keyword: "",
+  keywords: "",
+  minPrice: null,
+  maxPrice: null,
+  minRating: null,
+  maxRating: null,
+  sortBy: "",
 };
 
 export const filterSlice = createSlice({
@@ -11,7 +16,10 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     toggle: (state) => {
-      state.stoke = !state.stoke;
+      state.stock = !state.stock;
+    },
+    setBrands: (state, action) => {
+      state.brands = action.payload;
     },
     toggleBrands: (state, action) => {
       if (!state.brands.includes(action.payload)) {
@@ -20,9 +28,31 @@ export const filterSlice = createSlice({
         state.brands = state.brands.filter((brand) => brand !== action.payload);
       }
     },
+    setKeyword: (state, action) => {
+      state.keywords = action.payload;
+    },
+    setPriceRange: (state, action) => {
+      state.minPrice = action.payload.minPrice;
+      state.maxPrice = action.payload.maxPrice;
+    },
+    setRatingRange: (state, action) => {
+      state.minRating = action.payload.minRating;
+      state.maxRating = action.payload.maxRating;
+    },
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload;
+    },
   },
 });
 
-export const { toggle, toggleBrands } = filterSlice.actions;
+export const {
+  toggle,
+  setBrands,
+  toggleBrands,
+  setKeyword,
+  setPriceRange,
+  setRatingRange,
+  setSortBy,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

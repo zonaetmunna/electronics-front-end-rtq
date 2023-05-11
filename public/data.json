@@ -1,0 +1,118 @@
+
+[
+    {
+  "name": "MacBook Pro",
+  "model": "M1",
+  "image": "https://i.ibb.co/8x1DndH/Mac-Book-Pro.png
+",
+  "brand": "Apple",
+  "status": "Available",
+  "price": 1299,
+  "rating": 4.5,
+  "spec": {
+    "processor": "Apple M1 chip with 8-core CPU and 8-core GPU",
+    "motherboard": "Apple-designed chip",
+    "ram": "8GB or 16GB of unified memory",
+    "graphics": "Integrated 8-core GPU",
+    "storage": "256GB, 512GB, 1TB, or 2TB SSD",
+    "casing": "Aluminum",
+    "psu": "61W USB-C Power Adapter",
+    "cooler": "Active cooling system"
+  }
+},
+{
+  "name": "Surface Laptop 4",
+  "model": "15 inch",
+  "image": "https://i.ibb.co/9Yb6DZ5/Surface-Laptop-4.jpg",
+  "brand": "Microsoft",
+  "status": "Available",
+  "price": 1499,
+  "rating": 4.2,
+  "spec": {
+    "processor": "AMD Ryzen™ 7 4980U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition",
+    "motherboard": "Surface Edition AMD Ryzen™ chipset",
+    "ram": "8GB, 16GB, or 32GB LPDDR4x RAM",
+    "graphics": "AMD Radeon™ Graphics",
+    "storage": "256GB, 512GB, or 1TB SSD",
+    "casing": "Alcantara® material or metal",
+    "psu": "65W Surface Power Supply w/ USB-A (5W) charging port",
+    "cooler": "Fanless cooling system"
+  }
+},
+{
+  "name": "Inspiron 14 5000",
+  "model": "5402",
+  "image": "https://i.ibb.co/RQKQpjS/Inspiron-14-5000.jpg",
+  "brand": "Dell",
+  "status": "Available",
+  "price": 899,
+  "rating": 4.0,
+  "spec": {
+    "processor": "11th Generation Intel® Core™ i7-1165G7 Processor",
+    "motherboard": "Intel® integrated",
+    "ram": "8GB, DDR4, 3200MHz",
+    "graphics": "Intel® Iris® Xe Graphics with shared graphics memory",
+    "storage": "512GB M.2 PCIe NVMe Solid State Drive",
+    "casing": "Aluminum",
+    "psu": "45 W AC adapter",
+    "cooler": "Dual-fan cooling system"
+  }
+},
+{
+  "name": "Surface Pro 7",
+  "model": "12.3 inch",
+  "image": "https://i.ibb.co/YL3rDyP/Surface-Pro-7.jpg",
+  "brand": "Microsoft",
+  "status": "Available",
+  "price": 899,
+  "rating": 4.5,
+  "spec": {
+    "processor": "10th Gen Intel® Core™ i3, i5, or i7",
+    "motherboard": "Integrated with processor",
+    "ram": "4GB, 8GB, or 16GB LPDDR4x RAM",
+    "graphics": "Intel® UHD Graphics (i3), Intel® Iris™ Plus Graphics (i5, i7)",
+    "storage": "128GB, 256GB, 512GB, or 1TB SSD",
+    "casing": "Signature unibody magnesium design with built-in kickstand",
+    "psu": "65W Surface Power Supply w/ USB-A (5W) charging port",
+    "cooler": "Fanless cooling system"
+  }
+},
+{
+  "name": "Surface Laptop Go",
+  "model": "12.4 inch",
+  "image": "https://i.ibb.co/M7k10HH/Surface-Laptop-Go.jpg",
+  "brand": "Microsoft",
+  "status": "Available",
+  "price": 699,
+  "rating": 4.0,
+  "spec": {
+    "processor": "10th Gen Intel® Core™ i5 or i3",
+    "motherboard": "Integrated with processor",
+    "ram": "4GB or 8GB LPDDR4x RAM",
+    "graphics": "Intel® UHD Graphics",
+    "storage": "64GB eMMC, 128GB, or 256GB SSD",
+    "casing": "Polycarbonate composite resin system with metal accents",
+    "psu": "39W Surface Power Supply w/ USB-A (7.5W) charging port",
+    "cooler": "Fanless cooling system"
+  }
+},
+{
+  "name": "Surface Book 3",
+  "model": "15 inch",
+  "image": "https://i.ibb.co/MSD3sBJ/Surface-Book-3.jpg",
+  "brand": "Microsoft",
+  "status": "Available",
+  "price": 2299,
+  "rating": 4.8,
+  "spec": {
+    "processor": "10th Gen Intel® Core™ i5 or i7",
+    "motherboard": "Integrated with processor",
+    "ram": "8GB, 16GB, or 32GB LPDDR4x RAM",
+    "graphics": "NVIDIA® GeForce® GTX 1650 with Max-Q Design w/ 4GB GDDR5 graphics memory (15 inch)",
+    "storage": "256GB, 512GB, or 1TB SSD",
+    "casing": "Machined magnesium casing with discrete graphics",
+    "psu": "127W Surface Power Supply w/ USB-A (7.5W) charging port",
+    "cooler": "Active cooling system with dual fans"
+  }
+}
+]

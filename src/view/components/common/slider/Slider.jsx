@@ -2,8 +2,10 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cube";
+import { useNavigate } from "react-router-dom";
 
 const Slider = ({ products }) => {
+  const navigate = useNavigate();
   return (
     <Swiper
       spaceBetween={30}
@@ -16,17 +18,22 @@ const Slider = ({ products }) => {
     >
       {products?.map((product) => (
         <SwiperSlide key={product._id}>
-          <div className="bg-white px-5 py-3 rounded-lg shadow-lg">
+          <div
+            onClick={() => navigate("shop")}
+            className="bg-white px-5 py-3 rounded-lg shadow-lg cursor-pointer transition-all duration-300 transform hover:scale-105"
+          >
             <img
               src={product.image}
-              alt={product.name}
-              className="w-full h-48 object-cover"
+              alt={product.brand}
+              className="w-full h-48 object-cover rounded-t-lg"
             />
-            <h3 className="mt-2 font-medium text-gray-900">{product.name}</h3>
-            <p className="mt-1 text-gray-700">{product.price}</p>
+            <h3 className="mt-2 font-medium text-gray-900 text-sm">
+              {product.brand}
+            </h3>
+            <p className="mt-1 text-gray-700 font-medium">${product.price}</p>
           </div>
           <style>
-            {`.swiper-slide-active {
+            {`.swiper-slide-active .bg-white {
                 transform: scale(1.1);
                 z-index: 1;
             }`}

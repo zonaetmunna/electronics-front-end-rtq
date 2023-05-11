@@ -14,9 +14,9 @@ const Policy = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-purple-400 to-purple-600 py-10 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-100 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-white mb-6">
+        <h1 className="text-2xl font-bold text-dark mb-6">
           Privacy and Policy
         </h1>
 
