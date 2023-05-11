@@ -6,6 +6,7 @@ import DiscountBanner from "../../components/common/DiscountBanner/DiscountBanne
 import { useGetProductsQuery } from "../../../features/product/productApi";
 import Products from "../../components/main/products/Products";
 import OfferBanner from "../../components/main/Banner/OfferBanner";
+import MainBanner from "../../components/main/home/MainBanner";
 
 const Home = () => {
   const { data, isLoading, isError, error } = useGetProductsQuery();
@@ -14,6 +15,9 @@ const Home = () => {
 
   return (
     <div className="px-2 bg-gray-100">
+      <div>
+        <MainBanner />
+      </div>
       <div className="p-5 bg-gray-100">
         {" "}
         <Slider products={products} />{" "}

@@ -41,9 +41,10 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search products"
-              className="block w-full bg-gray-100 rounded-md py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm"
+              className="block w-full bg-gray-100 rounded-md py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm transition-all duration-500"
             />
           </div>
+
           <div className="flex items-center">
             {/* wishlist */}
             <Link to="/wishlist" className="mr-6 hover:text-gray-500">
@@ -64,7 +65,7 @@ const Navbar = () => {
               <div>
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-500"
                   onClick={handleSignOut}
                 >
                   <span>
@@ -77,7 +78,7 @@ const Navbar = () => {
               <div>
                 <Link
                   to="/login"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-500"
                 >
                   <span className="ml-2">Log In</span>
                 </Link>
