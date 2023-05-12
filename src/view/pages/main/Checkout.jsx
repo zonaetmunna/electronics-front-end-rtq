@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { useAddOrderMutation } from "../../../features/order/orderApi";
 
 const Checkout = () => {
   const {
@@ -22,8 +23,22 @@ const Checkout = () => {
 
   const { cart, total, subTotal } = useSelector((state) => state.cart);
 
+  const [addOrder] = useAddOrderMutation();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const orderData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      country: data.country,
+      city: data.city,
+      zip: data.zip,
+    };
+    console.log(orderData);
+
+    addOrder(orderData);
     reset();
   };
 
@@ -131,7 +146,6 @@ const Checkout = () => {
                   )}
                 </div>
 
-                {/* number */}
                 {/* phone */}
                 <div className="mb-4">
                   <label
