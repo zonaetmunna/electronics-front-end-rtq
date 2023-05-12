@@ -106,10 +106,10 @@ export const authSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
         // if (action.payload.status) {
-        state.user.email = action.payload.email;
-        state.user.role = action.payload.role;
+        state.user.email = action.payload.data.email;
+        state.user.role = action.payload.data.role;
         // } else {
-        // state.user.email = action.payload;
+        // state.user.email = action.payload.data.email;
         // }
 
         state.isError = false;

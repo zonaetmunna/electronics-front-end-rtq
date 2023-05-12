@@ -62,7 +62,7 @@ const SidebarTwo = () => {
         <div className="text-2xl font-semibold">Logo</div>
       </div>
 
-      {role === "merchant" && (
+      {role === "admin" && (
         <nav className="flex flex-col py-4 ">
           {/* products */}
           <button
@@ -264,6 +264,15 @@ const SidebarTwo = () => {
               <BiMessageSquare className="mr-4" />
             </span>
             <span className={`${isCollapsed ? "hidden" : ""}`}>Message</span>
+          </button>
+          <button
+            onClick={() => navigate("make-admin")}
+            className="flex items-center py-2 px-4  hover:bg-gray-700 rounded-md"
+          >
+            <span className="mr-2">
+              <BiMessageSquare className="mr-4" />
+            </span>
+            <span className={`${isCollapsed ? "hidden" : ""}`}>Make-Admin</span>
           </button>
         </nav>
       )}

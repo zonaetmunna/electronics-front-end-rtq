@@ -27,7 +27,7 @@ const MainBanner = () => {
           <img
             className="object-cover object-center rounded"
             alt="hero"
-            src={bannerImage}
+            src="https://i.ibb.co/qCZrXGR/young-woman-enjoying-listening-music.jpg"
           />
         </div>
       </div>
