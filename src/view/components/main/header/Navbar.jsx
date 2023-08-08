@@ -1,20 +1,23 @@
 import { signOut } from "firebase/auth";
 import React from "react";
-import { BsCart3, BsHeart, BsSearch } from "react-icons/bs";
+import { FaHeart, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../../assets/images/Electronics-logo.png";
 import { logOut } from "../../../../features/auth/authSlice";
 import auth from "../../../../firebase/firebase.config";
-import { FaHeart, FaSearch, FaShoppingCart } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({ onCartClick }) => {
   const {
     user: { email },
   } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
   console.log(email);
+
+  // handle cart
 
   // handle signOut
   const handleSignOut = () => {
@@ -48,12 +51,26 @@ const Navbar = () => {
           <div className="flex items-center">
             {/* wishlist */}
             <Link to="/wishlist" className="mr-6 hover:text-gray-500">
-              <FaHeart className="text-gray-500" />
+              <div className="relative">
+                <FaHeart size={20} className="text-yellow-500" />
+                {wishlist.length > 0 && (
+                  <span className="absolute -top-1 -right-1 text-xs text-white bg-red-500 rounded-full w-4 h-4 flex items-center justify-center">
+                    {wishlist.length}
+                  </span>
+                )}
+              </div>
             </Link>
             {/* Cart */}
-            <Link to="/cart" className="mr-6 hover:text-gray-500">
-              <FaShoppingCart className="text-gray-500" />
-            </Link>
+            <div onClick={onCartClick} className="mx-2">
+              <div className="relative">
+                <FaShoppingCart size={20} className="text-yellow-500" />
+                {cart.length > 0 && (
+                  <span className="absolute -top-1 -right-1 text-xs text-white bg-red-500 rounded-full w-4 h-4 flex items-center justify-center">
+                    {cart.length}
+                  </span>
+                )}
+              </div>
+            </div>
             {/* Dashboard */}
             {email && (
               <Link to="/dashboard" className="mr-6 hover:text-gray-500">

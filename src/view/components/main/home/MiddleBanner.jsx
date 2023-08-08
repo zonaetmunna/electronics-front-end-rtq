@@ -1,7 +1,7 @@
 import React from "react";
-import { FaShippingFast, FaRProject } from "react-icons/fa";
-import { IoIosAddCircle } from "react-icons/io";
+import { FaRProject, FaShippingFast } from "react-icons/fa";
 import { GrSecure } from "react-icons/gr";
+import { IoIosAddCircle } from "react-icons/io";
 
 const MiddleBanner = () => {
   return (

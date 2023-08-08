@@ -5,7 +5,7 @@ const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_DEV_API,
   }),
-  tagTypes: ["product", "auth", "order"],
+  tagTypes: ["product", "category", "brand", "auth", "order"],
   endpoints: (builder) => ({}),
 });
 

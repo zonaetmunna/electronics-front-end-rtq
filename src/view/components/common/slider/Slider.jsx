@@ -1,8 +1,8 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-cube";
-import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Slider = ({ products }) => {
   const navigate = useNavigate();
@@ -24,11 +24,11 @@ const Slider = ({ products }) => {
           >
             <img
               src={product.image}
-              alt={product.brand}
+              alt={product.brand?.name}
               className="w-full h-48 object-cover rounded-t-lg"
             />
             <h3 className="mt-2 font-medium text-gray-900 text-sm">
-              {product.brand}
+              {product?.brand?.name}
             </h3>
             <p className="mt-1 text-gray-700 font-medium">${product.price}</p>
           </div>

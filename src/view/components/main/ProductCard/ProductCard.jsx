@@ -1,10 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { FaDollarSign, FaHeart } from "react-icons/fa";
-import Rating from "react-rating";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import { addToCart } from "../../../../features/cart/cartSlice";
 import { addToWishlist } from "../../../../features/wishlist/wishListSlice";
 
@@ -32,19 +30,20 @@ const ProductCard = ({ product }) => {
               alt="computer parts"
             />
             <div className="absolute bottom-0 right-0 bg-white text-black rounded-tl-lg py-1 px-2 m-2">
-              <Rating
+              {/* <Rating
                 initialRating={product?.rating}
                 readonly
                 emptySymbol={<AiOutlineStar className="text-yellow-500" />}
                 fullSymbol={<AiFillStar className="text-yellow-500" />}
-              />
+              /> */}
             </div>
           </div>
           <div className="px-4 py-2">
-            <Link to={`/product/${product?._id}`}>
-              <h5 className="text-md font-semibold tracking-tight text-black hover:text-lime-400">
-                {product?.model}
-              </h5>
+            <Link
+              to={`/product/${product?._id}`}
+              className="text-md font-semibold tracking-tight text-black hover:text-lime-400"
+            >
+              {product?.name}
             </Link>
             <div className="flex justify-between items-center mt-2">
               <div className="flex items-center">

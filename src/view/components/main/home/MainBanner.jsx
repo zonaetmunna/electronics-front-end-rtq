@@ -1,5 +1,4 @@
 import React from "react";
-import bannerImage from "../../../../assets/images/young-woman-enjoying-listening-music.jpg";
 import { Link } from "react-router-dom";
 
 const MainBanner = () => {

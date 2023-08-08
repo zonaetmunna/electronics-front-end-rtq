@@ -1,50 +1,50 @@
-import React, { useEffect } from "react";
-import Slider from "../../components/common/slider/Slider";
-import Sidebar from "../../components/main/sidebar/Sidebar";
-import MiddleBanner from "../../components/main/home/MiddleBanner";
-import DiscountBanner from "../../components/common/DiscountBanner/DiscountBanner";
+import React from "react";
 import { useGetProductsQuery } from "../../../features/product/productApi";
-import Products from "../../components/main/products/Products";
+import Slider from "../../components/common/slider/Slider";
 import OfferBanner from "../../components/main/Banner/OfferBanner";
+import ProductCard from "../../components/main/ProductCard/ProductCard";
 import MainBanner from "../../components/main/home/MainBanner";
+import MiddleBanner from "../../components/main/home/MiddleBanner";
 
 const Home = () => {
-  const { data, isLoading, isError, error } = useGetProductsQuery();
-  const products = data;
+  const { data, isLoading, isError, error } = useGetProductsQuery({});
+  const products = data?.data;
   console.log(products);
 
   return (
-    <div className="px-2 bg-gray-100">
-      <div>
-        <MainBanner />
-      </div>
+    <div className="bg-gray-100">
+      {/* mini banner */}
+      <MainBanner />
+
+      {/* slider */}
       <div className="p-5 bg-gray-100">
-        {" "}
-        <Slider products={products} />{" "}
+        <Slider products={products} />
       </div>
-      <div className="">
-        <div>
-          <h3 className="text-center text-yellow-500 my-2">ALL Products</h3>
-        </div>
-        <div>
-          {isLoading && <h1>Page loading...</h1>}
-          {isError && <h1>{error}</h1>}
-          <div>
-            <Products products={products} />
-          </div>
+
+      {/* products */}
+      <div className="container mx-auto px-4 py-8">
+        <h3 className="text-center text-yellow-500 text-2xl font-semibold mb-4">
+          ALL Products
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {isLoading && <p className="text-center">Page loading...</p>}
+          {isError && (
+            <p className="text-center text-red-500">{error.message}</p>
+          )}
+
+          {products?.map((product) => (
+            <ProductCard product={product} key={product._id} />
+          ))}
         </div>
       </div>
+
       {/* middle banner */}
-      <div>
-        <MiddleBanner />
-      </div>
-      <div>
-        {/* <DiscountBanner /> */}
-        <OfferBanner />
-      </div>
+      <MiddleBanner />
+
+      {/* offer banner */}
+      <OfferBanner />
     </div>
   );
 };
 
 export default Home;
-//

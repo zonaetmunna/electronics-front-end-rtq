@@ -1,11 +1,13 @@
 import React from "react";
-import Navbar from "./Navbar";
+import MiniNavbar from "./MiniNavbar";
 import NavSeconed from "./NavSeconed";
+import Navbar from "./Navbar";
 
-const NavigationBar = () => {
+const NavigationBar = ({ onCartClick }) => {
   return (
     <div className="shadow-md">
-      <Navbar />
+      <MiniNavbar />
+      <Navbar onCartClick={onCartClick} />
       <NavSeconed />
     </div>
   );

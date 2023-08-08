@@ -44,6 +44,8 @@ export const getUser = createAsyncThunk("auth/getUser", async (email) => {
   return data;
 });
 
+// export const
+
 // slice
 export const authSlice = createSlice({
   name: "auth",

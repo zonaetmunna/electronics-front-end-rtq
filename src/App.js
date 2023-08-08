@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
-import "./App.css";
-import { RouterProvider } from "react-router-dom";
-import { router } from "./routes/routes";
+import { onAuthStateChanged } from "firebase/auth";
+import React, { Suspense, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import { getUser, toggleLoading } from "./features/auth/authSlice";
 import auth from "./firebase/firebase.config";
-import {
-  getUser,
-  subscribedUser,
-  toggleLoading,
-} from "./features/auth/authSlice";
+import { router } from "./routes/routes";
+import Loading from "./view/components/Loading";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,12 +19,14 @@ function App() {
         dispatch(toggleLoading());
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
-      <Toaster />
-      <RouterProvider router={router} />
+      <Suspense fallback={<Loading />}>
+        <Toaster />
+        <RouterProvider router={router} />
+      </Suspense>
     </>
   );
 }
