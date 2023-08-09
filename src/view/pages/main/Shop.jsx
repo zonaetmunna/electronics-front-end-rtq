@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetBrandsQuery } from "../../../features/brand/brandApi";
 import { useGetCategoriesQuery } from "../../../features/category/categoryApi";
@@ -57,31 +57,33 @@ const Shop = () => {
 
   const activeClass = "text-white bg-indigo-500 border-white";
   // Filter products based on selected filters
-  const filteredProducts = products?.filter((product) => {
-    let passFilters = true;
+  const filteredProducts = useMemo(() => {
+    return products?.filter((product) => {
+      let passFilters = true;
 
-    if (selectedCategory && selectedCategory !== product.category.id) {
-      passFilters = false;
-    }
+      if (selectedCategory && selectedCategory !== product.category.id) {
+        passFilters = false;
+      }
 
-    if (selectedBrand && selectedBrand !== product.brand.id) {
-      passFilters = false;
-    }
+      if (selectedBrand && selectedBrand !== product.brand.id) {
+        passFilters = false;
+      }
 
-    if (minPrice !== "" && product.price < parseFloat(minPrice)) {
-      passFilters = false;
-    }
+      if (minPrice !== "" && product.price < parseFloat(minPrice)) {
+        passFilters = false;
+      }
 
-    if (maxPrice !== "" && product.price > parseFloat(maxPrice)) {
-      passFilters = false;
-    }
+      if (maxPrice !== "" && product.price > parseFloat(maxPrice)) {
+        passFilters = false;
+      }
 
-    if (stock && product.stockQuantity <= 0) {
-      passFilters = false;
-    }
+      if (stock && product.stockQuantity <= 0) {
+        passFilters = false;
+      }
 
-    return passFilters;
-  });
+      return passFilters;
+    });
+  }, [products, selectedCategory, selectedBrand, minPrice, maxPrice, stock]);
 
   const totalResults = filteredProducts?.length;
   const handleSortChange = (selectedOption) => {

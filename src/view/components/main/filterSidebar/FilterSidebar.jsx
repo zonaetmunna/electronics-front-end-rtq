@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
 import {
+  clearFilters,
   setMaxPrice,
   setMinPrice,
   setSearchText,
@@ -38,6 +39,10 @@ const FilterSidebar = ({ categories, brands }) => {
     dispatch(setStock(e.target.checked));
   };
 
+  const handleClearFilters = () => {
+    dispatch(clearFilters());
+  };
+
   // Options for React-Select components
   const categoryOptions = categories?.map((category) => ({
     value: category._id,
@@ -48,6 +53,7 @@ const FilterSidebar = ({ categories, brands }) => {
     value: brand._id,
     label: brand.name,
   }));
+
   return (
     <div className="col-span-1 lg:col-span-1">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden divide-y divide-gray-200">
@@ -104,6 +110,14 @@ const FilterSidebar = ({ categories, brands }) => {
             />
             <span className="ml-2 text-gray-700">Show only in stock</span>
           </label>
+
+          {/* Clear Filters */}
+          <button
+            className="mt-4 bg-gray-700 text-white px-4 py-2 rounded-md"
+            onClick={handleClearFilters}
+          >
+            Clear Filters
+          </button>
         </div>
       </div>
     </div>
