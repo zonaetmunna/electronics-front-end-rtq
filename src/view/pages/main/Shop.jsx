@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetBrandsQuery } from "../../../features/brand/brandApi";
 import { useGetCategoriesQuery } from "../../../features/category/categoryApi";
+import { setSortBy } from "../../../features/filter/filterSlice";
 import { useGetProductsQuery } from "../../../features/product/productApi";
 import ProductCard from "../../components/main/ProductCard/ProductCard";
 import FilterSidebar from "../../components/main/filterSidebar/FilterSidebar";
@@ -41,7 +42,7 @@ const Shop = () => {
     isLoading: isLoadingCategories,
     isError: isErrorCategories,
   } = useGetCategoriesQuery({});
-  const categories = categoriesData;
+  const categories = categoriesData?.data;
   console.log(categories);
   // brand query
   const {
@@ -83,6 +84,10 @@ const Shop = () => {
   });
 
   const totalResults = filteredProducts?.length;
+  const handleSortChange = (selectedOption) => {
+    // Dispatch action to update sorting state
+    dispatch(setSortBy(selectedOption?.value));
+  };
 
   let content;
   return (
@@ -92,6 +97,7 @@ const Shop = () => {
         totalResults={totalResults}
         gridView={gridView}
         toggleGridView={toggleGridView}
+        handleSortChange={handleSortChange}
       />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
         {/* Filter sidebar */}
