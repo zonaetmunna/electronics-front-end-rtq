@@ -42,7 +42,7 @@ const Shop = () => {
     isLoading: isLoadingCategories,
     isError: isErrorCategories,
   } = useGetCategoriesQuery({});
-  const categories = categoriesData?.data;
+  const categories = categoriesData;
   console.log(categories);
   // brand query
   const {
