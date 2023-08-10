@@ -20,11 +20,12 @@ const FilterSidebar = ({ categories, brands }) => {
   };
 
   const handleCategoryChange = (category) => {
-    dispatch(setSelectedCategory(category));
+    dispatch(setSelectedCategory(category.label));
   };
 
   const handleBrandChange = (brand) => {
-    dispatch(setSelectedBrand(brand));
+    console.log(brand.value);
+    dispatch(setSelectedBrand(brand.label));
   };
 
   const handleMinPriceChange = (e) => {

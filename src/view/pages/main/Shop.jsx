@@ -27,11 +27,13 @@ const Shop = () => {
   // productsQuery
   const { data, isLoading, isError, error } = useGetProductsQuery({
     category: selectedCategory,
+    brand: selectedBrand,
     search: searchText,
     page: currentPage,
     limit: itemsPerPage,
     minPrice: minPrice,
     maxPrice: maxPrice,
+    stock: stock,
     // ... other parameters
   });
   const products = data?.data;
@@ -59,29 +61,16 @@ const Shop = () => {
   // Filter products based on selected filters
   const filteredProducts = useMemo(() => {
     return products?.filter((product) => {
-      let passFilters = true;
-
-      if (selectedCategory && selectedCategory !== product.category.id) {
-        passFilters = false;
+      if (
+        (selectedCategory && selectedCategory !== product.category.name) ||
+        (selectedBrand && selectedBrand !== product.brand.name) ||
+        (minPrice !== "" && product.price < parseFloat(minPrice)) ||
+        (maxPrice !== "" && product.price > parseFloat(maxPrice)) ||
+        (stock && product.stock === true)
+      ) {
+        return false;
       }
-
-      if (selectedBrand && selectedBrand !== product.brand.id) {
-        passFilters = false;
-      }
-
-      if (minPrice !== "" && product.price < parseFloat(minPrice)) {
-        passFilters = false;
-      }
-
-      if (maxPrice !== "" && product.price > parseFloat(maxPrice)) {
-        passFilters = false;
-      }
-
-      if (stock && product.stockQuantity <= 0) {
-        passFilters = false;
-      }
-
-      return passFilters;
+      return true;
     });
   }, [products, selectedCategory, selectedBrand, minPrice, maxPrice, stock]);
 

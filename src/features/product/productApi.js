@@ -4,19 +4,27 @@ const productApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (params) => {
+        console.log(params);
         const {
           category,
+          brand,
           search,
           page,
           limit,
           minPrice,
           maxPrice,
+          stock,
           ...restParams
         } = params || {};
+
         const query = {};
 
         if (category) {
           query.category = category;
+        }
+
+        if (brand) {
+          query.brand = brand;
         }
 
         if (search) {
@@ -34,6 +42,10 @@ const productApi = apiSlice.injectEndpoints({
 
         if (maxPrice !== undefined) {
           query.maxPrice = maxPrice;
+        }
+
+        if (stock) {
+          query.stock = stock;
         }
 
         console.log(query);
