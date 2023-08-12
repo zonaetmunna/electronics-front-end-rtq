@@ -1,23 +1,27 @@
 import apiSlice from "../api/apiSlice";
-import { getUser } from "./authSlice";
+// import { signInWithGoogle } from "./authSlice";
 
 const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (data) => ({
         method: "POST",
-        url: "/auth/user",
+        url: "/auth/signup",
         body: data,
       }),
-      async onQueryStarted(data, { dispatch, queryFulfilled }) {
-        try {
-          const res = await queryFulfilled;
-          dispatch(getUser(data.email));
-        } catch (error) {}
-      },
+
       providesTags: ["auth"],
+    }),
+    login: builder.mutation({
+      query: (data) => ({
+        method: "POST",
+        url: "/auth/login",
+        body: data,
+      }),
+
+      invalidatesTags: ["auth"],
     }),
   }),
 });
 
-export const { useRegisterMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation } = authApi;

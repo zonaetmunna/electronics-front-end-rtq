@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../../../features/cart/cartSlice";
+import { Controller, useForm, useWatch } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { useAddOrderMutation } from "../../../features/order/orderApi";
 
 const Checkout = () => {
@@ -23,41 +21,25 @@ const Checkout = () => {
     }
   }, [email]);
 
-  // cart state
   const { cart, total, subTotal } = useSelector((state) => state.cart);
 
-  // add order mutation
-  const [addOrder, { isLoading, isError, isSuccess }] = useAddOrderMutation();
-  const dispatch = useDispatch();
-  const onSubmit = async (data) => {
-    try {
-      const orderData = {
-        products: cart.map((item) => ({
-          product: item._id,
-          quantity: item.quantity,
-        })),
-        user: email, // Replace with the actual user ID
-        totalAmount: total,
-        address: {
-          street: data.address,
-          city: data.city,
-          state: data.state,
-          postalCode: data.zip,
-          country: data.country,
-        },
-        // You can also add other relevant fields here
-      };
-      console.log(orderData);
-      await addOrder(orderData);
-      if (isSuccess) {
-        dispatch(clearCart());
-        toast.success("Order placed successfully!");
-        reset();
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong!");
-    }
+  const [addOrder] = useAddOrderMutation();
+
+  const onSubmit = (data) => {
+    const orderData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      country: data.country,
+      city: data.city,
+      zip: data.zip,
+    };
+    console.log(orderData);
+
+    addOrder(orderData);
+    reset();
   };
 
   return (
@@ -278,7 +260,7 @@ const Checkout = () => {
                       id="zip"
                       {...register("zip", {
                         required: true,
-                        // pattern: /^[0-9]{5}(?:-[0-9]{4})?$/i,
+                        pattern: /^[0-9]{5}(?:-[0-9]{4})?$/i,
                       })}
                       className={`w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
                         errors.zip && "border-red-500"
@@ -296,14 +278,6 @@ const Checkout = () => {
                       </p>
                     )}
                   </div>
-
-                  {/*  modfiy future*/}
-                  <button
-                    type="submit"
-                    className="bg-indigo-600 text-white px-4 py-2 rounded-lg mt-4 hover:bg-indigo-500"
-                  >
-                    Order
-                  </button>
                 </div>
               </div>
             </div>
@@ -369,6 +343,9 @@ const Checkout = () => {
               </label>
             </div>
           </div>
+          <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg mt-4 hover:bg-indigo-500">
+            Order
+          </button>
         </div>
       </div>
     </div>

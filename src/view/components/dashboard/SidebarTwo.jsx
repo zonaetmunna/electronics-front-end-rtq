@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  FiShoppingBag,
-  FiLogOut,
-  FiChevronRight,
-  FiChevronLeft,
-} from "react-icons/fi";
+import { BiMessageSquare } from "react-icons/bi";
 import {
   FaChevronDown,
   FaChevronUp,
@@ -16,8 +9,15 @@ import {
   FaPlus,
   FaUser,
 } from "react-icons/fa";
-import { BiMessageSquare } from "react-icons/bi";
+import {
+  FiChevronLeft,
+  FiChevronRight,
+  FiLogOut,
+  FiShoppingBag,
+} from "react-icons/fi";
 import { MdPeople, MdPerson } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const SidebarTwo = () => {
   const {
@@ -58,10 +58,6 @@ const SidebarTwo = () => {
         isCollapsed ? "w-16" : "w-56"
       } top-0 left-0 h-screen bg-gray-800 text-gray-100 flex flex-col transition-all duration-300 ease-in-out`}
     >
-      <div className="flex items-center justify-center h-16">
-        <div className="text-2xl font-semibold">Logo</div>
-      </div>
-
       {role === "admin" && (
         <nav className="flex flex-col py-4 ">
           {/* products */}

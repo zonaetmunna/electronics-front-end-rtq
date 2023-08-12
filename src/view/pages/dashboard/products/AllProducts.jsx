@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import {
   useGetProductsQuery,
   useRemoveProductMutation,
   useUpdateProductMutation,
 } from "../../../../features/product/productApi";
-import { useDispatch, useSelector } from "react-redux";
-import EditProductModal from "../../../components/dashboard/EditProductModal";
 import DeleteProductModel from "../../../components/dashboard/DeleteProductModel";
-import { useForm } from "react-hook-form";
+import EditProductModal from "../../../components/dashboard/EditProductModal";
 
 const AllProducts = () => {
-  const { data, isLoading } = useGetProductsQuery();
+  const {
+    data,
+    isLoading: isLoadingProducts,
+    isError: isErrorProducts,
+    error: errorProducts,
+  } = useGetProductsQuery({});
   console.log(data);
-  const products = data;
+  const products = data?.data;
   const dispatch = useDispatch();
 
-  const [removeProduct, { isError, isSuccess, error }] =
-    useRemoveProductMutation();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const [
+    removeProduct,
+    { isError: isRemoveError, isSuccess: isRemoveSuccess, error: removeError },
+  ] = useRemoveProductMutation();
   const [updateProduct] = useUpdateProductMutation();
 
-  if (isLoading) {
+  if (isLoadingProducts) {
     <h1>page is loading</h1>;
   }
 
@@ -30,10 +41,6 @@ const AllProducts = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleProductSelect = (product) => {
     setSelectedProduct(product);
@@ -48,7 +55,7 @@ const AllProducts = () => {
   };
 
   const handleEditSubmit = (product) => {
-    updateProduct(product);
+    updateProduct({ productId: product.id, updatedProduct: product });
     handleEditModalClose();
   };
 
@@ -75,11 +82,21 @@ const AllProducts = () => {
             <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
               Name
             </th>
-            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
+            {/* <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
               Description
+            </th> */}
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
+              Category
+            </th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
+              Brand
             </th>
             <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
               Price
+            </th>
+
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
+              stockQuantity
             </th>
             <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">
               Stock
@@ -91,13 +108,16 @@ const AllProducts = () => {
         </thead>
         <tbody className="bg-white">
           {products &&
-            products.map((product) => (
+            products?.map((product) => (
               <tr key={product.id}>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                   <div className="flex items-center">
                     <div className="ml-4">
                       <div className="text-sm leading-5 font-medium text-gray-900">
                         {product.name}
+                        <div className="text-sm text-gray-500">
+                          {product._id}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -106,10 +126,24 @@ const AllProducts = () => {
                   <div className="flex items-center">
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {product.name}
+                        {product.category.name}
                       </div>
-                      <div className="text-sm text-gray-500">{product.id}</div>
                     </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <div className="ml-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {product.brand.name}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-gray-900">
+                    ${product.stockQuantity}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -119,24 +153,24 @@ const AllProducts = () => {
                   <div className="text-sm text-gray-900">{product.stock}</div>
                 </td>
                 <td>
-                  <div className="px-6 py-4">
+                  <div className="px-3 py-3">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
                       onClick={() => {
                         handleProductSelect(product);
                         handleEditModalOpen();
                       }}
                     >
-                      Edit
+                      <FaEdit />
                     </button>
                     <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
                       onClick={() => {
                         handleProductSelect(product);
                         handleDeleteModalOpen();
                       }}
                     >
-                      Delete
+                      <FaTrash />
                     </button>
                   </div>
                 </td>
@@ -166,26 +200,3 @@ const AllProducts = () => {
 };
 
 export default AllProducts;
-
-{
-  /* <div className="px-6 py-4">
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  onClick={() => {
-                    handleProductSelect(product);
-                    handleEditModalOpen();
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => {
-                    handleProductSelect(product);
-                    handleDeleteModalOpen();
-                  }}
-                >
-                  Delete
-                </button>
-              </div> */
-}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import bannerImage from "../../../../assets/images/young-woman-enjoying-listening-music.jpg";
 
 const MainBanner = () => {
   return (
@@ -26,7 +27,7 @@ const MainBanner = () => {
           <img
             className="object-cover object-center rounded"
             alt="hero"
-            src="https://i.ibb.co/qCZrXGR/young-woman-enjoying-listening-music.jpg"
+            src={bannerImage}
           />
         </div>
       </div>

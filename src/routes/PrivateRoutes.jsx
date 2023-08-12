@@ -7,7 +7,7 @@ const PrivateRoutes = ({ children }) => {
   const { pathname } = useLocation();
 
   const {
-    user: { email },
+    user: { email, role },
     isLoading,
   } = useSelector((state) => state.auth);
 
@@ -15,7 +15,7 @@ const PrivateRoutes = ({ children }) => {
     return <Loading />;
   }
 
-  if (!isLoading && !email) {
+  if (!isLoading && !email && role !== "admin") {
     return <Navigate to="/login" state={{ path: pathname }} />;
   }
 

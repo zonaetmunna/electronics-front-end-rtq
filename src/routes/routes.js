@@ -4,7 +4,6 @@ import Dashboard from "../view/layout/Dashboard";
 import Error from "../view/layout/Error";
 import Main from "../view/layout/Main";
 import AdminDashboard from "../view/pages/dashboard/adminDashboard/AdminDashboard";
-import MerchantDashboard from "../view/pages/dashboard/merchantDashboard/MerchantDashboard";
 import About from "../view/pages/main/About";
 import Cart from "../view/pages/main/Cart";
 import Checkout from "../view/pages/main/Checkout";
@@ -13,31 +12,35 @@ import Home from "../view/pages/main/Home";
 import Login from "../view/pages/main/Login";
 import AccountCreator from "../view/pages/main/register/AccountCreator";
 
-import SingleProduct from "../view/pages/main/SingleProduct";
-import WishList from "../view/pages/main/WishList";
-import Signup from "../view/pages/main/Signup";
-import PrivateRoutes from "./PrivateRoutes";
-import VendorsList from "../view/pages/dashboard/vendors/VendorsList";
-import VendorProfile from "../view/pages/dashboard/vendors/VendorProfile";
-import CustomerList from "../view/pages/dashboard/customers/CustomerList";
-import Customer from "../view/pages/dashboard/customers/Customer";
-import Invoice from "../view/pages/dashboard/invoice/Invoice";
-import OrdersList from "../view/pages/dashboard/orders/OrdersList";
-import OrderDetails from "../view/pages/dashboard/orders/OrderDetails";
-import Setting from "../view/pages/dashboard/setting/Setting";
-import Message from "../view/pages/dashboard/message/Message";
-import AllProducts from "../view/pages/dashboard/products/AllProducts";
-import AddProduct from "../view/pages/dashboard/products/AddProduct";
 import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
+import Customer from "../view/pages/dashboard/customers/Customer";
+import CustomerList from "../view/pages/dashboard/customers/CustomerList";
+import Invoice from "../view/pages/dashboard/invoice/Invoice";
+import Message from "../view/pages/dashboard/message/Message";
+import OrderDetails from "../view/pages/dashboard/orders/OrderDetails";
+import OrdersList from "../view/pages/dashboard/orders/OrdersList";
+import AddProduct from "../view/pages/dashboard/products/AddProduct";
+import AllProducts from "../view/pages/dashboard/products/AllProducts";
+import ConnectMediaSetting from "../view/pages/dashboard/setting/ConnectMediaSetting";
+import LoginActivitySetting from "../view/pages/dashboard/setting/LoginActivitySetting";
+import NotificationSetting from "../view/pages/dashboard/setting/NotificationSetting";
+import PersonalInformation from "../view/pages/dashboard/setting/PersonalInformation";
+import Setting from "../view/pages/dashboard/setting/Setting";
+import VendorProfile from "../view/pages/dashboard/vendors/VendorProfile";
+import VendorsList from "../view/pages/dashboard/vendors/VendorsList";
 import Blog from "../view/pages/main/Blog";
 import Policy from "../view/pages/main/Policy";
-import Terms from "../view/pages/main/Terms";
-import SingleBlog from "../view/pages/main/SingleBlog";
-import PersonalInformation from "../view/pages/dashboard/setting/PersonalInformation";
-import NotificationSetting from "../view/pages/dashboard/setting/NotificationSetting";
-import LoginActivitySetting from "../view/pages/dashboard/setting/LoginActivitySetting";
-import ConnectMediaSetting from "../view/pages/dashboard/setting/ConnectMediaSetting";
+import Profile from "../view/pages/main/Profile";
+import ProfileInformation from "../view/pages/main/ProfileInformation";
+import ProfileOrders from "../view/pages/main/ProfileOrders";
+import ProfileSettings from "../view/pages/main/ProfileSettings";
 import Shop from "../view/pages/main/Shop";
+import Signup from "../view/pages/main/Signup";
+import SingleBlog from "../view/pages/main/SingleBlog";
+import SingleProduct from "../view/pages/main/SingleProduct";
+import Terms from "../view/pages/main/Terms";
+import WishList from "../view/pages/main/WishList";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   // main
@@ -120,6 +123,28 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile />
+          </PrivateRoutes>
+        ),
+        children: [
+          {
+            path: "/profile",
+            element: <ProfileInformation />,
+          },
+          {
+            path: "orders",
+            element: <ProfileOrders />,
+          },
+          {
+            path: "settings",
+            element: <ProfileSettings />,
+          },
+        ],
+      },
     ],
   },
   // dashboard
@@ -148,10 +173,7 @@ export const router = createBrowserRouter([
         path: "admin-dashboard",
         element: <AdminDashboard />,
       },
-      {
-        path: "merchant-dashboard",
-        element: <MerchantDashboard />,
-      },
+
       {
         path: "vendor-list",
         element: <VendorsList />,

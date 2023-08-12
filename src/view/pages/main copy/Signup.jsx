@@ -35,28 +35,15 @@ const Signup = () => {
     }
   }, [password, confirmPassword]);
 
-  const onSubmit = async (data) => {
-    const signupData = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password,
-    };
-    try {
-      await dispatch(signupUser(signupData));
-
-      toast.success("User created successfully!");
-      reset();
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong!");
-    }
-  };
-
-  const handleGoogleSignIn = () => {
-    console.log("click");
-    // dispatch(signInWithGoogle()); // Move this dispatch inside the component
+  const onSubmit = (data) => {
+    dispatch(
+      signupUser({
+        email: data.email,
+        password: data.password,
+      })
+    );
+    console.log(data);
+    reset();
   };
 
   // redirect
@@ -64,7 +51,7 @@ const Signup = () => {
     if (!isLoading && email) {
       navigate("/");
     }
-  }, [email, isLoading, navigate]);
+  }, []);
 
   // error
   useEffect(() => {
@@ -85,31 +72,13 @@ const Signup = () => {
           </h1>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-1">
-              <label htmlFor="firstName" className="font-medium text-gray-700">
-                First Name
-              </label>
-              <input
-                type="text"
-                {...register("firstName")}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-              />
-            </div>
-            <div className="space-y-1">
-              <label htmlFor="lastName" className="font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="text"
-                {...register("lastName")}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-              />
-            </div>
-            <div className="space-y-1">
               <label htmlFor="email" className="font-medium text-gray-700">
                 Email
               </label>
               <input
                 type="email"
+                name="email"
+                id="email"
                 {...register("email")}
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               />
@@ -121,6 +90,8 @@ const Signup = () => {
               </label>
               <input
                 type="password"
+                name="password"
+                id="password"
                 {...register("password")}
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               />
@@ -135,6 +106,7 @@ const Signup = () => {
               </label>
               <input
                 type="password"
+                id="confirm-password"
                 {...register("confirmPassword")}
                 className="block w-full rounded-md border-gray--300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               />
@@ -149,9 +121,6 @@ const Signup = () => {
               </button>
             </div>
           </form>
-          <button onClick={handleGoogleSignIn} disabled={isLoading}>
-            Sign In with Google
-          </button>
           <p className="mt-8 text-base font-medium text-gray-700">
             Already have an account?{" "}
             <span

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FiMaximize, FiMinimize, FiMoon, FiSun } from "react-icons/fi";
-import { FaUserCircle, FaBell, FaEnvelope } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { BiMessageSquare } from "react-icons/bi";
 import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { BiMessageSquare } from "react-icons/bi";
+import { FaBell, FaUserCircle } from "react-icons/fa";
+import { FiMaximize, FiMinimize, FiMoon, FiSun } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import brandLogo from "../../../assets/logo/brand-logo.png";
 
 const DashboardNavbar = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -116,7 +117,7 @@ const DashboardNavbar = () => {
   };
   return (
     <nav
-      className={`px-4 py-3 ${
+      className={`px-2 py-3 ${
         isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-800"
       }`}
     >
@@ -126,8 +127,8 @@ const DashboardNavbar = () => {
             {/* dashboard logo */}
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                className="h-8 w-auto rounded-full"
+                src={brandLogo}
                 alt="Workflow"
               />
               <span className="font-semibold text-xl ml-2">Dashboard</span>

@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../../../assets/images/login-image.jpg";
-import { login } from "../../../features/auth/authSlice";
+import { loginUser } from "../../../features/auth/authSlice";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -20,16 +20,8 @@ const Login = () => {
   // handle submit
   const onSubmit = (data) => {
     console.log(data);
-    const loginData = {
-      email: data.email,
-      password: data.password,
-    };
-    dispatch(login(loginData));
+    dispatch(loginUser({ email: data.email, password: data.password }));
     reset();
-  };
-
-  const handleGoogleSignIn = () => {
-    // dispatch(signInWithGoogle()); // Move this dispatch inside the component
   };
 
   // redirect
@@ -92,11 +84,6 @@ const Login = () => {
                   {isLoading ? "Loading..." : "Login"}
                 </button>
               </div>
-
-              <button onClick={handleGoogleSignIn} disabled={isLoading}>
-                Sign In with Google
-              </button>
-
               {isError && <span className="text-red-500">{error}</span>}
               <div>
                 <p className="text-gray-800">

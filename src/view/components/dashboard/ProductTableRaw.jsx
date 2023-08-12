@@ -1,9 +1,5 @@
-import React from 'react';
-
 const ProductTableRaw = () => {
-    return (
-        
-    );
+  return <div></div>;
 };
 
 export default ProductTableRaw;
