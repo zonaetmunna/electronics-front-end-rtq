@@ -5,6 +5,7 @@ import FooterSeconed from "../components/main/footer/FooterSeconed";
 import NavigationBar from "../components/main/header/NavigationBar";
 
 const Main = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const handleCartClick = () => {
     setIsCartOpen(true);
@@ -15,7 +16,11 @@ const Main = () => {
   };
   return (
     <>
-      <NavigationBar onCartClick={handleCartClick} />
+      <NavigationBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        onCartClick={handleCartClick}
+      />
       <Outlet />
       <FooterSeconed />
       {isCartOpen && <CartModal onClose={handleCartModalClose} />}

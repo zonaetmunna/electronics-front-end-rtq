@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../../../assets/images/login-image.jpg";
-import { login } from "../../../features/auth/authSlice";
+import { login, signInWithGoogle } from "../../../features/auth/authSlice";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -29,7 +29,7 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    // dispatch(signInWithGoogle()); // Move this dispatch inside the component
+    dispatch(signInWithGoogle());
   };
 
   // redirect
@@ -92,25 +92,31 @@ const Login = () => {
                   {isLoading ? "Loading..." : "Login"}
                 </button>
               </div>
-
-              <button onClick={handleGoogleSignIn} disabled={isLoading}>
-                Sign In with Google
-              </button>
-
-              {isError && <span className="text-red-500">{error}</span>}
-              <div>
-                <p className="text-gray-800">
-                  Don't have an account?{" "}
-                  <span
-                    className="text-primary hover:underline cursor-pointer"
-                    onClick={() => navigate("/signup")}
-                  >
-                    Sign up
-                  </span>
-                </p>
-              </div>
             </div>
           </form>
+          {/* google sign in */}
+          <div className="mt-6 rounded-md shadow-md">
+            <button
+              type="button"
+              className="px-4 py-4 text-base font-medium text-gray-700"
+              onClick={handleGoogleSignIn}
+              // disabled={isLoading}
+            >
+              Sign In with Google
+            </button>
+          </div>
+          {isError && <span className="text-red-500">{error}</span>}
+          <div>
+            <p className="text-gray-800">
+              Don't have an account?{" "}
+              <span
+                className="text-primary hover:underline cursor-pointer"
+                onClick={() => navigate("/signup")}
+              >
+                Sign up
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

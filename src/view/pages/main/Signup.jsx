@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../../../assets/images/login-image.jpg";
-import { signupUser } from "../../../features/auth/authSlice";
+import { signInWithGoogle, signupUser } from "../../../features/auth/authSlice";
 
 const Signup = () => {
   const {
@@ -13,7 +13,13 @@ const Signup = () => {
     isError,
     error,
   } = useSelector((state) => state.auth);
-  const { handleSubmit, register, reset, control } = useForm();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm();
   const password = useWatch({ control, name: "password" });
   const confirmPassword = useWatch({ control, name: "confirmPassword" });
   const navigate = useNavigate();
@@ -56,7 +62,7 @@ const Signup = () => {
 
   const handleGoogleSignIn = () => {
     console.log("click");
-    // dispatch(signInWithGoogle()); // Move this dispatch inside the component
+    dispatch(signInWithGoogle());
   };
 
   // redirect
@@ -69,12 +75,12 @@ const Signup = () => {
   // error
   useEffect(() => {
     if (isError) {
-      toast.error(error);
+      toast.error("Something went wrong!", error);
     }
   }, [isError, error]);
 
   return (
-    <div className="flex h-screen items-center bg-gray-50">
+    <div className="flex items-center bg-gray-50">
       <div className="hidden md:block w-1/2 h-full p-20">
         <img src={loginImage} className="h-full w-full object-cover" alt="" />
       </div>
@@ -83,6 +89,7 @@ const Signup = () => {
           <h1 className="mb-10 font-medium text-2xl md:text-3xl text-center">
             Sign up
           </h1>
+          {/* signup form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-1">
               <label htmlFor="firstName" className="font-medium text-gray-700">
@@ -149,18 +156,30 @@ const Signup = () => {
               </button>
             </div>
           </form>
-          <button onClick={handleGoogleSignIn} disabled={isLoading}>
-            Sign In with Google
-          </button>
-          <p className="mt-8 text-base font-medium text-gray-700">
-            Already have an account?{" "}
-            <span
-              className="text-primary hover:underline cursor-pointer"
-              onClick={() => navigate("/login")}
+          {/* google sign in */}
+          <div className="mt-6 rounded-md shadow-md">
+            <button
+              type="button"
+              className="px-4 py-4 text-base font-medium text-gray-700"
+              onClick={handleGoogleSignIn}
+              // disabled={isLoading}
             >
-              Log in
-            </span>
-          </p>
+              Sign In with Google
+            </button>
+          </div>
+
+          {/* login page link */}
+          <div className="mt-8">
+            <p className="mt-8 text-base font-medium text-gray-700">
+              Already have an account?{" "}
+              <span
+                className="text-primary hover:underline cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Log in
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

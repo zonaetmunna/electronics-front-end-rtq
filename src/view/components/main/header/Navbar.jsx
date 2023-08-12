@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { FaHeart, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/images/Electronics-logo.png";
 
-const Navbar = ({ onCartClick }) => {
+const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
   const {
     user: { email },
   } = useSelector((state) => state.auth);
@@ -14,6 +14,15 @@ const Navbar = ({ onCartClick }) => {
   const dispatch = useDispatch();
   console.log(email);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const navigate = useNavigate();
+  const handleSearchQueryChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+  };
   // handle cart
 
   // handle signOut
@@ -41,11 +50,16 @@ const Navbar = ({ onCartClick }) => {
             <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
               <FaSearch className="text-gray-500" />
             </span>
-            <input
-              type="text"
-              placeholder="Search products"
-              className="block w-full bg-gray-100 rounded-md py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm transition-all duration-500"
-            />
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                placeholder="Search for products..."
+                value={searchQuery}
+                onChange={handleSearchQueryChange}
+                className="block w-full bg-gray-100 rounded-md py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm transition-all duration-500"
+              />
+              <button type="submit">Search</button>
+            </form>
           </div>
           <div className="flex items-center">
             <Link to="/wishlist" className="mr-6 hover:text-gray-500">
