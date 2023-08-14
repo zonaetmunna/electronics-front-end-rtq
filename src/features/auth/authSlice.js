@@ -22,7 +22,7 @@ export const signupUser = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/auth/signup`,
+        `${process.env.REACT_APP_DEV_API}/auth/signup`,
         {
           method: "POST",
           headers: {
@@ -45,7 +45,7 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/auth/login`,
+        `${process.env.REACT_APP_DEV_API}/auth/login`,
         {
           method: "POST",
           headers: {
