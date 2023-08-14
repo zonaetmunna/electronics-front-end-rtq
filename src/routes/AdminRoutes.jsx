@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import Loading from "../view/components/common/Spinner/Loading";
 
-const PrivateRoutes = ({ children }) => {
+const AdminRoutes = ({ children }) => {
   const { pathname } = useLocation();
 
   const {
@@ -17,12 +17,10 @@ const PrivateRoutes = ({ children }) => {
   }
 
   if (isError) {
-    return (
-      <Navigate to="/login" state={{ path: pathname.includes("/login") }} />
-    );
+    return <Navigate to="/login" state={{ path: pathname }} />;
   }
 
-  if (!isLoading && !email) {
+  if (!isLoading && (!email || role !== "admin")) {
     return (
       <Navigate to="/login" state={{ path: pathname.includes("/login") }} />
     );
@@ -31,4 +29,4 @@ const PrivateRoutes = ({ children }) => {
   return children;
 };
 
-export default PrivateRoutes;
+export default AdminRoutes;

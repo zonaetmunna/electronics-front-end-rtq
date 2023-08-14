@@ -1,6 +1,6 @@
 import React from "react";
+import { FaBell, FaShareAlt, FaSignInAlt, FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FaUserAlt, FaBell, FaSignInAlt, FaShareAlt } from "react-icons/fa";
 
 const SettingSidebar = () => {
   return (

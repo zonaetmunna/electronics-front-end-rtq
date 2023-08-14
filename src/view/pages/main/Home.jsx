@@ -1,8 +1,8 @@
 import React from "react";
 import { useGetProductsQuery } from "../../../features/product/productApi";
-import Slider from "../../components/common/slider/Slider";
+import ProductCard from "../../components/common/Card/ProductCard";
+import Slider from "../../components/common/DSlider/Slider";
 import OfferBanner from "../../components/main/Banner/OfferBanner";
-import ProductCard from "../../components/main/ProductCard/ProductCard";
 import MainBanner from "../../components/main/home/MainBanner";
 import MiddleBanner from "../../components/main/home/MiddleBanner";
 import PopularProducts from "../../components/main/popularProducts/PopularProducts";

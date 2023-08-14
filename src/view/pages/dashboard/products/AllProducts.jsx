@@ -7,8 +7,8 @@ import {
   useRemoveProductMutation,
   useUpdateProductMutation,
 } from "../../../../features/product/productApi";
-import DeleteProductModel from "../../../components/dashboard/DeleteProductModel";
-import EditProductModal from "../../../components/dashboard/EditProductModal";
+import DeleteProductModel from "../../../components/common/Modal/DeleteProductModel";
+import EditProductModal from "../../../components/common/Modal/EditProductModal";
 
 const AllProducts = () => {
   const {

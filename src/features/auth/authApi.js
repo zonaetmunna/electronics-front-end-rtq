@@ -21,6 +21,13 @@ const authApi = apiSlice.injectEndpoints({
 
       invalidatesTags: ["auth"],
     }),
+    updateUser: builder.mutation({
+      query: (data) => ({
+        method: "PATCH",
+        url: "/auth/update",
+        body: data,
+      }),
+    })
   }),
 });
 

@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { BiMessageSquare } from "react-icons/bi";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { FiMaximize, FiMinimize, FiMoon, FiSun } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import brandLogo from "../../../assets/logo/brand-logo.png";
+import brandLogo from "../../../../assets/logo/brand-logo.png";
+import { logout } from "../../../../features/auth/authSlice";
 
 const DashboardNavbar = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -49,6 +50,8 @@ const DashboardNavbar = () => {
     },
   ]);
   const [newMessage, setNewMessage] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setNewMessage(event.target.value);
@@ -115,6 +118,11 @@ const DashboardNavbar = () => {
       }
     }
   };
+
+  const handleSignOUt = () => {
+    dispatch(logout());
+  };
+
   return (
     <nav
       className={`px-2 py-3 ${
@@ -275,6 +283,7 @@ const DashboardNavbar = () => {
                       Settings
                     </Link>
                     <Link
+                      onClick={handleSignOUt}
                       to="#"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       role="menuitem"

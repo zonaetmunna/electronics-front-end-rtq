@@ -4,8 +4,8 @@ import { useGetBrandsQuery } from "../../../features/brand/brandApi";
 import { useGetCategoriesQuery } from "../../../features/category/categoryApi";
 import { setSortBy } from "../../../features/filter/filterSlice";
 import { useGetProductsQuery } from "../../../features/product/productApi";
-import ProductCard from "../../components/main/ProductCard/ProductCard";
-import FilterSidebar from "../../components/main/filterSidebar/FilterSidebar";
+import ProductCard from "../../components/common/Card/ProductCard";
+import FilterSidebar from "../../components/common/Sidebar/FilterSidebar";
 import ShopBar from "../../components/main/shopBar/ShopBar";
 
 const Shop = () => {

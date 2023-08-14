@@ -9,8 +9,8 @@ const orderApi = apiSlice.injectEndpoints({
       providesTags: ["order"],
     }),
     getUserOrder: builder.query({
-      query: (email) => ({
-        url: `/order/${email}`,
+      query: (_id) => ({
+        url: `/order/${_id}`,
       }),
       providesTags: ["order"],
     }),

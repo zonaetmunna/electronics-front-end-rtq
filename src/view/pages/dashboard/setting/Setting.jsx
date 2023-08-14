@@ -1,6 +1,6 @@
 import React from "react";
-import SettingSidebar from "../../../components/dashboard/setting/SettingSidebar";
 import { Outlet } from "react-router-dom";
+import SettingSidebar from "../../../components/common/Sidebar/SettingSidebar";
 
 const Setting = () => {
   return (

@@ -4,25 +4,16 @@ import { useDispatch } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import { router } from "./routes/routes";
-import Loading from "./view/components/Loading";
+import Loading from "./view/components/common/Spinner/Loading";
 
 function App() {
   const dispatch = useDispatch();
-  /* useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        dispatch(toggleLoading());
-      }
-    });
-  }, [dispatch]); */
 
   return (
-    <>
-      <Suspense fallback={<Loading />}>
-        <Toaster position="bottom-right" reverseOrder={false} />
-        <RouterProvider router={router} />
-      </Suspense>
-    </>
+    <Suspense fallback={<Loading />}>
+      <Toaster position="bottom-right" reverseOrder={false} />
+      <RouterProvider router={router} />
+    </Suspense>
   );
 }
 

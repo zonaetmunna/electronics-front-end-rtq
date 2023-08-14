@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { Link, useLocation } from "react-router-dom";
 import Select from "react-select";
 
 const options = [

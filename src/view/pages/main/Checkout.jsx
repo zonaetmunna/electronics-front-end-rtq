@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../../features/cart/cartSlice";
@@ -7,21 +7,24 @@ import { useAddOrderMutation } from "../../../features/order/orderApi";
 
 const Checkout = () => {
   const {
+    user: { _id, firstName, lastName, email, phone },
+  } = useSelector((state) => state.auth);
+  const {
     handleSubmit,
     register,
     reset,
     control,
     formState: { errors },
-  } = useForm();
-  const email = useWatch({ control, name: "email" });
+  } = useForm({
+    defaultValues: {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+    },
+  });
+
   const [disabled, setDisabled] = useState(true);
-  useEffect(() => {
-    if (email !== undefined && email !== "") {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [email]);
 
   // cart state
   const { cart, total, subTotal } = useSelector((state) => state.cart);
@@ -36,7 +39,7 @@ const Checkout = () => {
           product: item._id,
           quantity: item.quantity,
         })),
-        user: email, // Replace with the actual user ID
+        user: _id, // Replace with the actual user ID
         totalAmount: total,
         address: {
           street: data.address,
@@ -146,7 +149,6 @@ const Checkout = () => {
                     id="email"
                     {...register("email", {
                       required: true,
-                      pattern: /^\S+@\S+$/i,
                     })}
                     className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                       errors.email && "border-red-500"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import UserSidebar from "../../components/common/sidebar/UserSidebar";
+import UserSidebar from "../../components/common/Sidebar/UserSidebar";
 
 const Profile = () => {
   return (
@@ -9,7 +9,6 @@ const Profile = () => {
 
       <div className="flex-1 p-10">
         {/* Your profile content goes here */}
-
         <Outlet />
       </div>
     </div>

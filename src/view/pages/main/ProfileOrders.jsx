@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetUserOrderQuery } from "../../../features/order/orderApi";
-import Loading from "../../components/Loading";
+import Loading from "../../components/common/Spinner/Loading";
 
 const ProfileOrders = () => {
   const {
-    user: { email, role },
+    user: {_id, email, role },
   } = useSelector((state) => state.auth);
-  const { data, isLoading, isError, isSuccess } = useGetUserOrderQuery(email);
+  const { data, isLoading, isError, isSuccess } = useGetUserOrderQuery(_id);
   const orderData = data;
 
   useEffect(() => {

@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { VscAccount, VscListOrdered, VscSettingsGear } from "react-icons/vsc";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../../../features/auth/authSlice";
 
 const UserSidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const {
-    user: { name, role },
+    user: { firstName, role, image },
   } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const toggleSidebar = () => {
     setIsOpen(isOpen);
+  };
+
+  const handleSignOut = () => {
+    dispatch(logout());
   };
 
   return (
@@ -28,9 +34,13 @@ const UserSidebar = () => {
       <div className="sidebar-content p-4">
         <div className="user-info flex items-center p-4 border-b border-gray-300">
           <div className="avatar w-10 h-10 bg-gray-500 rounded-full mr-3">
-            {/* <img src="" alt="" /> */}
+            <img
+              src={image}
+              alt="logo"
+              className="w-full h-full rounded-full shadow-lg"
+            />
           </div>
-          <h3 className="text-lg font-semibold">User Name</h3>
+          <h3 className="text-lg font-semibold">{firstName}</h3>
         </div>
         <ul className="sidebar-menu py-4">
           <li className="sidebar-menu-item">
@@ -61,7 +71,10 @@ const UserSidebar = () => {
             </Link>
           </li>
           <li className="sidebar-menu-item">
-            <button className="logout-button flex items-center py-2 px-4 hover:bg-gray-100">
+            <button
+              onClick={handleSignOut}
+              className="logout-button flex items-center py-2 px-4 hover:bg-gray-100"
+            >
               <RiLogoutCircleRLine size={20} className="mr-2" />
               <span>Logout</span>
             </button>

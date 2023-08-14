@@ -19,7 +19,7 @@ import { MdPeople, MdPerson } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-const SidebarTwo = () => {
+const DashboardSidebar = () => {
   const {
     user: { role },
   } = useSelector((state) => state.auth);
@@ -295,4 +295,4 @@ const SidebarTwo = () => {
   );
 };
 
-export default SidebarTwo;
+export default DashboardSidebar;

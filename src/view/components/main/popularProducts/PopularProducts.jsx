@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCard from "../../common/Card/ProductCard";
 
 const TopRated = ({ products }) => {
   return (
