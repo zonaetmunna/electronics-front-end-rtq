@@ -22,6 +22,7 @@ const CartModal = ({ onClose }) => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-filter backdrop-blur-lg">
       <div className="bg-white rounded-lg shadow-lg p-6 absolute right-0 h-screen">

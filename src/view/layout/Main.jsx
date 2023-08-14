@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import FooterSeconed from "../components/common/Footer/FooterSeconed";
+import CartModal from "../components/common/Modal/CartModal";
 import NavigationBar from "../components/common/NavigationBar/NavigationBar";
-import CartModal from "../components/common/cartModal/CartModal";
 
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState("");
