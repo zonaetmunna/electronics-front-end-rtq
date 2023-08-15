@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useGetBrandsQuery } from "../../../features/brand/brandApi";
 import { useGetCategoriesQuery } from "../../../features/category/categoryApi";
-import { setSortBy } from "../../../features/filter/filterSlice";
+import { setSearchText, setSortBy } from "../../../features/filter/filterSlice";
 import { useGetProductsQuery } from "../../../features/product/productApi";
 import ProductCard from "../../components/common/Card/ProductCard";
 import FilterSidebar from "../../components/common/Sidebar/FilterSidebar";
@@ -57,11 +58,22 @@ const Shop = () => {
 
   const dispatch = useDispatch();
 
+  /*  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get("/shop"); */
+  const { searchQuery } = useParams();
+  useEffect(() => {
+    dispatch(setSearchText(searchQuery || ""));
+  }, [dispatch, searchQuery]);
+
   const activeClass = "text-white bg-indigo-500 border-white";
   // Filter products based on selected filters
   const filteredProducts = useMemo(() => {
     return products?.filter((product) => {
       if (
+        // (searchQuery &&
+        //   !product.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (searchText &&
+          !product.name.toLowerCase().includes(searchText.toLowerCase())) ||
         (selectedCategory && selectedCategory !== product.category.name) ||
         (selectedBrand && selectedBrand !== product.brand.name) ||
         (minPrice !== "" && product.price < parseFloat(minPrice)) ||
@@ -72,7 +84,15 @@ const Shop = () => {
       }
       return true;
     });
-  }, [products, selectedCategory, selectedBrand, minPrice, maxPrice, stock]);
+  }, [
+    products,
+    selectedCategory,
+    selectedBrand,
+    minPrice,
+    maxPrice,
+    stock,
+    searchText,
+  ]);
 
   const totalResults = filteredProducts?.length;
   const handleSortChange = (selectedOption) => {

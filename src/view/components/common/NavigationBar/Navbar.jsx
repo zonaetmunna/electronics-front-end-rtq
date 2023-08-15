@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/logo/brand-logo.png";
 import { logout } from "../../../../features/auth/authSlice";
+
 const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
   const {
     user: { firstName, email, role },
@@ -12,7 +13,7 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
   const { cart } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
-  console.log(email);
+
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const navigate = useNavigate();
   const handleSearchQueryChange = (event) => {
@@ -21,7 +22,7 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    navigate(`/shop/${searchQuery}`);
   };
   // handle cart
 
