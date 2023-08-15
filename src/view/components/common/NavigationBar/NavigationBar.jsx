@@ -3,7 +3,12 @@ import MiniNavbar from "./MiniNavbar";
 import NavSeconed from "./NavSeconed";
 import Navbar from "./Navbar";
 
-const NavigationBar = ({ onCartClick, searchQuery, setSearchQuery }) => {
+const NavigationBar = ({
+  onCartClick,
+  searchQuery,
+  setSearchQuery,
+  categories,
+}) => {
   return (
     <div className="shadow-md">
       <MiniNavbar />
@@ -12,7 +17,7 @@ const NavigationBar = ({ onCartClick, searchQuery, setSearchQuery }) => {
         setSearchQuery={setSearchQuery}
         onCartClick={onCartClick}
       />
-      <NavSeconed />
+      <NavSeconed categories={categories} />
     </div>
   );
 };

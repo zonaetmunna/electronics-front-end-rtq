@@ -26,7 +26,12 @@ const Shop = () => {
     sortBy,
   } = useSelector((state) => state.filter);
   // productsQuery
-  const { data, isLoading, isError, error } = useGetProductsQuery({
+  const {
+    data,
+    isLoading: isProductsLoading,
+    isError: isProductsError,
+    error: productError,
+  } = useGetProductsQuery({
     category: selectedCategory,
     brand: selectedBrand,
     search: searchText,
@@ -56,6 +61,28 @@ const Shop = () => {
   } = useGetBrandsQuery({});
   const brands = brandsData;
 
+  /* all error handle */
+  useEffect(() => {
+    if (isProductsError) {
+      console.log(productError);
+      <p>Something went wrong products query</p>;
+    }
+    if (isErrorCategories) {
+      console.log(errorBrands);
+      <p>Something went wrong categories query</p>;
+    }
+    if (isErrorBrands) {
+      console.log(errorBrands);
+      <p>Something went wrong brands query</p>;
+    }
+  }, [
+    isProductsError,
+    productError,
+    isErrorCategories,
+    isErrorBrands,
+    errorBrands,
+  ]);
+
   const dispatch = useDispatch();
 
   /*  const location = useLocation();
@@ -65,7 +92,6 @@ const Shop = () => {
     dispatch(setSearchText(searchQuery || ""));
   }, [dispatch, searchQuery]);
 
-  const activeClass = "text-white bg-indigo-500 border-white";
   // Filter products based on selected filters
   const filteredProducts = useMemo(() => {
     return products?.filter((product) => {
@@ -100,10 +126,11 @@ const Shop = () => {
     dispatch(setSortBy(selectedOption?.value));
   };
 
-  let content;
+  const activeClass = "text-white bg-indigo-500 border-white";
+
   return (
     <div className="container mx-auto px-4 py-8 lg:px-12">
-      {/* shopBar */}
+      {/* ShopBar */}
       <ShopBar
         totalResults={totalResults}
         gridView={gridView}
@@ -112,8 +139,10 @@ const Shop = () => {
       />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
         {/* Filter sidebar */}
-        <FilterSidebar categories={categories} brands={brands} />
-        {/* all products */}
+        <div className="col-span-1 lg:col-span-1">
+          <FilterSidebar categories={categories} brands={brands} />
+        </div>
+        {/* All products */}
         <div
           className={`col-span-1 lg:col-span-3 ${
             gridView
@@ -121,7 +150,7 @@ const Shop = () => {
               : "flex flex-col"
           }`}
         >
-          {isLoading ? (
+          {isProductsLoading ? (
             <p>Loading products...</p>
           ) : (
             filteredProducts?.map((product) => (

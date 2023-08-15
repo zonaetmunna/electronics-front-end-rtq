@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { MdRemoveCircleOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   applyDiscountCode,
-  clearCart,
   removeFromCart,
   setDiscountCode,
   setTotal,
   updateQuantity,
 } from "../../../features/cart/cartSlice";
-import { Link, useNavigate } from "react-router-dom";
-import { MdRemoveCircleOutline } from "react-icons/md";
 import ShippingOption from "../../components/main/cart/ShippingOption";
 
 const Cart = () => {
@@ -29,16 +28,6 @@ const Cart = () => {
   const handleUpdateQuantity = (id, quantity) => {
     dispatch(updateQuantity({ id, quantity }));
   };
-
-  // shipping state
-  /*   const [selectedShippingOption, setSelectedShippingOption] =
-    useState("Free Shipping");
-  const [shippingCost, setShippingCost] = useState(0); */
-
-  // discount state
-  // const [couponCode, setCouponCode] = useState("");
-  // const [discount, setDiscount] = useState(0);
-  // const [total, setTotal] = useState(subtotal);
 
   const handleApplyDiscount = () => {
     dispatch(applyDiscountCode(document.getElementById("coupon").value));

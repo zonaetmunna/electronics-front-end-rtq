@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import { BsCart3 } from "react-icons/bs";
 import { FaDollarSign, FaHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -13,10 +14,12 @@ const ProductCard = ({ product }) => {
   // handle add product cart
   const handleAddProductCart = () => {
     dispatch(addToCart(product));
+    toast.success("Product added to cart"); // Show success toast
   };
   // handle add product wishlist
   const handleAddToWishlist = () => {
     dispatch(addToWishlist(product));
+    toast.success("Product added to wishlist"); // Show success toast
   };
 
   return (
@@ -40,7 +43,7 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="px-4 py-2">
             <Link
-              to={`/product/${product?._id}`}
+              to={`product/${product?._id}`}
               className="text-md font-semibold tracking-tight text-black hover:text-lime-400"
             >
               {product?.name}

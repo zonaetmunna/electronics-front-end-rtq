@@ -10,13 +10,13 @@ const orderApi = apiSlice.injectEndpoints({
     }),
     getUserOrder: builder.query({
       query: (_id) => ({
-        url: `/order/${_id}`,
+        url: `/order/user/${_id}`,
       }),
       providesTags: ["order"],
     }),
-    getSingleProduct: builder.query({
-      query: (id) => ({
-        url: `/order/${id}`,
+    getSingleOrder: builder.query({
+      query: (_id) => ({
+        url: `/order/${_id}`,
       }),
       providesTags: ["order"],
     }),
@@ -50,6 +50,6 @@ export const {
   useGetOrderQuery,
   useGetUserOrderQuery,
   useAddOrderMutation,
-  useGetSingleProductQuery,
+  useGetSingleOrderQuery,
   useUpdateProductMutation,
 } = orderApi;

@@ -33,12 +33,21 @@ const DashboardSidebar = () => {
   const navigate = useNavigate();
 
   const [isProductOpen, setIsProductOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isBrandsOpen, setIsBrandsOpen] = useState(false);
   const [isVendorOpen, setIsVendorOpen] = useState(false);
   const [isCustomerOpen, setIsCustomerOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
 
   const toggleProductMenu = () => {
     setIsProductOpen(!isProductOpen);
+  };
+
+  const toggleCategoriesMenu = () => {
+    setIsCategoriesOpen(!isCategoriesOpen);
+  };
+  const toggleBrandsMenu = () => {
+    setIsBrandsOpen(!isBrandsOpen);
   };
 
   const toggleVendorMenu = () => {
@@ -82,7 +91,7 @@ const DashboardSidebar = () => {
           <div className={`ml-4 ${isProductOpen ? "" : "hidden"}`}>
             <Link
               to="product-list"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-700 rounded-md transition-colors duration-200"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-700 rounded-md transition-colors duration-200"
             >
               <span className="mr-2">
                 <FaList />
@@ -93,7 +102,7 @@ const DashboardSidebar = () => {
             </Link>
             <Link
               to="product-add"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-300 rounded-md"
             >
               <span className="mr-2">
                 <FaPlus />
@@ -103,6 +112,71 @@ const DashboardSidebar = () => {
               </span>
             </Link>
           </div>
+          {/* category */}
+          <button
+            className="flex items-center py-2 px-4 hover:bg-gray-700 rounded-md  transition-colors duration-200"
+            onClick={toggleCategoriesMenu}
+          >
+            <span className="mr-2">
+              <FaList />
+            </span>
+            <span className={`${isCollapsed ? "hidden" : ""}`}>Categories</span>
+            {isCategoriesOpen ? (
+              <FaChevronUp
+                className={`ml-auto ${isCollapsed ? "hidden" : ""}`}
+              />
+            ) : (
+              <FaChevronDown
+                className={`ml-auto ${isCollapsed ? "hidden" : ""}`}
+              />
+            )}
+          </button>
+          <div className={`ml-4 ${isCategoriesOpen ? "" : "hidden"}`}>
+            <Link
+              to="category-list"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-700 rounded-md transition-colors duration-200"
+            >
+              <span className="mr-2">
+                <FaList />
+              </span>
+              <span className={`${isCollapsed ? "hidden" : ""}`}>
+                Category List
+              </span>
+            </Link>
+          </div>
+          {/* brand */}
+          <button
+            className="flex items-center py-2 px-4 hover:bg-gray-700 rounded-md  transition-colors duration-200"
+            onClick={toggleBrandsMenu}
+          >
+            <span className="mr-2">
+              <FaList />
+            </span>
+            <span className={`${isCollapsed ? "hidden" : ""}`}>Brand</span>
+            {isBrandsOpen ? (
+              <FaChevronUp
+                className={`ml-auto ${isCollapsed ? "hidden" : ""}`}
+              />
+            ) : (
+              <FaChevronDown
+                className={`ml-auto ${isCollapsed ? "hidden" : ""}`}
+              />
+            )}
+          </button>
+          <div className={`ml-4 ${isBrandsOpen ? "" : "hidden"}`}>
+            <Link
+              to="brand-list"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-700 rounded-md transition-colors duration-200"
+            >
+              <span className="mr-2">
+                <FaList />
+              </span>
+              <span className={`${isCollapsed ? "hidden" : ""}`}>
+                Brand List
+              </span>
+            </Link>
+          </div>
+
           {/* vendors */}
           <button
             className="flex items-center py-2 px-4 hover:bg-gray-700 rounded-md"
@@ -125,7 +199,7 @@ const DashboardSidebar = () => {
           <div className={`ml-4 ${isVendorOpen ? "" : "hidden"}`}>
             <Link
               to="vendor-list"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-300 rounded-md"
             >
               <span className="mr-2">
                 <FaUser />
@@ -134,18 +208,8 @@ const DashboardSidebar = () => {
                 Vendors List
               </span>
             </Link>
-            <Link
-              to="vendor/:id"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
-            >
-              <span className="mr-2">
-                <FaUser />
-              </span>
-              <span className={`${isCollapsed ? "hidden" : ""}`}>
-                Vendor Profile
-              </span>
-            </Link>
           </div>
+
           {/* customer */}
           <button
             className="flex items-center py-2 px-4 hover:bg-gray-700 rounded-md"
@@ -168,7 +232,7 @@ const DashboardSidebar = () => {
           <div className={`ml-4 ${isCustomerOpen ? "" : "hidden"}`}>
             <Link
               to="customer-list"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-300 rounded-md"
             >
               <span className="mr-2">
                 <MdPeople />
@@ -176,15 +240,6 @@ const DashboardSidebar = () => {
               <span className={`${isCollapsed ? "hidden" : ""}`}>
                 Customer List
               </span>
-            </Link>
-            <Link
-              to="customer/:id"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
-            >
-              <span className="mr-2">
-                <FaUser />
-              </span>
-              <span className={`${isCollapsed ? "hidden" : ""}`}>Customer</span>
             </Link>
           </div>
           {/* orders */}
@@ -209,24 +264,13 @@ const DashboardSidebar = () => {
           <div className={`ml-4 ${isOrderOpen ? "" : "hidden"}`}>
             <Link
               to="order-list"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-300 rounded-md"
             >
               <span className="mr-2">
                 <FiShoppingBag />
               </span>
               <span className={`${isCollapsed ? "hidden" : ""}`}>
                 Order List
-              </span>
-            </Link>
-            <Link
-              to="/order/:id"
-              className="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-300 rounded-md"
-            >
-              <span className="mr-2">
-                <FiShoppingBag />
-              </span>
-              <span className={`${isCollapsed ? "hidden" : ""}`}>
-                Order Details
               </span>
             </Link>
           </div>

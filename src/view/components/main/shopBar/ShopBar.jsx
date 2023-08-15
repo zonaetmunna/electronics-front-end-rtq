@@ -24,6 +24,7 @@ const ShopBar = ({
           Showing <span className="font-bold">{totalResults}</span> results
         </div>
         <div className="flex items-center space-x-2">
+          <p className="text-lg font-medium text-gray-800">View:</p>
           <button
             className={`${
               gridView ? "bg-indigo-500" : "bg-gray-300"

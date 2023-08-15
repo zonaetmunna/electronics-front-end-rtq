@@ -11,7 +11,7 @@ function App() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <RouterProvider router={router} />
     </Suspense>
   );

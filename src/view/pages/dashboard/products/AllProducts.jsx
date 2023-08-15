@@ -1,47 +1,72 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { useGetBrandsQuery } from "../../../../features/brand/brandApi";
+import { useGetCategoriesQuery } from "../../../../features/category/categoryApi";
 import {
+  useAddProductMutation,
   useGetProductsQuery,
   useRemoveProductMutation,
   useUpdateProductMutation,
 } from "../../../../features/product/productApi";
+import AddProductModal from "../../../components/common/Modal/AddProductModal";
 import DeleteProductModel from "../../../components/common/Modal/DeleteProductModel";
 import EditProductModal from "../../../components/common/Modal/EditProductModal";
 
 const AllProducts = () => {
+  // state
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // hooks
+  const dispatch = useDispatch();
+
+  // redux toolkit query api call
   const {
     data,
     isLoading: isLoadingProducts,
     isError: isErrorProducts,
     error: errorProducts,
   } = useGetProductsQuery({});
+  const {
+    data: categoriesData,
+    isLoading: isLoadingCategories,
+    isError: isErrorCategories,
+  } = useGetCategoriesQuery({});
+  const categories = categoriesData;
+  const {
+    data: brandsData,
+    isError: isErrorBrands,
+    error: errorBrands,
+    isLoading: isLoadingBrands,
+  } = useGetBrandsQuery({});
+  const brands = brandsData;
   console.log(data);
   const products = data?.data;
-  const dispatch = useDispatch();
-
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+  const [addProduct, { isError: isAddError, isSuccess: isAddSuccess }] =
+    useAddProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
   const [
     removeProduct,
     { isError: isRemoveError, isSuccess: isRemoveSuccess, error: removeError },
   ] = useRemoveProductMutation();
-  const [updateProduct] = useUpdateProductMutation();
 
+  // error handle
   if (isLoadingProducts) {
     <h1>page is loading</h1>;
   }
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  // handlers modal open and close
+  const handleAddModalOpen = () => {
+    setIsAddModalOpen(true);
+  };
 
+  const handleAddModalClose = () => {
+    setIsAddModalOpen(false);
+  };
   const handleProductSelect = (product) => {
     setSelectedProduct(product);
   };
@@ -54,6 +79,11 @@ const AllProducts = () => {
     setIsEditModalOpen(false);
   };
 
+  // handlers submit
+  const handleAddSubmit = (product) => {
+    addProduct(product);
+    setIsAddModalOpen(false);
+  };
   const handleEditSubmit = (product) => {
     updateProduct({ productId: product.id, updatedProduct: product });
     handleEditModalClose();
@@ -76,6 +106,15 @@ const AllProducts = () => {
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl font-semibold mb-4">All Products</h2>
+      {/* Add Category Modal Link */}
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={handleAddModalOpen}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
+        >
+          Add Product
+        </button>
+      </div>
       <table className="min-w-full">
         <thead>
           <tr>
@@ -109,18 +148,20 @@ const AllProducts = () => {
         <tbody className="bg-white">
           {products &&
             products?.map((product) => (
-              <tr key={product.id}>
+              <tr key={product._id}>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                  <div className="flex items-center">
-                    <div className="ml-4">
-                      <div className="text-sm leading-5 font-medium text-gray-900">
-                        {product.name}
-                        <div className="text-sm text-gray-500">
-                          {product._id}
+                  <Link to={`/dashboard/product/${product._id}`}>
+                    <div className="flex items-center">
+                      <div className="ml-4">
+                        <div className="text-sm leading-5 font-medium text-gray-900">
+                          {product.name}
+                          <div className="text-sm text-gray-500">
+                            {product._id}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
@@ -178,6 +219,17 @@ const AllProducts = () => {
             ))}
         </tbody>
       </table>
+
+      {/* modals */}
+      {isAddModalOpen && (
+        <AddProductModal
+          isOpen={isAddModalOpen}
+          onClose={handleAddModalClose}
+          onSubmit={handleAddSubmit}
+          categories={categories}
+          brands={brands}
+        />
+      )}
 
       {selectedProduct && (
         <EditProductModal

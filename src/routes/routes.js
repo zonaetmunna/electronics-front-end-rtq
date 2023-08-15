@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../view/layout/Dashboard";
 import Error from "../view/layout/Error";
 import Main from "../view/layout/Main";
-import AdminDashboard from "../view/pages/dashboard/adminDashboard/AdminDashboard";
 import About from "../view/pages/main/About";
 import Cart from "../view/pages/main/Cart";
 import Checkout from "../view/pages/main/Checkout";
@@ -13,7 +12,11 @@ import Login from "../view/pages/main/Login";
 import AccountCreator from "../view/pages/main/register/AccountCreator";
 
 import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
-import Customer from "../view/pages/dashboard/customers/Customer";
+import BrandDetails from "../view/pages/dashboard/brands/BrandDetails";
+import BrandsList from "../view/pages/dashboard/brands/BrandsList";
+import CategoryDetails from "../view/pages/dashboard/categories/CategoryDetails";
+import CategoryList from "../view/pages/dashboard/categories/CategoryList";
+import CustomerDetails from "../view/pages/dashboard/customers/CustomerDetails";
 import CustomerList from "../view/pages/dashboard/customers/CustomerList";
 import Invoice from "../view/pages/dashboard/invoice/Invoice";
 import Message from "../view/pages/dashboard/message/Message";
@@ -21,6 +24,7 @@ import OrderDetails from "../view/pages/dashboard/orders/OrderDetails";
 import OrdersList from "../view/pages/dashboard/orders/OrdersList";
 import AddProduct from "../view/pages/dashboard/products/AddProduct";
 import AllProducts from "../view/pages/dashboard/products/AllProducts";
+import ProductDetails from "../view/pages/dashboard/products/ProductDetails";
 import ConnectMediaSetting from "../view/pages/dashboard/setting/ConnectMediaSetting";
 import LoginActivitySetting from "../view/pages/dashboard/setting/LoginActivitySetting";
 import NotificationSetting from "../view/pages/dashboard/setting/NotificationSetting";
@@ -166,16 +170,32 @@ export const router = createBrowserRouter([
         element: <AllProducts />,
       },
       {
+        path: "product/:id",
+        element: <ProductDetails />,
+      },
+      {
         path: "product-add",
         element: <AddProduct />,
       },
       {
-        path: "make-admin",
-        element: <MakeAdmin />,
+        path: "category-list",
+        element: <CategoryList />,
       },
       {
-        path: "admin-dashboard",
-        element: <AdminDashboard />,
+        path: "category/:id",
+        element: <CategoryDetails />,
+      },
+      {
+        path: "brand-list",
+        element: <BrandsList />,
+      },
+      {
+        path: "brand/:id",
+        element: <BrandDetails />,
+      },
+      {
+        path: "make-admin",
+        element: <MakeAdmin />,
       },
 
       {
@@ -192,7 +212,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "customer/:id",
-        element: <Customer />,
+        element: <CustomerDetails />,
       },
       {
         path: "order-list",

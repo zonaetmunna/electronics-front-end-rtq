@@ -1,30 +1,29 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { setSelectedCategory } from "../../../../features/filter/filterSlice";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
-const NavSeconed = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+const NavSeconed = ({ categories }) => {
+  const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch(); // Get the dispatch function
+
+  console.log(categories);
+  const categoryOptions = categories?.map((category) => ({
+    value: category.name,
+    label: category.name,
+  }));
 
   const handleSelectChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
+    const selectedCategory = selectedOption.value; // Use the selected category's value
+    dispatch(setSelectedCategory(selectedCategory)); // Dispatch the Redux action
+    navigate(`/shop/${selectedCategory}`);
   };
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white py-3 px-4 shadow-md">
-      <div className="w-48">
-        <Select
-          options={options}
-          value={selectedOption}
-          onChange={handleSelectChange}
-          placeholder="Select language"
-        />
-      </div>
+      <Select options={categoryOptions} onChange={handleSelectChange} />
 
       <div className=" ml-3">
         <ul className="flex">

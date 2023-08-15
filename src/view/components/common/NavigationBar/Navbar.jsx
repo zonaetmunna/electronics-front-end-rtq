@@ -142,7 +142,7 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
                   <div className="absolute top-12 right-0 px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br shadow">
                     {/* Profile link */}
                     <Link
-                      to="/profile"
+                      to="profile"
                       className="block px-2 py-2 text-sm text-gray-700 hover:bg-blue-100"
                     >
                       Profile

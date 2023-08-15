@@ -6,6 +6,7 @@ import authReducer from "../features/auth/authSlice";
 import cartReducer from "../features/cart/cartSlice";
 import counterReducer from "../features/counter/counterSlice";
 import filterReducer from "../features/filter/filterSlice";
+import settingsReducer from "../features/settings/settingsSlice";
 import wishlistReducer from "../features/wishlist/wishListSlice";
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const persistedReducer = persistReducer(
     wishlist: wishlistReducer,
     counter: counterReducer,
     filter: filterReducer,
+    settings: settingsReducer,
   })
 );
 
