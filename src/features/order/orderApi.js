@@ -28,7 +28,7 @@ const orderApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["order"],
     }),
-    updateProduct: builder.mutation({
+    updateOrder: builder.mutation({
       query: (data) => ({
         url: `/order/${data.id}`,
         method: "PUT",
@@ -51,5 +51,5 @@ export const {
   useGetUserOrderQuery,
   useAddOrderMutation,
   useGetSingleOrderQuery,
-  useUpdateProductMutation,
+  useUpdateOrderMutation,
 } = orderApi;

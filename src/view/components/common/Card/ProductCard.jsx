@@ -43,7 +43,7 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="px-4 py-2">
             <Link
-              to={`product/${product?._id}`}
+              to={`/product/${product?._id}`}
               className="text-md font-semibold tracking-tight text-black hover:text-lime-400"
             >
               {product?.name}
