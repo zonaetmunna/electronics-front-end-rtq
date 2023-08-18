@@ -19,7 +19,7 @@ import CategoryList from "../view/pages/dashboard/categories/CategoryList";
 import CustomerDetails from "../view/pages/dashboard/customers/CustomerDetails";
 import CustomerList from "../view/pages/dashboard/customers/CustomerList";
 import Invoice from "../view/pages/dashboard/invoice/Invoice";
-import Message from "../view/pages/dashboard/message/Message";
+import Messages from "../view/pages/dashboard/messages/Messages";
 import OrderDetails from "../view/pages/dashboard/orders/OrderDetails";
 import OrdersList from "../view/pages/dashboard/orders/OrdersList";
 import AddProduct from "../view/pages/dashboard/products/AddProduct";
@@ -250,7 +250,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "message",
-        element: <Message />,
+        element: <Messages />,
       },
     ],
   },
