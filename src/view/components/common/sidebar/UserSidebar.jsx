@@ -43,6 +43,7 @@ const UserSidebar = () => {
           <h3 className="text-lg font-semibold">{firstName}</h3>
         </div>
         <ul className="sidebar-menu py-4">
+          {/* profile information */}
           <li className="sidebar-menu-item">
             <Link
               to="/profile"
@@ -52,6 +53,7 @@ const UserSidebar = () => {
               <span>Your Profile</span>
             </Link>
           </li>
+          {/* orders */}
           <li className="sidebar-menu-item">
             <Link
               to="orders"
@@ -61,6 +63,27 @@ const UserSidebar = () => {
               <span className="mr-2">Your Orders</span>
             </Link>
           </li>
+          {/* message */}
+          <li className="sidebar-menu-item">
+            <Link
+              to="message"
+              className="flex items-center py-2 px-4 hover:bg-gray-100"
+            >
+              <VscListOrdered size={20} className="mr-2" />
+              <span className="mr-2">Your Orders</span>
+            </Link>
+          </li>
+          {/* notification */}
+          <li className="sidebar-menu-item">
+            <Link
+              to="notification"
+              className="flex items-center py-2 px-4 hover:bg-gray-100"
+            >
+              <VscListOrdered size={20} className="mr-2" />
+              <span className="mr-2">Your Orders</span>
+            </Link>
+          </li>
+          {/* settings */}
           <li className="sidebar-menu-item">
             <Link
               to="settings"
@@ -70,6 +93,7 @@ const UserSidebar = () => {
               <span>Settings</span>
             </Link>
           </li>
+          {/* logout */}
           <li className="sidebar-menu-item">
             <button
               onClick={handleSignOut}
