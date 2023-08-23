@@ -66,11 +66,11 @@ const UserSidebar = () => {
           {/* message */}
           <li className="sidebar-menu-item">
             <Link
-              to="message"
+              to="messages"
               className="flex items-center py-2 px-4 hover:bg-gray-100"
             >
               <VscListOrdered size={20} className="mr-2" />
-              <span className="mr-2">Your Orders</span>
+              <span className="mr-2">Message</span>
             </Link>
           </li>
           {/* notification */}
@@ -80,7 +80,7 @@ const UserSidebar = () => {
               className="flex items-center py-2 px-4 hover:bg-gray-100"
             >
               <VscListOrdered size={20} className="mr-2" />
-              <span className="mr-2">Your Orders</span>
+              <span className="mr-2">Notification</span>
             </Link>
           </li>
           {/* settings */}

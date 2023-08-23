@@ -38,6 +38,7 @@ const DashboardSidebar = () => {
   const [isVendorOpen, setIsVendorOpen] = useState(false);
   const [isCustomerOpen, setIsCustomerOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
+  const [isBlogOpen, setIsBlogOpen] = useState(false);
 
   const toggleProductMenu = () => {
     setIsProductOpen(!isProductOpen);
@@ -59,6 +60,10 @@ const DashboardSidebar = () => {
 
   const toggleOrderMenu = () => {
     setIsOrderOpen(!isOrderOpen);
+  };
+
+  const toggleBlogMenu = () => {
+    setIsBlogOpen(!isBlogOpen);
   };
 
   return (
@@ -272,6 +277,45 @@ const DashboardSidebar = () => {
               <span className={`${isCollapsed ? "hidden" : ""}`}>
                 Order List
               </span>
+            </Link>
+          </div>
+          {/* blog */}
+          <button
+            className="flex items-center py-2 px-4 hover:bg-gray-700 rounded-md  transition-colors duration-200"
+            onClick={toggleBlogMenu}
+          >
+            <span className="mr-2">
+              <FaList />
+            </span>
+            <span className={`${isCollapsed ? "hidden" : ""}`}>Blogs</span>
+            {isProductOpen ? (
+              <FaChevronUp
+                className={`ml-auto ${isCollapsed ? "hidden" : ""}`}
+              />
+            ) : (
+              <FaChevronDown
+                className={`ml-auto ${isCollapsed ? "hidden" : ""}`}
+              />
+            )}
+          </button>
+          <div className={`ml-4 ${isBlogOpen ? "" : "hidden"}`}>
+            <Link
+              to="add-blog"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-700 rounded-md transition-colors duration-200"
+            >
+              <span className="mr-2">
+                <FaList />
+              </span>
+              <span className={`${isCollapsed ? "hidden" : ""}`}>Add Blog</span>
+            </Link>
+            <Link
+              to="add-blog"
+              className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-300 rounded-md"
+            >
+              <span className="mr-2">
+                <FaPlus />
+              </span>
+              <span className={`${isCollapsed ? "hidden" : ""}`}>Add Blog</span>
             </Link>
           </div>
 

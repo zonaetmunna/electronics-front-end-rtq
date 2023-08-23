@@ -42,6 +42,13 @@ const authApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
+    // get admin
+    getAdmin: builder.query({
+      query: () => ({
+        url: `/auth/admin`,
+      }),
+      providesTags: ["user"],
+    }),
   }),
 });
 
@@ -50,4 +57,5 @@ export const {
   useLoginMutation,
   useGetUsersQuery,
   useGetUserQuery,
+  useGetAdminQuery,
 } = authApi;

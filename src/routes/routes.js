@@ -12,6 +12,7 @@ import Login from "../view/pages/main/Login";
 import AccountCreator from "../view/pages/main/register/AccountCreator";
 
 import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
+import AddBlog from "../view/pages/dashboard/blogs/AddBlog";
 import BrandDetails from "../view/pages/dashboard/brands/BrandDetails";
 import BrandsList from "../view/pages/dashboard/brands/BrandsList";
 import CategoryDetails from "../view/pages/dashboard/categories/CategoryDetails";
@@ -35,7 +36,11 @@ import VendorsList from "../view/pages/dashboard/vendors/VendorsList";
 import Blog from "../view/pages/main/Blog";
 import Policy from "../view/pages/main/Policy";
 import Profile from "../view/pages/main/Profile";
+import ProfileCoverstion from "../view/pages/main/ProfileCoverstion";
 import ProfileInformation from "../view/pages/main/ProfileInformation";
+import ProfileMessage from "../view/pages/main/ProfileMessage";
+import ProfileMessageConverstation from "../view/pages/main/ProfileMessageConverstation";
+import ProfileNotification from "../view/pages/main/ProfileNotification";
 import ProfileOrders from "../view/pages/main/ProfileOrders";
 import ProfileSettings from "../view/pages/main/ProfileSettings";
 import Shop from "../view/pages/main/Shop";
@@ -148,6 +153,24 @@ export const router = createBrowserRouter([
             element: <ProfileOrders />,
           },
           {
+            path: "messages",
+            element: <ProfileMessage />,
+            children: [
+              {
+                path: "messages",
+                element: <ProfileCoverstion />,
+              },
+              {
+                path: "messages/:conversationId",
+                element: <ProfileMessageConverstation />,
+              },
+            ],
+          },
+          {
+            path: "notification",
+            element: <ProfileNotification />,
+          },
+          {
             path: "settings",
             element: <ProfileSettings />,
           },
@@ -221,6 +244,10 @@ export const router = createBrowserRouter([
       {
         path: "order/:id",
         element: <OrderDetails />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
       },
       {
         path: "invoice",
