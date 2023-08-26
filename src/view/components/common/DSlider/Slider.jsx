@@ -1,28 +1,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "swiper/components/navigation/navigation.min.css";
-import "swiper/components/pagination/pagination.min.css";
-import SwiperCore, { Navigation, Pagination } from "swiper/core";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.min.css";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 
-SwiperCore.use([Navigation, Pagination]);
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Slider = ({ products }) => {
   const navigate = useNavigate();
 
   return (
     <Swiper
-      spaceBetween={30}
+      // install Swiper modules
+      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      spaceBetween={50}
       slidesPerView={3}
       navigation
       pagination={{ clickable: true }}
-      effect="cube"
-      grabCursor={true}
-      className="py-10 px-5"
+      scrollbar={{ draggable: true }}
+      className="py-10 px-5 relative"
     >
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
+      <div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2">
+        Prev
+      </div>
+      <div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2">
+        Next
+      </div>
       {products?.map((product) => (
         <SwiperSlide key={product._id}>
           <div
@@ -39,14 +46,6 @@ const Slider = ({ products }) => {
             </h3>
             <p className="mt-1 text-gray-700 font-medium">${product.price}</p>
           </div>
-          <style>
-            {`
-              .swiper-slide-active .bg-white {
-                transform: scale(1.1);
-                z-index: 1;
-              }
-            `}
-          </style>
         </SwiperSlide>
       ))}
     </Swiper>
