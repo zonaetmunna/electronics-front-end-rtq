@@ -1,7 +1,6 @@
 import React from "react";
-import { FaUser, FaRegClock } from "react-icons/fa";
+import { FaRegClock, FaUser } from "react-icons/fa";
 import { IoMdChatbubbles } from "react-icons/io";
-import { Link } from "react-router-dom";
 
 const SingleBlog = () => {
   return (

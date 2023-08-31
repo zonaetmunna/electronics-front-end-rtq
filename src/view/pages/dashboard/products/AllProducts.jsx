@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Select from "react-select";
 import { useGetBrandsQuery } from "../../../../features/brand/brandApi";
 import { useGetCategoriesQuery } from "../../../../features/category/categoryApi";
+import {
+  clearFilters,
+  setItemsPerPage,
+  setMaxPrice,
+  setMinPrice,
+  setSearchText,
+  setSelectedBrand,
+  setSelectedCategory,
+  setSortBy,
+  setStock,
+} from "../../../../features/filter/filterSlice";
 import {
   useAddProductMutation,
   useGetProductsQuery,
@@ -24,13 +36,34 @@ const AllProducts = () => {
   // hooks
   const dispatch = useDispatch();
 
+  const {
+    searchText,
+    currentPage,
+    itemsPerPage,
+    selectedCategory,
+    selectedBrand,
+    minPrice,
+    maxPrice,
+    stock,
+    sortBy,
+  } = useSelector((state) => state.filter);
+
   // redux toolkit query api call
   const {
     data,
     isLoading: isLoadingProducts,
     isError: isErrorProducts,
     error: errorProducts,
-  } = useGetProductsQuery({});
+  } = useGetProductsQuery({
+    category: selectedCategory,
+    brand: selectedBrand,
+    search: searchText,
+    page: currentPage,
+    limit: itemsPerPage,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
+    stock: stock,
+  });
   const {
     data: categoriesData,
     isLoading: isLoadingCategories,
@@ -54,6 +87,87 @@ const AllProducts = () => {
     { isError: isRemoveError, isSuccess: isRemoveSuccess, error: removeError },
   ] = useRemoveProductMutation();
 
+  const handleSearchTextChange = (e) => {
+    dispatch(setSearchText(e.target.value));
+  };
+
+  const handleCategoryChange = (category) => {
+    dispatch(setSelectedCategory(category.label));
+  };
+
+  const handleBrandChange = (brand) => {
+    console.log(brand.value);
+    dispatch(setSelectedBrand(brand.label));
+  };
+
+  const handleMinPriceChange = (e) => {
+    dispatch(setMinPrice(e.target.value));
+  };
+
+  const handleMaxPriceChange = (e) => {
+    dispatch(setMaxPrice(e.target.value));
+  };
+
+  const handleStockChange = (e) => {
+    dispatch(setStock(e.target.checked));
+  };
+
+  const handleClearFilters = () => {
+    dispatch(clearFilters());
+  };
+
+  // Options for React-Select components
+  const categoryOptions = categories?.map((category) => ({
+    value: category._id,
+    label: category.name,
+  }));
+
+  const brandOptions = brands?.map((brand) => ({
+    value: brand._id,
+    label: brand.name,
+  }));
+
+  // filter products with useMemo
+  const filteredProducts = useMemo(() => {
+    return products?.filter((product) => {
+      if (
+        // (searchQuery &&
+        //   !product.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (searchText &&
+          !product.name.toLowerCase().includes(searchText.toLowerCase())) ||
+        (selectedCategory && selectedCategory !== product.category.name) ||
+        (selectedBrand && selectedBrand !== product.brand.name) ||
+        (minPrice !== "" && product.price < parseFloat(minPrice)) ||
+        (maxPrice !== "" && product.price > parseFloat(maxPrice)) ||
+        (stock && product.stock === true)
+      ) {
+        return false;
+      }
+      return true;
+    });
+  }, [
+    products,
+    selectedCategory,
+    selectedBrand,
+    minPrice,
+    maxPrice,
+    stock,
+    searchText,
+  ]);
+  const totalResults = filteredProducts?.length;
+
+  const totalPages = Math.ceil(totalResults / itemsPerPage);
+
+  const handlePageChange = (newPage) => {
+    // Dispatch an action to update the current page
+    // You can use the setPage action from your filterSlice
+    dispatch(setItemsPerPage(newPage)); // You need to define setPage action
+  };
+
+  const handleSortChange = (selectedOption) => {
+    // Dispatch action to update sorting state
+    dispatch(setSortBy(selectedOption?.value));
+  };
   // error handle
   if (isLoadingProducts) {
     <h1>page is loading</h1>;
@@ -106,7 +220,68 @@ const AllProducts = () => {
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl font-semibold mb-4">All Products</h2>
-      {/* Add Category Modal Link */}
+      {/* filter products */}
+      <div className="flex justify-between items-center mb-4 px-2 py-4">
+        {/* Search Text */}
+        <input
+          type="text"
+          placeholder="Search"
+          className="border rounded-md p-2 "
+          onChange={handleSearchTextChange}
+        />
+
+        {/* Category */}
+        <Select
+          options={categoryOptions}
+          placeholder="Category"
+          onChange={handleCategoryChange}
+          className="ml-2"
+        />
+
+        {/* Brand */}
+        <Select
+          options={brandOptions}
+          placeholder="Brand"
+          onChange={handleBrandChange}
+          className="ml-2"
+        />
+
+        {/* Min Price */}
+        <input
+          type="number"
+          placeholder="Min Price"
+          className="border rounded-md p-2 ml-2"
+          onChange={handleMinPriceChange}
+        />
+
+        {/* Max Price */}
+        <input
+          type="number"
+          placeholder="Max Price"
+          className="border rounded-md p-2 ml-2"
+          onChange={handleMaxPriceChange}
+        />
+
+        {/* Stock */}
+        <label className="flex items-center mt-2">
+          <input
+            type="checkbox"
+            className="form-checkbox h-4 w-4 ml-2 text-indigo-600 "
+            onChange={handleStockChange}
+          />
+          <span className="ml-2 text-gray-700">stock</span>
+        </label>
+
+        {/* Clear Filters */}
+        <button
+          className=" bg-gray-700 text-white px-2 py-2 rounded-md ml-2"
+          onClick={handleClearFilters}
+        >
+          Clear Filters
+        </button>
+      </div>
+      <hr className="border-gray-200 my-2" />
+      {/* add product modal link */}
       <div className="flex justify-end mb-4">
         <button
           onClick={handleAddModalOpen}
@@ -115,6 +290,7 @@ const AllProducts = () => {
           Add Product
         </button>
       </div>
+      {/* product table */}
       <table className="min-w-full">
         <thead>
           <tr>
@@ -147,7 +323,7 @@ const AllProducts = () => {
         </thead>
         <tbody className="bg-white">
           {products &&
-            products?.map((product) => (
+            filteredProducts?.map((product) => (
               <tr key={product._id}>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                   <Link to={`/dashboard/product/${product._id}`}>
@@ -219,6 +395,41 @@ const AllProducts = () => {
             ))}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      <div className="mt-4 flex justify-center">
+        <nav>
+          <ul className="pagination">
+            <li
+              className={`pagination-item ${
+                currentPage === 1 ? "disabled" : ""
+              }`}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              <span className="pagination-link">Previous</span>
+            </li>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <li
+                key={index}
+                className={`pagination-item ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                <span className="pagination-link">{index + 1}</span>
+              </li>
+            ))}
+            <li
+              className={`pagination-item ${
+                currentPage === totalPages ? "disabled" : ""
+              }`}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              <span className="pagination-link">Next</span>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
       {/* modals */}
       {isAddModalOpen && (

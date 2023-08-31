@@ -21,20 +21,12 @@ const SingleProduct = () => {
   const { data, isError, error, isLoading } = useGetSingleProductQuery(id);
   console.log(data);
   const product = data?.data;
-  const {
-    data: productData,
-    isLoading: isLoadingProduct,
-    isError: isErrorProduct,
-    error: errorProduct,
-  } = useGetProductsQuery({
+  const { data: productData } = useGetProductsQuery({
     category: product?.category.name,
     // brand: product?.brand.name,
   });
   const products = productData?.data;
-  const [
-    updatedProduct,
-    { isError: isUpdateError, isSuccess: isUpdateSuccess },
-  ] = useUpdateProductMutation();
+  const [updatedProduct] = useUpdateProductMutation();
 
   // state
   const [rating, setRating] = useState(5);
@@ -50,7 +42,6 @@ const SingleProduct = () => {
   };
 
   const handleReviewSubmit = () => {
-    // You can dispatch an action to submit the review to your backend here
     const reviewData = {
       id: id,
       userId: _id,
@@ -58,6 +49,7 @@ const SingleProduct = () => {
       comment: comment,
     };
     console.log(reviewData);
+    // you can something here
     updatedProduct(reviewData);
     // Reset the input fields after submission
     setRating(5);

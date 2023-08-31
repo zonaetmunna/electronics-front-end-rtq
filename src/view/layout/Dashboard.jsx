@@ -10,7 +10,7 @@ const Dashboard = () => {
       <div className="flex h-screen">
         {/* Sidebar */}
         <DashboardSidebar />
-        <div className="flex-grow bg-gray-100 p-6">
+        <div className="flex-grow bg-gray-100 p-6 shadow-md rounded-md ml-5">
           <Outlet />
         </div>
       </div>

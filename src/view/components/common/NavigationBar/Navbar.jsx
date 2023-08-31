@@ -95,7 +95,6 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
               </div>
             </form>
           </div>
-
           {/* others */}
           <div className="flex items-center">
             {/* cart */}
@@ -121,9 +120,13 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
               </div>
             </div>
             {/* login or dashboard or profile */}
-            {email && role === "admin" && (
+            {email && role === "admin" ? (
               <Link to="/dashboard" className="mr-6 hover:text-gray-500">
                 <span className="text-gray-500">Dashboard</span>
+              </Link>
+            ) : (
+              <Link to="/login" className="mr-6 hover:text-gray-500">
+                <span className="text-gray-500">Login</span>
               </Link>
             )}
             {email && role === "user" ? (

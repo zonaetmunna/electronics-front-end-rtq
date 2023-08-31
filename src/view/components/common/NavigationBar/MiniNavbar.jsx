@@ -42,10 +42,11 @@ const customSelectStyles = {
     color: "white",
   }),
 };
+
 const MiniNavbar = () => {
   return (
-    <nav className="bg-gradient-to-r from-blue-500 to-blue-700  px-4 flex items-center justify-between">
-      <div className="flex items-center space-x-4">
+    <nav className="bg-gradient-to-r from-blue-500 to-blue-700 px-4 py-2 lg:py-2 flex flex-col lg:flex-row items-center justify-between">
+      <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-4">
         <a href="tel:123456789" className="flex items-center text-gray-100">
           <FiPhone className="mr-1" />
           <span>123456789</span>
@@ -62,13 +63,14 @@ const MiniNavbar = () => {
           <span>Need Help</span>
         </a>
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 mt-4 lg:mt-0">
         <div className="flex items-center text-gray-100">
           <IoLanguage className="mr-1" />
           <Select
             options={languageOptions}
             defaultValue={languageOptions[0]}
             components={{ IndicatorSeparator: null }}
+            styles={customSelectStyles}
           />
         </div>
         <div className="flex items-center text-gray-100">
@@ -77,6 +79,7 @@ const MiniNavbar = () => {
             options={currencyOptions}
             defaultValue={currencyOptions[0]}
             components={{ IndicatorSeparator: null }}
+            styles={customSelectStyles}
           />
         </div>
       </div>

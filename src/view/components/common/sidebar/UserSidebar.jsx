@@ -8,13 +8,13 @@ import { logout } from "../../../../features/auth/authSlice";
 const UserSidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const {
-    user: { firstName, role, image },
+    user: { firstName, image },
   } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const toggleSidebar = () => {
+  /* const toggleSidebar = () => {
     setIsOpen(isOpen);
-  };
+  }; */
 
   const handleSignOut = () => {
     dispatch(logout());

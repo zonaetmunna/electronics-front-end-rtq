@@ -38,6 +38,9 @@ export const filterSlice = createSlice({
     setSortBy: (state, action) => {
       state.sortBy = action.payload;
     },
+    setItemsPerPage: (state, action) => {
+      state.itemsPerPage = action.payload;
+    },
     clearFilters: (state) => {
       state.selectedCategory = null;
       state.selectedBrand = null;
@@ -56,6 +59,7 @@ export const {
   setMaxPrice,
   setStock,
   setSortBy,
+  setItemsPerPage,
   clearFilters,
 } = filterSlice.actions;
 

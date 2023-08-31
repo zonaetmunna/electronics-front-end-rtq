@@ -1,8 +1,7 @@
 import React from "react";
+import { MdRemoveCircleOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWishlist } from "../../../features/wishlist/wishListSlice";
-import { FaTrash } from "react-icons/fa";
-import { MdRemoveCircleOutline } from "react-icons/md";
 
 const WishList = () => {
   const { wishlist } = useSelector((state) => state.wishlist);
