@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 const Slider = ({ products }) => {
+  // hooks
   const navigate = useNavigate();
 
   return (
@@ -24,12 +25,8 @@ const Slider = ({ products }) => {
       scrollbar={{ draggable: true }}
       className="py-10 px-5 relative"
     >
-      <div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2">
-        Prev
-      </div>
-      <div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2">
-        Next
-      </div>
+      <div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2"></div>
+      <div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2"></div>
       {products?.map((product) => (
         <SwiperSlide key={product._id}>
           <div

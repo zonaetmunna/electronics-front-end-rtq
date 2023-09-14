@@ -13,6 +13,7 @@ import AccountCreator from "../view/pages/main/register/AccountCreator";
 
 import MakeAdmin from "../view/pages/dashboard/MakeAdmin";
 import AddBlog from "../view/pages/dashboard/blogs/AddBlog";
+import AllBlogs from "../view/pages/dashboard/blogs/AllBlogs";
 import BrandDetails from "../view/pages/dashboard/brands/BrandDetails";
 import BrandsList from "../view/pages/dashboard/brands/BrandsList";
 import CategoryDetails from "../view/pages/dashboard/categories/CategoryDetails";
@@ -101,7 +102,7 @@ export const router = createBrowserRouter([
         element: <Blog />,
       },
       {
-        path: "blog/:id",
+        path: "/blog/:id",
         element: <SingleBlog />,
       },
       {
@@ -244,6 +245,10 @@ export const router = createBrowserRouter([
       {
         path: "order/:id",
         element: <OrderDetails />,
+      },
+      {
+        path: "blogs",
+        element: <AllBlogs />,
       },
       {
         path: "add-blog",

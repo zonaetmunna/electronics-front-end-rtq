@@ -300,13 +300,13 @@ const DashboardSidebar = () => {
           </button>
           <div className={`ml-4 ${isBlogOpen ? "" : "hidden"}`}>
             <Link
-              to="add-blog"
+              to="blogs"
               className="flex items-center py-2 px-4 text-gray-100 hover:bg-gray-700 rounded-md transition-colors duration-200"
             >
               <span className="mr-2">
                 <FaList />
               </span>
-              <span className={`${isCollapsed ? "hidden" : ""}`}>Add Blog</span>
+              <span className={`${isCollapsed ? "hidden" : ""}`}>Blogs</span>
             </Link>
             <Link
               to="add-blog"

@@ -2,9 +2,13 @@ import React from "react";
 import { FaTags, FaUser } from "react-icons/fa";
 import { RiCalendarLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useGetBlogsQuery } from "../../../features/blog/blogApi";
 
 const Blog = () => {
-  const blogs = [
+  const { data: blogs, isLoading, isError, isSuccess } = useGetBlogsQuery({});
+  const blogsData = blogs?.data;
+  console.log(blogsData);
+  /* const blogs = [
     {
       id: 1,
       title: "Top 10 fashion trends for summer 2022",
@@ -46,13 +50,13 @@ const Blog = () => {
         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore...",
     },
     // add more blogs here
-  ];
+  ]; */
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogs.map((blog) => (
+        {blogsData?.map((blog) => (
           <div
-            key={blog.id}
+            key={blog._id}
             className="bg-white shadow-md rounded-md overflow-hidden"
           >
             <img
@@ -63,16 +67,18 @@ const Blog = () => {
             <div className="px-4 py-6">
               <div className="text-gray-500 text-sm mb-2">
                 <RiCalendarLine className="inline-block mr-2" />
-                {blog.date}
+                {blog.createdAt}
               </div>
               <h3 className="text-lg font-medium text-gray-800 mb-2">
                 {blog.title}
               </h3>
-              <p className="text-gray-600 mb-4">{blog.excerpt}</p>
+
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <FaUser className="inline-block mr-1" />
-                  <span className="text-gray-700 text-sm">{blog.author}</span>
+                  <span className="text-gray-700 text-sm">
+                    {blog?.author?.firstName}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <FaTags className="inline-block mr-1" />
@@ -80,7 +86,7 @@ const Blog = () => {
                 </div>
               </div>
               <Link
-                to={`blog/${blog.id}`}
+                to={`/blog/${blog._id}`}
                 className="text-blue-500 hover:text-blue-600 font-medium mt-4"
               >
                 Read More

@@ -63,7 +63,7 @@ const MiniNavbar = () => {
           <span>Need Help</span>
         </a>
       </div>
-      <div className="flex items-center space-x-4 mt-4 lg:mt-0">
+      <div className="flex items-center space-x-4 mt-2 lg:mt-0">
         <div className="flex items-center text-gray-100">
           <IoLanguage className="mr-1" />
           <Select

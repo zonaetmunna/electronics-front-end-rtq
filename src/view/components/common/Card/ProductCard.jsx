@@ -8,6 +8,7 @@ import { addToCart } from "../../../../features/cart/cartSlice";
 import { addToWishlist } from "../../../../features/wishlist/wishListSlice";
 
 const ProductCard = ({ product }) => {
+  // hooks
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
@@ -16,6 +17,7 @@ const ProductCard = ({ product }) => {
     dispatch(addToCart(product));
     toast.success("Product added to cart"); // Show success toast
   };
+
   // handle add product wishlist
   const handleAddToWishlist = () => {
     dispatch(addToWishlist(product));

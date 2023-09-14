@@ -44,7 +44,7 @@ const blogApi = apiSlice.injectEndpoints({
     }),
     getSingleBlog: builder.query({
       query: (id) => ({
-        url: `/blog/${id}`,
+        url: `/blogs/${id}`,
       }),
       providesTags: ["blog"],
     }),

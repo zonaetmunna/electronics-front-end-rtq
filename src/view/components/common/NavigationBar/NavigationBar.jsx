@@ -1,6 +1,6 @@
 import React from "react";
 import MiniNavbar from "./MiniNavbar";
-import NavSeconed from "./NavSeconed";
+import NavSecond from "./NavSecond";
 import Navbar from "./Navbar";
 
 const NavigationBar = ({
@@ -17,7 +17,7 @@ const NavigationBar = ({
         setSearchQuery={setSearchQuery}
         onCartClick={onCartClick}
       />
-      <NavSeconed categories={categories} />
+      <NavSecond categories={categories} />
     </div>
   );
 };
