@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const FooterSeconed = () => {
   return (
     <footer className="bg-gray-900">
-      <div className="max-w-screen-xl mx-auto px-4 py-12 md:py-16 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-4 py-4 ">
         <div className="md:flex md:justify-between md:gap-8">
           <div className="md:w-1/3">
             <h4 className="text-sm leading-5 font-semibold tracking-wider text-white uppercase mb-4">
@@ -109,28 +109,6 @@ const FooterSeconed = () => {
                 Subscribe
               </button>
             </form>
-          </div>
-        </div>
-        <div className="mt-8 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
-          <div className="flex justify-center md:order-2">
-            <Link
-              to="/"
-              className="text-gray-300 hover:text-white ml-6 font-medium text-sm"
-            >
-              Privacy Policy
-            </Link>
-            <span className="mx-4 text-gray-400">|</span>
-            <Link
-              to="/"
-              className="text-gray-300 hover:text-white font-medium text-sm"
-            >
-              Terms of Service
-            </Link>
-          </div>
-          <div className="mt-2 md:mt-0 md:order-1">
-            <p className="text-center text-gray-400 text-sm">
-              © 2023 Single Vendor Ecommerce. All rights reserved.
-            </p>
           </div>
         </div>
       </div>
