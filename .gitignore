@@ -1,4 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -11,6 +10,11 @@
 # production
 /build
 
+# Docker
+.dockerignore
+Dockerfile*
+docker-compose*
+
 # misc
 .DS_Store
 .env
@@ -18,6 +22,7 @@
 .env.test.local
 .env.production.local
 
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

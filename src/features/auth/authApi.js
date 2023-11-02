@@ -33,21 +33,21 @@ const authApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/auth/users",
       }),
-      providesTags: ["user"],
+      providesTags: ["auth"],
     }),
     // get user
     getUser: builder.query({
       query: (id) => ({
         url: `/auth/user/${id}`,
       }),
-      providesTags: ["user"],
+      providesTags: ["auth"],
     }),
     // get admin
     getAdmin: builder.query({
       query: () => ({
         url: `/auth/admin`,
       }),
-      providesTags: ["user"],
+      providesTags: ["auth"],
     }),
   }),
 });
