@@ -1,102 +1,90 @@
-import apiSlice from "../api/apiSlice";
+import apiSlice from '../api/apiSlice';
 
 const productApi = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    getProducts: builder.query({
-      query: (params) => {
-        console.log(params);
-        const {
-          category,
-          brand,
-          search,
-          page,
-          limit,
-          minPrice,
-          maxPrice,
-          stock,
-          ...restParams
-        } = params || {};
+	endpoints: (builder) => ({
+		getProducts: builder.query({
+			query: (params) => {
+				const { category, brand, search, page, limit, minPrice, maxPrice, stock, ...restParams } =
+					params || {};
 
-        const query = {};
+				const query = {};
 
-        if (category) {
-          query.category = category;
-        }
+				if (category) {
+					query.category = category;
+				}
 
-        if (brand) {
-          query.brand = brand;
-        }
+				if (brand) {
+					query.brand = brand;
+				}
 
-        if (search) {
-          query.search = search;
-        }
+				if (search) {
+					query.search = search;
+				}
 
-        if (page && limit) {
-          query.page = page;
-          query.limit = limit;
-        }
+				if (page && limit) {
+					query.page = page;
+					query.limit = limit;
+				}
 
-        if (minPrice !== undefined) {
-          query.minPrice = minPrice;
-        }
+				if (minPrice !== undefined) {
+					query.minPrice = minPrice;
+				}
 
-        if (maxPrice !== undefined) {
-          query.maxPrice = maxPrice;
-        }
+				if (maxPrice !== undefined) {
+					query.maxPrice = maxPrice;
+				}
 
-        if (stock) {
-          query.stock = stock;
-        }
+				if (stock) {
+					query.stock = stock;
+				}
 
-        console.log(query);
-
-        return {
-          url: "/products",
-          params: {
-            ...query,
-            ...restParams,
-          },
-        };
-      },
-      providesTags: ["product"],
-    }),
-    getSingleProduct: builder.query({
-      query: (id) => ({
-        url: `/products/${id}`,
-      }),
-      providesTags: ["product"],
-    }),
-    addProduct: builder.mutation({
-      query: (data) => ({
-        url: "/products",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["product"],
-    }),
-    updateProduct: builder.mutation({
-      query: (data) => ({
-        url: `/products/${data.id}`,
-        method: "PUT",
-        body: { data },
-      }),
-      invalidatesTags: ["product"],
-    }),
-    removeProduct: builder.mutation({
-      query: (id) => ({
-        url: `/products/${id}`,
-        method: "DELETE",
-        body: id,
-      }),
-      invalidatesTags: ["product"],
-    }),
-  }),
+				return {
+					url: '/products',
+					params: {
+						...query,
+						...restParams,
+					},
+				};
+			},
+			providesTags: ['product'],
+		}),
+		getSingleProduct: builder.query({
+			query: (id) => ({
+				url: `/products/${id}`,
+			}),
+			providesTags: ['product'],
+		}),
+		addProduct: builder.mutation({
+			query: (data) => ({
+				url: '/products',
+				method: 'POST',
+				body: data,
+			}),
+			invalidatesTags: ['product'],
+		}),
+		updateProduct: builder.mutation({
+			query: (data) => ({
+				url: `/products/${data.id}`,
+				method: 'PUT',
+				body: { data },
+			}),
+			invalidatesTags: ['product'],
+		}),
+		removeProduct: builder.mutation({
+			query: (id) => ({
+				url: `/products/${id}`,
+				method: 'DELETE',
+				body: id,
+			}),
+			invalidatesTags: ['product'],
+		}),
+	}),
 });
 
 export const {
-  useGetProductsQuery,
-  useGetSingleProductQuery,
-  useAddProductMutation,
-  useUpdateProductMutation,
-  useRemoveProductMutation,
+	useGetProductsQuery,
+	useGetSingleProductQuery,
+	useAddProductMutation,
+	useUpdateProductMutation,
+	useRemoveProductMutation,
 } = productApi;

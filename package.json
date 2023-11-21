@@ -10,11 +10,14 @@
 		"date-fns": "^2.30.0",
 		"firebase": "^9.17.1",
 		"framer-motion": "^10.12.7",
+		"i18next": "^23.7.6",
 		"mapbox-gl": "^2.14.1",
+		"prop-types": "^15.8.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-hook-form": "^7.43.2",
 		"react-hot-toast": "^2.4.0",
+		"react-i18next": "^13.5.0",
 		"react-icons": "^4.7.1",
 		"react-map-gl": "^7.0.23",
 		"react-rating": "^2.0.5",
@@ -34,7 +37,13 @@
 		"eject": "react-scripts eject",
 		"prepare": "husky install",
 		"lint": "eslint src --ext js,jsx",
-		"lint:fix": "eslint --fix --ext .js,.jsx ."
+		"lint:fix": "eslint --fix --ext .js,.jsx .",
+		"prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\""
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
@@ -52,9 +61,11 @@
 		]
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"eslint": "^8.53.0",
 		"eslint-config-airbnb": "^19.0.4",
 		"eslint-config-prettier": "^9.0.0",
+		"eslint-config-react-app": "^7.0.1",
 		"eslint-plugin-import": "^2.29.0",
 		"eslint-plugin-jsx-a11y": "^6.8.0",
 		"eslint-plugin-prettier": "^5.0.1",
@@ -62,7 +73,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.4",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
-		"husky": "^8.0.3",
+		"husky": "^8.0.0",
 		"lint-staged": "^15.0.2",
 		"prettier": "^3.0.3",
 		"tailwindcss": "^3.2.7"

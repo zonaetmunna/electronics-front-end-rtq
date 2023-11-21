@@ -24,11 +24,13 @@
 	},
 	"plugins": ["react", "simple-import-sort", "prettier"],
 	"rules": {
+    "no-console": "warn",
 		"prettier/prettier": [
 			"error",
 			{},
 			{
-				"usePrettierrc": true
+				"usePrettierrc": true,
+				"tabWidth": 2
 			}
 		],
 		"no-shadow": "off",
@@ -37,7 +39,6 @@
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error",
 		"react-hooks/rules-of-hooks": "error",
-		"no-console": 0,
 		"indent": 0,
 		"camelcase": 0,
 		"linebreak-style": 0,
@@ -58,5 +59,8 @@
 		"react": {
 			"version": "detect"
 		}
+	},
+	"globals": {
+		"process": "readonly"
 	}
 }
