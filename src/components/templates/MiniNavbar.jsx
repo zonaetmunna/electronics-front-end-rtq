@@ -44,39 +44,47 @@ const customSelectStyles = {
 
 const MiniNavbar = () => {
 	return (
-		<nav className="bg-gradient-to-r from-blue-500 to-blue-700 px-4 py-2 lg:py-2 flex flex-col lg:flex-row items-center justify-between">
-			<div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-4">
-				<a href="tel:123456789" className="flex items-center text-gray-100">
-					<FiPhone className="mr-1" />
-					<span>123456789</span>
-				</a>
-				<a href="mailto:info@example.com" className="flex items-center text-gray-100">
-					<FiMail className="mr-1" />
-					<span>info@example.com</span>
-				</a>
-				<a href="/help" className="flex items-center text-gray-100">
-					<FiHelpCircle className="mr-1" />
-					<span>Need Help</span>
-				</a>
-			</div>
-			<div className="flex items-center space-x-4 mt-2 lg:mt-0">
-				<div className="flex items-center text-gray-100">
-					<IoLanguage className="mr-1" />
-					<Select
-						options={languageOptions}
-						defaultValue={languageOptions[0]}
-						components={{ IndicatorSeparator: null }}
-						styles={customSelectStyles}
-					/>
-				</div>
-				<div className="flex items-center text-gray-100">
-					<BsCurrencyExchange className="mr-1" />
-					<Select
-						options={currencyOptions}
-						defaultValue={currencyOptions[0]}
-						components={{ IndicatorSeparator: null }}
-						styles={customSelectStyles}
-					/>
+		<nav className="bg-gradient-to-r from-blue-500 to-blue-700 px-4 py-2 lg:py-2">
+			<div className="container mx-auto">
+				<div className="flex flex-col lg:flex-row items-center justify-between">
+					<div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-4">
+						<a href="tel:123456789" className="flex items-center text-gray-100">
+							<FiPhone className="mr-1" />
+							<span>123456789</span>
+						</a>
+
+						<a href="mailto:info@example.com" className="flex items-center text-gray-100">
+							<FiMail className="mr-1" />
+							<span>info@example.com</span>
+						</a>
+
+						<a href="/help" className="flex items-center text-gray-100">
+							<FiHelpCircle className="mr-1" />
+							<span>Need Help</span>
+						</a>
+					</div>
+
+					<div className="flex items-center space-x-4 mt-2 lg:mt-0">
+						<div className="flex items-center text-gray-100">
+							<IoLanguage className="mr-1" />
+							<Select
+								options={languageOptions}
+								defaultValue={languageOptions[0]}
+								components={{ IndicatorSeparator: null }}
+								styles={customSelectStyles}
+							/>
+						</div>
+
+						<div className="flex items-center text-gray-100">
+							<BsCurrencyExchange className="mr-1" />
+							<Select
+								options={currencyOptions}
+								defaultValue={currencyOptions[0]}
+								components={{ IndicatorSeparator: null }}
+								styles={customSelectStyles}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</nav>

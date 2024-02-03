@@ -10,12 +10,12 @@ import { useGetProductsQuery } from '../../features/product/productApi';
 const HomePage = () => {
 	const { data, isLoading, isError, error } = useGetProductsQuery({});
 	const products = data?.data;
-	console.log(products);
 
 	return (
 		<div className="bg-gray-100">
 			<MainBanner />
-			<div className="p-5 bg-gray-100">
+
+			<div className=" bg-gray-100 container mx-auto ">
 				{isError && <p className="text-center text-red-500">{error.message}</p>}
 				{isLoading ? (
 					// Skeleton loader while loading
@@ -28,11 +28,9 @@ const HomePage = () => {
 					<Slider products={products} />
 				)}
 			</div>
-			{products && (
-				<div>
-					<PopularProducts products={products} />
-				</div>
-			)}
+
+			<div>{products && <PopularProducts products={products} />}</div>
+
 			<div className="container mx-auto px-4 py-8">
 				<h3 className="text-center text-yellow-500 text-2xl font-semibold mb-4">ALL Products</h3>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

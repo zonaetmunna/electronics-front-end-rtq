@@ -1,4 +1,3 @@
-import React from 'react';
 import { AiOutlineAppstore, AiOutlineBars } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
@@ -26,12 +25,14 @@ const ShopBar = ({
 				<div className="flex items-center space-x-2">
 					<p className="text-lg font-medium text-gray-800">View:</p>
 					<button
+						type="button"
 						className={`${gridView ? 'bg-indigo-500' : 'bg-gray-300'} px-2 py-1 rounded-full`}
 						onClick={toggleGridView}
 					>
 						<AiOutlineAppstore size={18} />
 					</button>
 					<button
+						type="button"
 						className={`${gridView ? 'bg-gray-300' : 'bg-indigo-500'} px-2 py-1 rounded-full`}
 						onClick={toggleGridView}
 					>

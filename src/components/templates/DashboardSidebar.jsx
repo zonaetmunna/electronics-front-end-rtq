@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import { BiMessageSquare } from 'react-icons/bi';
@@ -70,7 +71,7 @@ const DashboardSidebar = () => {
 				isCollapsed ? 'w-16' : 'w-56'
 			} top-0 left-0 h-screen bg-gray-800 text-gray-100 flex flex-col transition-all duration-300 ease-in-out`}
 		>
-			{role === 'admin' && (
+			{/* {role === 'admin' && ( */}
 				<nav className="flex flex-col py-4 ">
 					{/* products */}
 					<Button
@@ -319,7 +320,7 @@ const DashboardSidebar = () => {
 						<span className={`${isCollapsed ? 'hidden' : ''}`}>Make-Admin</span>
 					</Button>
 				</nav>
-			)}
+			{/* )} */}
 			{/* logout */}
 			<div className="flex items-center justify-center">
 				<Button className="flex items-center py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-700 transition-colors duration-200">

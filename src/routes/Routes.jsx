@@ -1,43 +1,56 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import DashboardLayout from '../layout/DashboardLayout';
 import Error from '../layout/Error';
 import MainLayout from '../layout/MainLayout';
-import ProfileLayout from '../layout/ProfileLayout';
-import SettingAdminLayout from '../layout/SettingAdminLayout';
-import BlogAddAdminPage from '../pages/dashboard/BlogAddAdminPage';
-import BlogListAdminPage from '../pages/dashboard/BlogListAdminPage';
-import BrandDetailsAdminPage from '../pages/dashboard/BrandDetailsAdminPage';
-import BrandsListAdminPage from '../pages/dashboard/BrandsListAdminPage';
-import CategoryDetailsAdminPage from '../pages/dashboard/CategoryDetailsAdminPage';
-import CategoryListAdminPage from '../pages/dashboard/CategoryListAdminPage';
 import ConnectMediaSetting from '../pages/dashboard/ConnectMediaSetting';
-import CustomerDetailsPage from '../pages/dashboard/CustomerDetailsPage';
-import CustomerListPage from '../pages/dashboard/CustomerListPage';
-import InvoicePage from '../pages/dashboard/InvoicePage';
-import LoginActivitySettingAdminPage from '../pages/dashboard/LoginActivitySettingAdminPage';
-import MakeAdminPage from '../pages/dashboard/MakeAdminPage';
-import MessagesPage from '../pages/dashboard/MessagesPage';
-import NotificationSettingAdminPage from '../pages/dashboard/NotificationSettingAdminPage';
-import OrderDetailsAdminPage from '../pages/dashboard/OrderDetailsAdminPage';
-import OrdersListAdminPage from '../pages/dashboard/OrdersListAdminPage';
-import PersonalInformationAdminPage from '../pages/dashboard/PersonalInformationAdminPage';
-import ProductAddAdminPage from '../pages/dashboard/ProductAddAdminPage';
-import ProductDetailsAdminPage from '../pages/dashboard/ProductDetailsAdminPage';
-import ProductsListAdminPage from '../pages/dashboard/ProductsListAdminPage';
-import VendorProfilePage from '../pages/dashboard/VendorProfilePage';
-import VendorsListPage from '../pages/dashboard/VendorsListPage';
-import BlogDetailsPage from '../pages/main/BlogDetailsPage';
 import HomePage from '../pages/main/HomePage';
-import ProductListPage from '../pages/main/ProductListPage';
-import ProfileConversationPage from '../pages/main/ProfileConversationPage';
-import ProfileInformationPage from '../pages/main/ProfileInformationPage';
-import ProfileMessageConversationPage from '../pages/main/ProfileMessageConversationPage';
-import ProfileSettingsPage from '../pages/main/ProfileSettingsPage';
-import AccountCreatorPage from '../pages/main/register/AccountCreatorPage';
-import TermsPage from '../pages/main/TermsPage';
 import PrivateRoutes from './PrivateRoutes';
+
+const ProductAddAdminPage = lazy(() => import('../pages/dashboard/ProductAddAdminPage'));
+const ProductDetailsAdminPage = lazy(() => import('../pages/dashboard/ProductDetailsAdminPage'));
+const ProductsListAdminPage = lazy(() => import('../pages/dashboard/ProductsListAdminPage'));
+const VendorProfilePage = lazy(() => import('../pages/dashboard/VendorProfilePage'));
+const VendorsListPage = lazy(() => import('../pages/dashboard/VendorsListPage'));
+const BlogDetailsPage = lazy(() => import('../pages/main/BlogDetailsPage'));
+const ProductListPage = lazy(() => import('../pages/main/ProductListPage'));
+const ProfileConversationPage = lazy(() => import('../pages/main/ProfileConversationPage'));
+const ProfileInformationPage = lazy(() => import('../pages/main/ProfileInformationPage'));
+const ProfileMessageConversationPage = lazy(
+	() => import('../pages/main/ProfileMessageConversationPage')
+);
+const ProfileSettingsPage = lazy(() => import('../pages/main/ProfileSettingsPage'));
+const AccountCreatorPage = lazy(() => import('../pages/main/register/AccountCreatorPage'));
+const TermsPage = lazy(() => import('../pages/main/TermsPage'));
+const OrderDetailsAdminPage = lazy(() => import('../pages/dashboard/OrderDetailsAdminPage'));
+const OrdersListAdminPage = lazy(() => import('../pages/dashboard/OrdersListAdminPage'));
+const PersonalInformationAdminPage = lazy(
+	() => import('../pages/dashboard/PersonalInformationAdminPage')
+);
+const MessagesPage = lazy(() => import('../pages/dashboard/MessagesPage'));
+const NotificationSettingAdminPage = lazy(
+	() => import('../pages/dashboard/NotificationSettingAdminPage')
+);
+const MakeAdminPage = lazy(() => import('../pages/dashboard/MakeAdminPage'));
+const InvoicePage = lazy(() => import('../pages/dashboard/InvoicePage'));
+const LoginActivitySettingAdminPage = lazy(
+	() => import('../pages/dashboard/LoginActivitySettingAdminPage')
+);
+const CustomerDetailsPage = lazy(() => import('../pages/dashboard/CustomerDetailsPage'));
+const CustomerListPage = lazy(() => import('../pages/dashboard/CustomerListPage'));
+const CategoryListAdminPage = lazy(() => import('../pages/dashboard/CategoryListAdminPage'));
+
+const CategoryDetailsAdminPage = lazy(() => import('../pages/dashboard/CategoryDetailsAdminPage'));
+const BrandsListAdminPage = lazy(() => import('../pages/dashboard/BrandsListAdminPage'));
+const BlogListAdminPage = lazy(() => import('../pages/dashboard/BlogListAdminPage'));
+const BrandDetailsAdminPage = lazy(() => import('../pages/dashboard/BrandDetailsAdminPage'));
+
+const BlogAddAdminPage = lazy(() => import('../pages/dashboard/BlogAddAdminPage'));
+const SettingAdminLayout = lazy(() => import('../layout/SettingAdminLayout'));
+
+const ProfileLayout = lazy(() => import('../layout/ProfileLayout'));
+
+const DashboardLayout = lazy(() => import('../layout/DashboardLayout'));
 
 const SignupPage = lazy(() => import('../pages/main/SignupPage'));
 const ProfileMessagePage = lazy(() => import('../pages/main/ProfileMessagePage'));
@@ -182,9 +195,9 @@ export const routes = createBrowserRouter([
 	{
 		path: '/dashboard',
 		element: (
-			<PrivateRoutes>
-				<DashboardLayout />
-			</PrivateRoutes>
+			// <PrivateRoutes>
+			<DashboardLayout />
+			// </PrivateRoutes>
 		),
 		errorElement: <Error />,
 		children: [

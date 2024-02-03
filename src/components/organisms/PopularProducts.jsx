@@ -63,7 +63,7 @@ const PopularProducts = ({ products }) => {
 
 	return (
 		<div className="p-4">
-			<div>
+			<div className="container mx-auto">
 				<h2 className="text-lg font-semibold">Popular Products</h2>
 				<div className="flex space-x-4 mb-4">
 					<Button

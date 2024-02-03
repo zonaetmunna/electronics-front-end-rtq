@@ -100,39 +100,41 @@ const ProductListPage = () => {
 	// const activeClass = 'text-white bg-indigo-500 border-white';
 
 	return (
-		<div className="container mx-auto px-4 py-8 lg:px-12">
-			{/* ShopBar */}
-			<ShopBar
-				totalResults={totalResults}
-				gridView={gridView}
-				toggleGridView={toggleGridView}
-				handleSortChange={handleSortChange}
-			/>
-			<div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-				{/* Filter sidebar */}
-				<div className="col-span-1 lg:col-span-1">
-					<FilterSidebar categories={categories} brands={brands} />
-				</div>
-				{/* All products */}
-				<div
-					className={`col-span-1 lg:col-span-3 ${
-						gridView ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex flex-col'
-					}`}
-				>
-					{isProductsLoading ? (
-						<p>Loading products...</p>
-					) : (
-						filteredProducts?.map((product) => (
-							<div
-								// eslint-disable-next-line no-underscore-dangle
-								key={product._id}
-								className={`${gridView ? 'gridView' : 'p-4 border rounded-md shadow-sm'}`}
-							>
-								{/* Render individual product card */}
-								<ProductCard product={product} gridView={gridView} />
-							</div>
-						))
-					)}
+		<div className="px-4 py-8 lg:px-12">
+			<div className="container mx-auto">
+				{/* ShopBar */}
+				<ShopBar
+					totalResults={totalResults}
+					gridView={gridView}
+					toggleGridView={toggleGridView}
+					handleSortChange={handleSortChange}
+				/>
+				<div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+					{/* Filter sidebar */}
+					<div className="col-span-1 lg:col-span-1">
+						<FilterSidebar categories={categories} brands={brands} />
+					</div>
+					{/* All products */}
+					<div
+						className={`col-span-1 lg:col-span-3 ${
+							gridView ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex flex-col'
+						}`}
+					>
+						{isProductsLoading ? (
+							<p>Loading products...</p>
+						) : (
+							filteredProducts?.map((product) => (
+								<div
+									// eslint-disable-next-line no-underscore-dangle
+									key={product._id}
+									className={`${gridView ? 'gridView' : 'p-4 border rounded-md shadow-sm'}`}
+								>
+									{/* Render individual product card */}
+									<ProductCard product={product} gridView={gridView} />
+								</div>
+							))
+						)}
+					</div>
 				</div>
 			</div>
 		</div>

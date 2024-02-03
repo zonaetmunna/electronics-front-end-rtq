@@ -5,7 +5,7 @@ import bannerImage from '../../assets/images/young-woman-enjoying-listening-musi
 const MainBanner = () => {
 	return (
 		<div className="relative bg-gradient-to-r from-gray-100 to-gray-200">
-			<div className="container mx-auto flex flex-col-reverse lg:flex-row px-6 py-16 justify-center items-center relative z-10">
+			<div className="container mx-auto flex flex-col-reverse lg:flex-row px-6 py-16 justify-between items-center relative z-10">
 				<div className="lg:w-2/5 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
 					<h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-dark">
 						Welcome to our online store

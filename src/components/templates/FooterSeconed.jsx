@@ -6,8 +6,8 @@ import Label from '../atoms/Label';
 
 const FooterSeconed = () => {
 	return (
-		<footer className="bg-gray-900">
-			<div className=" mx-auto px-4 py-4 ">
+		<footer className="bg-gray-900 px-4 py-4">
+			<div className="container mx-auto  ">
 				<div className="md:flex md:justify-between md:gap-8">
 					<div className="md:w-1/3">
 						<h4 className="text-sm leading-5 font-semibold tracking-wider text-white uppercase mb-4">

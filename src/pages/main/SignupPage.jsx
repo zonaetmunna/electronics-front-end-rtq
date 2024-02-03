@@ -75,105 +75,112 @@ const SignupPage = () => {
 	}, [isError, error]);
 
 	return (
-		<div className="flex items-center bg-gray-50">
-			<div className="hidden md:block w-1/2 h-full p-20">
-				<img src={loginImage} className="h-full w-full object-cover" alt="" />
-			</div>
-			<div className="w-full md:w-1/2 grid place-items-center">
-				<div className="bg-white shadow-md rounded-lg p-10 md:p-20 w-full md:max-w-md">
-					<h1 className="mb-10 font-medium text-2xl md:text-3xl text-center">Sign up</h1>
-					{/* signup form */}
-					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-						<div className="space-y-1">
-							<Label htmlFor="firstName" className="font-medium text-gray-700">
-								First Name
-							</Label>
-							<input
-								type="text"
-								// eslint-disable-next-line react/jsx-props-no-spreading
-								{...register('firstName')}
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-							/>
-						</div>
-						<div className="space-y-1">
-							<Label htmlFor="lastName" className="font-medium text-gray-700">
-								Email
-							</Label>
-							<input
-								type="text"
-								// eslint-disable-next-line react/jsx-props-no-spreading
-								{...register('lastName')}
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-							/>
-						</div>
-						<div className="space-y-1">
-							<Label htmlFor="email" className="font-medium text-gray-700">
-								Email
-							</Label>
-							<input
-								type="email"
-								// eslint-disable-next-line react/jsx-props-no-spreading
-								{...register('email')}
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-							/>
-						</div>
+		<div className=" bg-gray-50 px-12 py-12">
+			<div className="flex items-center justify-around container mx-auto">
+				<div className="hidden md:block w-1/2 h-full p-20">
+					<img src={loginImage} className="object-contain" alt="" />
+				</div>
 
-						<div className="space-y-1">
-							<Label htmlFor="password" className="font-medium text-gray-700">
-								Password
-							</Label>
-							<input
-								type="password"
-								// eslint-disable-next-line react/jsx-props-no-spreading
-								{...register('password')}
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-							/>
-						</div>
+				<div className="w-full flex justify-around items-center">
+					<div className="bg-white shadow-md rounded-lg p-10 md:p-20 w-full md:max-w-md">
+						<h1 className="mb-10 font-medium text-2xl md:text-3xl text-center">Sign up</h1>
 
-						<div className="space-y-1">
-							<Label htmlFor="confirm-password" className="font-medium text-gray-700">
-								Confirm Password
-							</Label>
-							<input
-								type="password"
-								// eslint-disable-next-line react/jsx-props-no-spreading
-								{...register('confirmPassword')}
-								className="block w-full rounded-md border-gray--300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-							/>
-						</div>
-						<div className="mt-6">
+						<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+							<div className="space-y-1">
+								<Label htmlFor="firstName" className="font-medium text-gray-700">
+									First Name
+								</Label>
+								<input
+									type="text"
+									// eslint-disable-next-line react/jsx-props-no-spreading
+									{...register('firstName')}
+									className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+								/>
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="lastName" className="font-medium text-gray-700">
+									Email
+								</Label>
+								<input
+									type="text"
+									// eslint-disable-next-line react/jsx-props-no-spreading
+									{...register('lastName')}
+									className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+								/>
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="email" className="font-medium text-gray-700">
+									Email
+								</Label>
+								<input
+									type="email"
+									// eslint-disable-next-line react/jsx-props-no-spreading
+									{...register('email')}
+									className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+								/>
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="password" className="font-medium text-gray-700">
+									Password
+								</Label>
+								<input
+									type="password"
+									// eslint-disable-next-line react/jsx-props-no-spreading
+									{...register('password')}
+									className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+								/>
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="confirm-password" className="font-medium text-gray-700">
+									Confirm Password
+								</Label>
+								<input
+									type="password"
+									// eslint-disable-next-line react/jsx-props-no-spreading
+									{...register('confirmPassword')}
+									className="block w-full rounded-md border-gray--300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+								/>
+							</div>
+
+							<div className="mt-6">
+								<Button
+									type="submit"
+									className="w-full px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-gray-300 disabled:cursor-not-allowed"
+									disabled={disabled}
+								>
+									Sign up
+								</Button>
+							</div>
+						</form>
+
+						{/* google sign in */}
+						<div className="mt-6 rounded-md shadow-md">
 							<Button
-								type="submit"
-								className="w-full px-4 py-2 text-base font-medium text-white bg-primary rounded-md hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-gray-300 disabled:cursor-not-allowed"
-								disabled={disabled}
+								type="button"
+								className="px-4 py-4 text-base font-medium text-gray-700"
+								onClick={handleGoogleSignIn}
+								// disabled={isLoading}
 							>
-								Sign up
+								Sign In with Google
 							</Button>
 						</div>
-					</form>
-					{/* google sign in */}
-					<div className="mt-6 rounded-md shadow-md">
-						<Button
-							type="button"
-							className="px-4 py-4 text-base font-medium text-gray-700"
-							onClick={handleGoogleSignIn}
-							// disabled={isLoading}
-						>
-							Sign In with Google
-						</Button>
-					</div>
 
-					{/* login page link */}
-					<div className="mt-8">
-						<p className="mt-8 text-base font-medium text-gray-700">
-							Already have an account?{' '}
-							<Button
-								className="text-primary hover:underline cursor-pointer"
-								onClick={() => navigate('/login')}
-							>
-								Log in
-							</Button>
-						</p>
+						{/* login page link */}
+						<div className="mt-8">
+							<p className="mt-8 text-base font-medium text-gray-700">
+								Already have an account?{' '}
+								<Button
+									className="text-primary hover:underline cursor-pointer"
+									onClick={() => navigate('/login')}
+								>
+									Log in
+								</Button>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>

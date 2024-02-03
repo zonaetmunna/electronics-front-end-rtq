@@ -17,7 +17,7 @@ const PolicyPage = () => {
 
 	return (
 		<div className="bg-gray-100 py-10 px-4 sm:px-6 lg:px-8">
-			<div className="max-w-5xl mx-auto">
+			<div className="container mx-auto">
 				<h1 className="text-2xl font-bold text-dark mb-6">Privacy and Policy</h1>
 
 				<div className="bg-white rounded-lg shadow-lg overflow-hidden">

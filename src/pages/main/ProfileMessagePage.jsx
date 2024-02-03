@@ -91,7 +91,7 @@ const ProfileMessagePage = () => {
 
 	const fetchMessages = async (conversationId, receiver) => {
 		const res = await fetch(
-			`http://localhost:8000/api/message/${conversationId}?senderId=${user?._id}&&receiverId=${receiver?.receiverId}`,
+			`http://localhost:8000/api/message/${conversationId}?senderId=${user?.id}&&receiverId=${receiver?.receiverId}`,
 			{
 				method: 'GET',
 				headers: {

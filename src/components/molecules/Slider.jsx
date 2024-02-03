@@ -23,7 +23,7 @@ const Slider = ({ products }) => {
 			navigation
 			pagination={{ clickable: true }}
 			scrollbar={{ draggable: true }}
-			className="py-10 px-5 relative"
+			className="py-10 px-5 relative container mx-auto"
 		>
 			<div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2" />
 			<div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 rounded-full p-2" />
