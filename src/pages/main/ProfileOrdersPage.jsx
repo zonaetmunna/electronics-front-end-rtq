@@ -1,19 +1,12 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
-import Loading from '../../components/atoms/SpinnerLoading';
-import { useGetUserOrderQuery } from '../../features/order/orderApi';
+// import { useGetUserOrderQuery } from '../../features/order/orderApi';
 
 const ProfileOrdersPage = () => {
-	const {
-		user: { _id },
-	} = useSelector((state) => state.auth);
-	const { data, isLoading, isError, isSuccess } = useGetUserOrderQuery(_id);
-	const orderData = data;
+	// const { user } = useSelector((state) => state.auth);
+	// const { data, isLoading, isError, isSuccess } = useGetUserOrderQuery(user?.userId);
+	// const orderData = data;
 
-	useEffect(() => {
+	/* useEffect(() => {
 		if (isSuccess) {
-			// eslint-disable-next-line no-console
 			console.log(orderData);
 		}
 		if (isLoading) {
@@ -24,7 +17,7 @@ const ProfileOrdersPage = () => {
 		}
 		// modify the code
 		return () => {};
-	}, [isSuccess, isLoading, orderData, isError]);
+	}, [isSuccess, isLoading, orderData, isError]); */
 
 	return (
 		<div className="bg-white rounded-lg shadow p-6">
@@ -39,19 +32,16 @@ const ProfileOrdersPage = () => {
 							{/* ... other header columns */}
 						</tr>
 					</thead>
-					<tbody>
+					{/* <tbody>
 						{orderData &&
 							orderData?.map((order) => (
-								// eslint-disable-next-line no-underscore-dangle
 								<tr key={order._id} className="border-t border-gray-200">
-									{/* eslint-disable-next-line no-underscore-dangle */}
 									<td className="py-2 px-4">{order._id}</td>
 									<td className="py-2 px-4">{order.status}</td>
 									<td className="py-2 px-4">${order.totalAmount.toFixed(2)}</td>
-									{/* ... other columns */}
 								</tr>
 							))}
-					</tbody>
+					</tbody> */}
 				</table>
 			</div>
 		</div>

@@ -1,22 +1,18 @@
-import { Link } from 'react-router-dom';
-
-import Button from '../../components/atoms/Button';
-import { useGetUsersQuery } from '../../features/auth/authApi';
+// import { useGetUsersQuery } from '../../features/auth/authApi';
 
 const CustomerListPage = () => {
-	const { data, isLoading, isError, error } = useGetUsersQuery();
-	const users = data;
+	// const { data, isLoading, isError, error } = useGetUsersQuery();
+	// const users = data;
 
 	return (
 		<div className="bg-gray-100 min-h-screen py-8">
-			<div className="container mx-auto px-4">
+			{/* <div className="container mx-auto px-4">
 				<h2 className="text-2xl font-semibold mb-4">Customer List</h2>
 				{isError && <p>Error loading customer data: {error.message}</p>}
 				{isLoading ? (
 					<p>Loading customer data...</p>
 				) : (
 					<div>
-						{/* Customer List */}
 						<table className="w-full bg-white rounded-lg shadow-lg">
 							<thead>
 								<tr className="bg-gray-200 text-gray-600 text-sm font-semibold uppercase">
@@ -28,10 +24,8 @@ const CustomerListPage = () => {
 							</thead>
 							<tbody>
 								{users.map((user) => (
-									// eslint-disable-next-line no-underscore-dangle
 									<tr key={user._id} className="border-b border-gray-200">
 										<td className="py-3 px-4">
-											{/* eslint-disable-next-line no-underscore-dangle, no-underscore-dangle */}
 											<Link to={`/dashboard/customer/${user._id}`}>{user._id}</Link>
 										</td>
 										<td className="py-3 px-4">{user.firstName}</td>
@@ -44,7 +38,6 @@ const CustomerListPage = () => {
 					</div>
 				)}
 
-				{/* Pagination */}
 				<div className="flex justify-center mt-4">
 					<nav className="flex items-center justify-between">
 						<Button className="py-1 px-3 bg-gray-200 rounded-lg">Previous</Button>
@@ -53,9 +46,7 @@ const CustomerListPage = () => {
 					</nav>
 				</div>
 
-				{/* Modal */}
-				{/* ... Add your modal component here */}
-			</div>
+			</div> */}
 		</div>
 	);
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -6,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../components/atoms/Button';
 import Label from '../../../components/atoms/Label';
-import { useRegisterMutation } from '../../../features/auth/authApi';
+// import { useRegisterMutation } from '../../../features/auth/authApi';
 
 const MerchantRegistrationPage = () => {
-	const [postUser] = useRegisterMutation();
+	// const [postUser] = useRegisterMutation();
 	const {
 		user: { email },
 	} = useSelector((state) => state.auth);
@@ -27,7 +28,7 @@ const MerchantRegistrationPage = () => {
 	}, []);
 
 	const onSubmit = (data) => {
-		postUser({ ...data, role: 'merchant' });
+		// postUser({ ...data, role: 'merchant' });
 	};
 
 	return (

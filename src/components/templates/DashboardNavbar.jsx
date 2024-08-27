@@ -4,7 +4,7 @@ import { BiMessageSquare } from 'react-icons/bi';
 import { FaBell, FaUserCircle } from 'react-icons/fa';
 import { FiMaximize, FiMinimize, FiMoon, FiSun } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import brandLogo from '../../assets/logo/brand-logo.png';
 import { logout } from '../../features/auth/authSlice';
@@ -52,6 +52,7 @@ const DashboardNavbar = () => {
 	const [newMessage, setNewMessage] = useState('');
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleChange = (event) => {
 		setNewMessage(event.target.value);
@@ -78,9 +79,8 @@ const DashboardNavbar = () => {
 		},
 	};
 
-	const {
-		user: { email },
-	} = useSelector((state) => state.auth);
+	const { user } = useSelector((state) => state.auth);
+	console.log('🚀 ~ DashboardNavbar ~ role:', user?.role);
 
 	const handleNotifications = () => {
 		setShowNotifications(!showNotifications);
@@ -117,6 +117,7 @@ const DashboardNavbar = () => {
 
 	const handleSignOUt = () => {
 		dispatch(logout());
+		navigate('/login');
 	};
 
 	return (
@@ -234,7 +235,7 @@ const DashboardNavbar = () => {
 						</div>
 
 						{/* user */}
-						{email && (
+						{user?.role && (
 							<div className="ml-3 relative">
 								<div>
 									<Button
@@ -255,7 +256,7 @@ const DashboardNavbar = () => {
 										aria-orientation="vertical"
 										aria-labelledby="user-menu"
 									>
-										<p>{email}</p>
+										<p>{user?.role}</p>
 										<Link
 											to="#"
 											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

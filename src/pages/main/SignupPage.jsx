@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -7,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import loginImage from '../../assets/images/login-image.jpg';
 import Button from '../../components/atoms/Button';
 import Label from '../../components/atoms/Label';
-import { signInWithGoogle, signupUser } from '../../features/auth/authSlice';
+// import { signInWithGoogle, signupUser } from '../../features/auth/authSlice';
 
 const SignupPage = () => {
 	const {
@@ -46,7 +47,7 @@ const SignupPage = () => {
 			password: data.password,
 		};
 		try {
-			await dispatch(signupUser(signupData));
+			// await dispatch(signupUser(signupData));
 
 			toast.success('User created successfully!');
 			reset();
@@ -57,7 +58,7 @@ const SignupPage = () => {
 	};
 
 	const handleGoogleSignIn = () => {
-		dispatch(signInWithGoogle());
+		// dispatch(signInWithGoogle());
 	};
 
 	// redirect

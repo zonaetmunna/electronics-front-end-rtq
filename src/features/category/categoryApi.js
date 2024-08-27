@@ -1,6 +1,6 @@
-import apiSlice from '../api/apiSlice';
+import { baseApi } from '../api/baseApi';
 
-const categoryApi = apiSlice.injectEndpoints({
+const categoryApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
 		getCategories: builder.query({
 			query: (params) => {

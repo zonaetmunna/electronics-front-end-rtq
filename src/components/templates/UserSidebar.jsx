@@ -10,9 +10,7 @@ import Button from '../atoms/Button';
 const UserSidebar = () => {
 	// eslint-disable-next-line no-unused-vars
 	const [isOpen, setIsOpen] = useState(true);
-	const {
-		user: { firstName, image },
-	} = useSelector((state) => state.auth);
+	const { user } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 
 	/* const toggleSidebar = () => {
@@ -37,9 +35,9 @@ const UserSidebar = () => {
 			<div className="sidebar-content p-4">
 				<div className="user-info flex items-center p-4 border-b border-gray-300">
 					<div className="avatar w-10 h-10 bg-gray-500 rounded-full mr-3">
-						<img src={image} alt="logo" className="w-full h-full rounded-full shadow-lg" />
+						{/* <img src={image} alt="logo" className="w-full h-full rounded-full shadow-lg" /> */}
 					</div>
-					<h3 className="text-lg font-semibold">{firstName}</h3>
+					<h3 className="text-lg font-semibold">{user?.role}</h3>
 				</div>
 				<ul className="sidebar-menu py-4">
 					{/* profile information */}

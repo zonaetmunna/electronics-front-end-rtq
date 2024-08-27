@@ -19,17 +19,19 @@ const MainLayout = () => {
 		setIsCartOpen(false);
 	};
 	return (
-		<>
+		<div className="flex flex-col min-h-[100vh]">
 			<NavigationBar
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 				onCartClick={handleCartClick}
 				categories={categories}
 			/>
-			<Outlet />
+			<div style={{ flex: 1 }}>
+				<Outlet />
+			</div>
 			<FooterSeconed />
 			{isCartOpen && <CartModal onClose={handleCartModalClose} />}
-		</>
+		</div>
 	);
 };
 

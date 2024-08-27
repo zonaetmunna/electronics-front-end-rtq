@@ -1,49 +1,47 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import loginImage from '../../assets/images/login-image.jpg';
 import Button from '../../components/atoms/Button';
 import Label from '../../components/atoms/Label';
-import { login, signInWithGoogle } from '../../features/auth/authSlice';
+import { useLoginMutation } from '../../features/auth/authApi';
+import { setUser } from '../../features/auth/authSlice';
+import { verifyToken } from '../../utils/verifyToken';
 
 const LoginPage = () => {
-	const { register, handleSubmit, reset } = useForm();
+	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const {
-		isLoading,
-		isError,
-		error,
-		user: { email },
-	} = useSelector((state) => state.auth);
 
-	const onSubmit = (data) => {
-		const loginData = {
-			email: data.email,
-			password: data.password,
-		};
-		dispatch(login(loginData));
-		reset();
+	const [login, { isError, error }] = useLoginMutation();
+
+	const onSubmit = async (data) => {
+		try {
+			const userInfo = {
+				email: data.email,
+				password: data.password,
+			};
+			const res = await login(userInfo).unwrap();
+
+			const user = verifyToken(res.data.accessToken);
+			dispatch(setUser({ user, token: res.data.accessToken }));
+			toast.success('Logged in');
+
+			// if (res.data.needsPasswordChange === 'true') {
+			// 	navigate(`/change-password`);
+			// } else {
+			navigate(`/dashboard`);
+			// }
+		} catch (error) {
+			toast.error(error.data.message);
+		}
 	};
 
-	const handleGoogleSignIn = () => {
-		dispatch(signInWithGoogle());
-	};
-
-	useEffect(() => {
-		if (!isLoading && email) {
-			navigate('/');
-		}
-	}, [email, isLoading, navigate]);
-
-	useEffect(() => {
-		if (isError) {
-			toast.error(error);
-		}
-	}, [error, isError]);
+	// const handleGoogleSignIn = () => {
+	// 	dispatch(signInWithGoogle());
+	// };
 
 	return (
 		<div className="px-12 py-12">
@@ -88,7 +86,7 @@ const LoginPage = () => {
 										type="submit"
 										className="font-bold text-white py-3 rounded-full bg-primary w-full hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50"
 									>
-										{isLoading ? 'Loading...' : 'Login'}
+										Login
 									</Button>
 								</div>
 							</div>
@@ -99,7 +97,7 @@ const LoginPage = () => {
 							<Button
 								type="button"
 								className="px-4 py-4 text-base font-medium text-gray-700"
-								onClick={handleGoogleSignIn}
+								// onClick={handleGoogleSignIn}
 								// disabled={isLoading}
 							>
 								Sign In with Google

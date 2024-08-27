@@ -1,6 +1,6 @@
-import apiSlice from '../api/apiSlice';
+import { baseApi } from '../api/baseApi';
 
-const messageApi = apiSlice.injectEndpoints({
+const messageApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
 		getConversations: builder.query({
 			query: (userId) => ({

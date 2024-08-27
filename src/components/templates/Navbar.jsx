@@ -9,9 +9,7 @@ import { logout } from '../../features/auth/authSlice';
 import Button from '../atoms/Button';
 
 const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
-	const {
-		user: { firstName, email, role },
-	} = useSelector((state) => state.auth);
+	const { user } = useSelector((state) => state.auth);
 	const { cart } = useSelector((state) => state.cart);
 	const { wishlist } = useSelector((state) => state.wishlist);
 	const dispatch = useDispatch();
@@ -88,16 +86,25 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 							</div>
 						</Button>
 
-						{email && role === 'admin' ? (
-							<Link to="/dashboard" className="mr-6 hover:text-gray-500">
+						{/* for admin,manger,super-admin */}
+						{user?.role && user?.role === 'superAdmin' ? (
+							<Link to="/dashboard" className="mr-6 hover:text-gray-500 flex gap-1 items-center">
 								<span className="text-gray-500">Dashboard</span>
+								<Button
+									type="button"
+									className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
+									onClick={handleSignOut}
+								>
+									Sign Out
+								</Button>
 							</Link>
 						) : (
 							<Link to="/login" className="mr-6 hover:text-gray-500">
 								<span className="text-gray-500">Login</span>
 							</Link>
 						)}
-						{email && role === 'user' && role === 'admin' ? (
+						{/* for customer */}
+						{user?.role && user.role === 'customer' && user.role === 'customer' ? (
 							<div className="relative">
 								<Button
 									onClick={() => setShowProfileMenu(!showProfileMenu)}
@@ -107,7 +114,7 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 									<span>
 										<VscAccount size={20} />
 									</span>
-									<span className="ml-2">{firstName}</span>
+									<span className="ml-2">{user?.role}</span>
 								</Button>
 								{showProfileMenu && (
 									<div className="absolute top-12 right-0 px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br shadow">
@@ -119,7 +126,7 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 										</Link>
 										<Button
 											type="button"
-											className="w-full text-left text-red-600 py-1 hover:bg-gray-100"
+											className="block px-2 py-2 text-sm text-gray-700 hover:bg-blue-100 "
 											onClick={handleSignOut}
 										>
 											Sign Out

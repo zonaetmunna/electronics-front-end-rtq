@@ -1,5 +1,40 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+// Initial state for the auth slice
+const initialState = {
+	user: null,
+	token: null,
+};
+
+// Auth slice using createSlice from Redux Toolkit
+const authSlice = createSlice({
+	name: 'auth',
+	initialState,
+	reducers: {
+		setUser: (state, action) => {
+			const { user, token } = action.payload;
+			state.user = user;
+			state.token = token;
+		},
+		logout: (state) => {
+			state.user = null;
+			state.token = null;
+		},
+	},
+});
+
+// Exporting the actions from the slice
+export const { setUser, logout } = authSlice.actions;
+
+// Exporting the reducer as default
+export default authSlice.reducer;
+
+// Selectors to get the current token and user from the state
+export const useCurrentToken = (state) => state.auth.token;
+export const selectCurrentUser = (state) => state.auth.user;
+
+/* import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import auth from '../../firebase/firebase.config';
@@ -18,7 +53,6 @@ const initialState = {
 	error: '',
 };
 
-// asyncThunk for signup and login sign in with google
 export const signupUser = createAsyncThunk('auth/signup', async (data, thunkAPI) => {
 	try {
 		const response = await fetch(`${process.env.REACT_APP_DEV_API}/auth/signup`, {
@@ -57,13 +91,11 @@ export const signInWithGoogle = createAsyncThunk('auth/signInWithGoogle', async 
 		const provider = new GoogleAuthProvider();
 		const authResult = await signInWithPopup(auth, provider);
 
-		// Here, you can access user data from authResult.user and send it to your backend
 		const { user } = authResult;
 		const userData = {
 			firstName: user.displayName,
 			email: user.email,
 			image: user.photoURL,
-			// _id: user.uid,
 		};
 
 		// return userData;
@@ -88,7 +120,6 @@ export const authSlice = createSlice({
 	initialState,
 	reducers: {
 		logout: (state) => {
-			// eslint-disable-next-line no-param-reassign
 			state.user = { _id: '', name: '', email: '', role: '', profileImage: '' };
 		},
 		reset: (state) => {
@@ -147,3 +178,4 @@ export const authSlice = createSlice({
 export const { logout, clearError, reset } = authSlice.actions;
 
 export default authSlice.reducer;
+ */

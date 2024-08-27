@@ -1,13 +1,34 @@
-// import { signInWithGoogle } from "./authSlice";
+import { baseApi } from '../api/baseApi';
 
-import apiSlice from '../api/apiSlice';
+const authApi = baseApi.injectEndpoints({
+	endpoints: (builder) => ({
+		login: builder.mutation({
+			query: (userInfo) => ({
+				url: '/auth/login',
+				method: 'POST',
+				body: userInfo,
+			}),
+		}),
+		// get me
+		getMe: builder.query({
+			query: () => ({
+				url: '/user/me',
+				method: 'GET',
+			}),
+		}),
+	}),
+});
+
+export const { useLoginMutation, useGetMeQuery } = authApi;
+
+/* import apiSlice from '../api/apiSlice';
 
 const authApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		register: builder.mutation({
 			query: (data) => ({
 				method: 'POST',
-				url: '/auth/signup',
+				url: '/user/create-customer',
 				body: data,
 			}),
 
@@ -60,3 +81,4 @@ export const {
 	useGetUserQuery,
 	useGetAdminQuery,
 } = authApi;
+ */

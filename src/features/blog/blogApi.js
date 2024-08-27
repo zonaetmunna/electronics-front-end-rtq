@@ -1,6 +1,6 @@
-import apiSlice from '../api/apiSlice';
+import { baseApi } from '../api/baseApi';
 
-const blogApi = apiSlice.injectEndpoints({
+const blogApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
 		getBlogs: builder.query({
 			query: (params) => {

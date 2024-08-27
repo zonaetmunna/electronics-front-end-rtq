@@ -19,9 +19,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
 
 const DashboardSidebar = () => {
-	const {
-		user: { role },
-	} = useSelector((state) => state.auth);
+	const {user} = useSelector((state) => state.auth);
 
 	const [isCollapsed, setIsCollapsed] = useState(false);
 

@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 
 import Button from '../../components/atoms/Button';
 import Label from '../../components/atoms/Label';
-import { useRegisterMutation } from '../../features/auth/authApi';
+// import { useRegisterMutation } from '../../features/auth/authApi';
 
 const MakeAdminPage = () => {
 	const {
@@ -12,15 +13,15 @@ const MakeAdminPage = () => {
 		reset,
 	} = useForm();
 
-	const [userRegistration] = useRegisterMutation();
+	// const [userRegistration] = useRegisterMutation();
 
 	function onSubmit(data) {
-		const user = {
-			email: data.email,
-			password: data.password,
-			role: 'admin',
-		};
-		userRegistration(user);
+		// const user = {
+		// 	email: data.email,
+		// 	password: data.password,
+		// 	role: 'admin',
+		// };
+		// userRegistration(user);
 		reset();
 	}
 
