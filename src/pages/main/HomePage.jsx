@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import ProductCard from '../../components/molecules/ProductCard';
 import ProductCardSkeleton from '../../components/molecules/ProductCardSkeleton';
 import Slider from '../../components/molecules/Slider';
@@ -36,9 +37,9 @@ const HomePage = () => {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 					{isLoading
 						? // Skeleton loader while loading
-						  Array.from({ length: 8 }, (_, index) => <ProductCardSkeleton key={index} />)
+							Array.from({ length: 8 }, (_, index) => <ProductCardSkeleton key={index} />)
 						: // eslint-disable-next-line no-underscore-dangle
-						  products?.map((product) => <ProductCard product={product} key={product._id} />)}
+							products?.map((product) => <ProductCard product={product} key={product._id} />)}
 					{!isLoading && products?.length === 0 && (
 						<p className="text-center">No products found.</p>
 					)}

@@ -4,12 +4,12 @@ import UserSidebar from '../components/templates/UserSidebar';
 
 const ProfileLayout = () => {
 	return (
-		<div className="flex  bg-gray-100">
+		<div className="flex  bg-white container mx-auto my-5">
 			<UserSidebar />
-
-			<div className="flex-1 p-10">
-				{/* Your profile content goes here */}
-				<Outlet />
+			<div className="flex-1  ml-5 ">
+				<div className="bg-gray-100">
+					<Outlet />
+				</div>
 			</div>
 		</div>
 	);

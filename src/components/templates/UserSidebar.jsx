@@ -23,9 +23,9 @@ const UserSidebar = () => {
 
 	return (
 		<div
-			className={`user-sidebar mt-10  rounded-lg shadow-md ${
+			className={`user-sidebar rounded-lg shadow-md ${
 				isOpen ? 'translate-x-0' : '-translate-x-full'
-			} bg-white border-r border-gray-300 h-screen w-72  transform transition-transform ease-in-out duration-300 z-50`}
+			} bg-gray-100 border-r border-gray-300 max-h-[90vh] w-72  transform transition-transform ease-in-out duration-300 z-50`}
 		>
 			{/* <button className="toggle-button p-4" onClick={toggleSidebar}>
         <div className="bar h-1 w-6 bg-gray-600 my-1"></div>

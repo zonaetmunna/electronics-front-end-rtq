@@ -128,7 +128,7 @@ const ProfileMessagePage = () => {
 	};
 
 	return (
-		<div className="w-screen flex">
+		<div className=" flex">
 			<div className="w-[25%] h-screen bg-secondary overflow-scroll">
 				<div className="flex items-center my-8 mx-14">
 					<div>

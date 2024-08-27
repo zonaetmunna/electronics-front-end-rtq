@@ -87,35 +87,32 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 						</Button>
 
 						{/* for admin,manger,super-admin */}
-						{user?.role && user?.role === 'superAdmin' ? (
-							<Link to="/dashboard" className="mr-6 hover:text-gray-500 flex gap-1 items-center">
-								<span className="text-gray-500">Dashboard</span>
-								<Button
-									type="button"
-									className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
-									onClick={handleSignOut}
-								>
-									Sign Out
-								</Button>
-							</Link>
-						) : (
-							<Link to="/login" className="mr-6 hover:text-gray-500">
-								<span className="text-gray-500">Login</span>
-							</Link>
-						)}
-						{/* for customer */}
-						{user?.role && user.role === 'customer' && user.role === 'customer' ? (
+						{user ? (
 							<div className="relative">
-								<Button
-									onClick={() => setShowProfileMenu(!showProfileMenu)}
-									onBlur={handleBlur}
-									className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
-								>
-									<span>
+								{user.role === 'superAdmin' || user.role === 'admin' || user.role === 'manager' ? (
+									<Link
+										to="/dashboard"
+										className="mr-6 hover:text-gray-500 flex gap-1 items-center"
+									>
+										<span className="text-gray-500">Dashboard</span>
+										<Button
+											type="button"
+											className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
+											onClick={handleSignOut}
+										>
+											Sign Out
+										</Button>
+									</Link>
+								) : (
+									<Button
+										onClick={() => setShowProfileMenu(!showProfileMenu)}
+										onBlur={handleBlur}
+										className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
+									>
 										<VscAccount size={20} />
-									</span>
-									<span className="ml-2">{user?.role}</span>
-								</Button>
+										<span className="ml-2">{user.role}</span>
+									</Button>
+								)}
 								{showProfileMenu && (
 									<div className="absolute top-12 right-0 px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br shadow">
 										<Link
@@ -135,14 +132,13 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 								)}
 							</div>
 						) : (
-							<div className="flex items-center">
-								<Link
-									to="/login"
-									className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
-								>
-									<span className="ml-2">Log In</span>
-								</Link>
-							</div>
+							// Only show the "Log In" button if the user is not logged in
+							<Link
+								to="/login"
+								className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300"
+							>
+								Log In
+							</Link>
 						)}
 					</div>
 				</div>

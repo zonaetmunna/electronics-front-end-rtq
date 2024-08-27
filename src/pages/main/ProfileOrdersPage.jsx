@@ -20,7 +20,7 @@ const ProfileOrdersPage = () => {
 	}, [isSuccess, isLoading, orderData, isError]); */
 
 	return (
-		<div className="bg-white rounded-lg shadow p-6">
+		<div className="rounded-lg shadow p-6">
 			<h2 className="text-2xl font-semibold mb-4">Your Orders</h2>
 			<div className="overflow-x-auto">
 				<table className="min-w-full">

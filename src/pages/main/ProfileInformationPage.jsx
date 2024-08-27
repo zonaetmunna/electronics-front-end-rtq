@@ -32,7 +32,7 @@ const ProfileInformationPage = () => {
 	};
 
 	return (
-		<div className="bg-white rounded-lg shadow p-6">
+		<div className="rounded-lg shadow p-6">
 			<h1 className="text-2xl font-semibold mb-4">Profile Information</h1>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="mb-4">
