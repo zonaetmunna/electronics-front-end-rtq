@@ -21,7 +21,7 @@ const brandApi = baseApi.injectEndpoints({
 				}
 
 				return {
-					url: '/brand',
+					url: '/brands',
 					params: {
 						...query,
 						...restParams,
@@ -32,13 +32,13 @@ const brandApi = baseApi.injectEndpoints({
 		}),
 		getBrand: builder.query({
 			query: (id) => ({
-				url: `/brand/${id}`,
+				url: `/brands/${id}`,
 			}),
 			providesTags: ['brand'],
 		}),
 		addBrand: builder.mutation({
 			query: (data) => ({
-				url: '/brand',
+				url: '/brands',
 				method: 'POST',
 				body: data,
 			}),
@@ -46,12 +46,12 @@ const brandApi = baseApi.injectEndpoints({
 		}),
 		updateBrand: builder.mutation({
 			query: (id) => ({
-				url: `/brand/${id}`,
+				url: `/brands/${id}`,
 			}),
 		}),
 		deleteBrand: builder.mutation({
 			query: (id) => ({
-				url: `/brand/${id}`,
+				url: `/brands/${id}`,
 				method: 'DELETE',
 				body: id,
 			}),

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable prettier/prettier */
 import { useMemo, useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -29,15 +30,13 @@ import {
   useRemoveProductMutation,
   useUpdateProductMutation,
 } from '../../features/product/productApi';
+import { closeModal, openModal } from '../../features/theme/modalSlice';
 
 const ProductsListAdminPage = () => {
-	// state
-	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-	const [selectedProduct, setSelectedProduct] = useState(null);
-
 	const dispatch = useDispatch();
+	const modals = useSelector((state) => state.modals);
+
+	const [selectedProduct, setSelectedProduct] = useState(null);
 
 	const {
 		searchText,
@@ -66,6 +65,7 @@ const ProductsListAdminPage = () => {
 	const { data: brandsData } = useGetBrandsQuery({});
 	const brands = brandsData;
 	const products = data?.data;
+
 	const [addProduct] = useAddProductMutation();
 	const [updateProduct] = useUpdateProductMutation();
 	const [removeProduct] = useRemoveProductMutation();
@@ -106,7 +106,7 @@ const ProductsListAdminPage = () => {
 	}));
 
 	const brandOptions = brands?.map((brand) => ({
-    // eslint-disable-next-line no-underscore-dangle
+		// eslint-disable-next-line no-underscore-dangle
 		value: brand._id,
 		label: brand.name,
 	}));
@@ -149,42 +149,26 @@ const ProductsListAdminPage = () => {
 		<h1>page is loading</h1>;
 	}
 
-	// handlers modal open and close
-	const handleAddModalOpen = () => {
-		setIsAddModalOpen(true);
-	};
-
-	const handleAddModalClose = () => {
-		setIsAddModalOpen(false);
-	};
 	const handleProductSelect = (product) => {
 		setSelectedProduct(product);
-	};
-
-	const handleEditModalOpen = () => {
-		setIsEditModalOpen(true);
-	};
-
-	const handleEditModalClose = () => {
-		setIsEditModalOpen(false);
 	};
 
 	// handlers submit
 	const handleAddSubmit = (product) => {
 		addProduct(product);
-		setIsAddModalOpen(false);
+		dispatch(closeModal('addProductModal'));
 	};
 	const handleEditSubmit = (product) => {
 		updateProduct({ productId: product.id, updatedProduct: product });
-		handleEditModalClose();
+		dispatch(closeModal('editProductModal'));
 	};
 
 	const handleDeleteModalOpen = () => {
-		setIsDeleteModalOpen(true);
+		dispatch(openModal('deleteProductModal'));
 	};
 
 	const handleDeleteModalClose = () => {
-		setIsDeleteModalOpen(false);
+		dispatch(closeModal('deleteProductModal'));
 	};
 
 	const handleDeleteSubmit = () => {
@@ -196,7 +180,7 @@ const ProductsListAdminPage = () => {
 	return (
 		<div className="flex flex-col">
 			<h2 className="text-2xl font-semibold mb-4">All Products</h2>
-			<div className="flex justify-between items-center mb-4 px-2 py-4">
+			<div className="flex justify-start items-center mb-4 px-2 py-4">
 				<input
 					type="text"
 					placeholder="Search"
@@ -251,10 +235,10 @@ const ProductsListAdminPage = () => {
 			<hr className="border-gray-200 my-2" />
 			<div className="flex justify-end mb-4">
 				<Button
-					onClick={handleAddModalOpen}
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
+					onClick={() => dispatch(openModal('addProductModal'))}
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200"
 				>
-					Add Product
+					Create Product
 				</Button>
 			</div>
 			<table className="min-w-full">
@@ -287,13 +271,13 @@ const ProductsListAdminPage = () => {
 						</th>
 					</tr>
 				</thead>
-				<tbody className="bg-white">
+				<tbody className="">
 					{products &&
 						filteredProducts?.map((product) => (
 							// eslint-disable-next-line no-underscore-dangle
 							<tr key={product._id}>
-								<td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-									 {/* eslint-disable-next-line no-underscore-dangle */}
+								<td className="px-6 py-4 whitespace-no-wrap ">
+									{/* eslint-disable-next-line no-underscore-dangle */}
 									<Link to={`/dashboard/product/${product._id}`}>
 										<div className="flex items-center">
 											<div className="ml-4">
@@ -335,10 +319,11 @@ const ProductsListAdminPage = () => {
 								<td>
 									<div className="px-3 py-3">
 										<Button
+											type="button"
 											className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
 											onClick={() => {
+												dispatch(openModal('editProductModal'));
 												handleProductSelect(product);
-												handleEditModalOpen();
 											}}
 										>
 											<FaEdit />
@@ -363,7 +348,6 @@ const ProductsListAdminPage = () => {
 			<div className="mt-4 flex justify-center">
 				<nav>
 					<ul className="pagination">
-						{/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
 						<li
 							className={`pagination-item ${currentPage === 1 ? 'disabled' : ''}`}
 							onClick={() => handlePageChange(currentPage - 1)}
@@ -371,7 +355,6 @@ const ProductsListAdminPage = () => {
 							<span className="pagination-link">Previous</span>
 						</li>
 						{Array.from({ length: totalPages }, (_, index) => (
-							// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
 							<li
 								key={index}
 								className={`pagination-item ${currentPage === index + 1 ? 'active' : ''}`}
@@ -380,7 +363,6 @@ const ProductsListAdminPage = () => {
 								<span className="pagination-link">{index + 1}</span>
 							</li>
 						))}
-						 {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
 						<li
 							className={`pagination-item ${currentPage === totalPages ? 'disabled' : ''}`}
 							onClick={() => handlePageChange(currentPage + 1)}
@@ -392,29 +374,29 @@ const ProductsListAdminPage = () => {
 			</div>
 
 			{/* modals */}
-			{isAddModalOpen && (
+			{modals.addProductModal && (
 				<AddProductModal
-					isOpen={isAddModalOpen}
-					onClose={handleAddModalClose}
+					isOpen={modals.addProductModal}
+					onClose={() => dispatch(closeModal('addProductModal'))}
 					onSubmit={handleAddSubmit}
 					categories={categories}
 					brands={brands}
 				/>
 			)}
 
-			{selectedProduct && (
+			{modals.editProductModal && (
 				<EditProductModal
+					isOpen={modals.editProductModal}
+					onClose={()=>dispatch(closeModal('editProductModal'))}
 					product={selectedProduct}
-					isOpen={isEditModalOpen}
-					onClose={handleEditModalClose}
 					onSubmit={handleEditSubmit}
 				/>
 			)}
 			{selectedProduct && (
 				<DeleteProductModel
 					product={selectedProduct}
-					isOpen={isDeleteModalOpen}
-					onClose={handleDeleteModalClose}
+					isOpen={modals.deleteProductModal}
+					onClose={() => dispatch(closeModal('deleteProductModal'))}
 					onSubmit={handleDeleteSubmit}
 				/>
 			)}

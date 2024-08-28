@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Link } from 'react-router-dom';
 
 import Button from '../../components/atoms/Button';
@@ -25,19 +26,20 @@ const BrandsListAdminPage = () => {
 					<table className="w-full bg-white rounded-lg shadow-lg">
 						<thead>
 							<tr className="bg-gray-200 text-gray-600 text-sm font-semibold uppercase">
+								<th className="py-3 px-4">Brand ID</th>
 								<th className="py-3 px-4">Brand Name</th>
+								<th className="py-3 px-4">Brand Description</th>
 							</tr>
 						</thead>
 						<tbody>
 							{brands &&
 								brands.map((brand) => (
-									// eslint-disable-next-line no-underscore-dangle
 									<tr key={brand._id} className="border-b border-gray-200">
 										<td className="py-3 px-4">
-											{/* eslint-disable-next-line no-underscore-dangle */}
-											<Link to={`/dashboard/brand/${brand?._id}`}>{brand.name}</Link>
+											<Link to={`/dashboard/brand/${brand?._id}`}>{brand._id}</Link>
 										</td>
-										{/* ... other columns */}
+										<td className="py-3 px-4">{brand.name}</td>
+										<td className="py-3 px-4">{brand.description}</td>
 									</tr>
 								))}
 						</tbody>

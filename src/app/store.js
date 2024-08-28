@@ -8,6 +8,7 @@ import cartReducer from '../features/cart/cartSlice';
 import counterReducer from '../features/counter/counterSlice';
 import filterReducer from '../features/filter/filterSlice';
 import settingsReducer from '../features/settings/settingsSlice';
+import modalReducer from '../features/theme/modalSlice';
 import wishlistReducer from '../features/wishlist/wishListSlice';
 
 const persistConfig = {
@@ -35,6 +36,7 @@ const persistedReducer = persistReducer(
 		counter: counterReducer,
 		filter: filterReducer,
 		settings: settingsReducer,
+		modals: modalReducer,
 	})
 );
 

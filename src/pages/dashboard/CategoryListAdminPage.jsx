@@ -22,12 +22,12 @@ const CategoryListAdminPage = () => {
 				{isLoading ? (
 					<p>Loading categories...</p>
 				) : (
-					<table className="w-full bg-white rounded-lg shadow-lg">
+					<table className="w-full  rounded-lg shadow-lg">
 						<thead>
 							<tr className="bg-gray-200 text-gray-600 text-sm font-semibold uppercase">
 								<th className="py-3 px-4">Category ID</th>
 								<th className="py-3 px-4">Category Name</th>
-								{/* ... other columns */}
+								<th className="py-3 px-4">Category Description</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -37,6 +37,7 @@ const CategoryListAdminPage = () => {
 										<Link to={`/dashboard/category/${category?._id}`}>{category._id}</Link>
 									</td>
 									<td className="py-3 px-4">{category.name}</td>
+									<td className="py-3 px-4">{category.description}</td>
 								</tr>
 							))}
 						</tbody>
