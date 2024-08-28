@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Link } from 'react-router-dom';
 
 import Button from '../../components/atoms/Button';
@@ -6,9 +7,10 @@ import { useGetCategoriesQuery } from '../../features/category/categoryApi';
 const CategoryListAdminPage = () => {
 	const { data, isLoading, isError, error } = useGetCategoriesQuery({});
 	const categories = data;
+
 	return (
 		<div className="bg-gray-100 min-h-screen py-8">
-			<div className="container mx-auto px-4">
+			<div className=" px-4">
 				<h2 className="text-2xl font-semibold mb-4">Category List</h2>
 
 				<div className="flex justify-end mb-4">
@@ -29,11 +31,9 @@ const CategoryListAdminPage = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{categories.map((category) => (
-								// eslint-disable-next-line no-underscore-dangle
+							{categories?.map((category) => (
 								<tr key={category._id} className="border-b border-gray-200">
 									<td className="py-3 px-4">
-										{/* eslint-disable-next-line no-underscore-dangle, no-underscore-dangle */}
 										<Link to={`/dashboard/category/${category?._id}`}>{category._id}</Link>
 									</td>
 									<td className="py-3 px-4">{category.name}</td>

@@ -1,19 +1,22 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiMessageSquare } from 'react-icons/bi';
 import { FaBell, FaUserCircle } from 'react-icons/fa';
 import { FiMaximize, FiMinimize, FiMoon, FiSun } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import brandLogo from '../../assets/logo/brand-logo.png';
-import { logout } from '../../features/auth/authSlice';
+import { toggleDarkMode } from '../../features/settings/settingsSlice';
 import Button from '../atoms/Button';
 
 const DashboardNavbar = () => {
+	const dispatch = useDispatch();
+
+	const { user } = useSelector((state) => state.auth);
+	const isDarkMode = useSelector((state) => state.settings.darkMode);
+
 	const [isFullscreen, setIsFullscreen] = useState(false);
-	const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('isDarkMode') === 'true');
-	const [showUserDropdown, setShowUserDropdown] = useState(false);
 	const [showNotifications, setShowNotifications] = useState(false);
 	const [notifications, setNotifications] = useState([
 		{
@@ -51,9 +54,6 @@ const DashboardNavbar = () => {
 	]);
 	const [newMessage, setNewMessage] = useState('');
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
 	const handleChange = (event) => {
 		setNewMessage(event.target.value);
 	};
@@ -79,9 +79,6 @@ const DashboardNavbar = () => {
 		},
 	};
 
-	const { user } = useSelector((state) => state.auth);
-	console.log('🚀 ~ DashboardNavbar ~ role:', user?.role);
-
 	const handleNotifications = () => {
 		setShowNotifications(!showNotifications);
 	};
@@ -93,16 +90,8 @@ const DashboardNavbar = () => {
 		);
 	};
 
-	const handleUserDropdown = () => {
-		setShowUserDropdown(!showUserDropdown);
-	};
-
-	useEffect(() => {
-		localStorage.setItem('isDarkMode', isDarkMode);
-	}, [isDarkMode]);
-
 	const handleModeToggle = () => {
-		setIsDarkMode(!isDarkMode);
+		dispatch(toggleDarkMode());
 	};
 
 	const handleFullscreen = () => {
@@ -115,50 +104,41 @@ const DashboardNavbar = () => {
 		}
 	};
 
-	const handleSignOUt = () => {
-		dispatch(logout());
-		navigate('/login');
-	};
-
 	return (
 		<nav
 			className={`px-2 py-3 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'}`}
 		>
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div className=" px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between h-16">
 					<div className="flex">
 						{/* dashboard logo */}
 						<Link to="/" className="flex-shrink-0 flex items-center">
 							<img className="h-8 w-auto rounded-full" src={brandLogo} alt="Workflow" />
-							<span className="font-semibold text-xl ml-2">Dashboard</span>
+							<span className="font-semibold text-xl ml-2">
+								{user?.role === 'admin' && 'Admin Dashboard'}
+								{user?.role === 'manager' && 'Manager Dashboard'}
+								{user?.role === 'superAdmin' && 'Super Admin Dashboard'}
+							</span>
 						</Link>
 					</div>
-					{/*  */}
-					<div className="flex justify-around items-center">
-						{/* dark mode */}
-						<div>
-							<Button type="button" className="mr-2" onClick={handleModeToggle}>
-								{isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
-							</Button>
-						</div>
-						{/* full screen */}
-						<div className="flex items-center">
-							<Button
-								className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-500"
-								onClick={handleFullscreen}
-							>
-								{isFullscreen ? (
-									<FiMinimize className="h-6 w-6" />
-								) : (
-									<FiMaximize className="h-6 w-6" />
-								)}
-							</Button>
-						</div>
+
+					<div className="flex justify-around items-center gap-4">
+						<Button type="button" className="" onClick={handleModeToggle}>
+							{isDarkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
+						</Button>
+
+						<Button className="flex items-center  hover:text-gray-300" onClick={handleFullscreen}>
+							{isFullscreen ? (
+								<FiMinimize className="h-6 w-6" />
+							) : (
+								<FiMaximize className="h-6 w-6" />
+							)}
+						</Button>
 						{/* message */}
-						<div className="relative pl-3">
+						<div className="relative ">
 							<div className="relative">
 								<motion.button
-									className=" hover:text-gray-300 "
+									className=" hover:text-gray-300 mt-2"
 									onClick={() => setShowMessages(!showMessages)}
 									variants={iconVariants}
 									animate={showMessages ? 'open' : 'closed'}
@@ -197,10 +177,10 @@ const DashboardNavbar = () => {
 							</div>
 						</div>
 						{/* notification */}
-						<div className="relative pl-3">
+						<div className="relative mt-2">
 							<Button
 								type="button"
-								className=" p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+								className=" rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
 								onClick={handleNotifications}
 							>
 								<FaBell className="w-6 h-6" />
@@ -234,55 +214,10 @@ const DashboardNavbar = () => {
 							</div>
 						</div>
 
-						{/* user */}
-						{user?.role && (
-							<div className="ml-3 relative">
-								<div>
-									<Button
-										type="button"
-										onClick={handleUserDropdown}
-										className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-										id="user-menu"
-										aria-haspopup="true"
-									>
-										<span className="sr-only">Open user menu</span>
-										<FaUserCircle className="h-8 w-8 rounded-full text-gray-400" />
-									</Button>
-								</div>
-								{showUserDropdown && (
-									<div
-										className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
-										role="menu"
-										aria-orientation="vertical"
-										aria-labelledby="user-menu"
-									>
-										<p>{user?.role}</p>
-										<Link
-											to="#"
-											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-											role="menuitem"
-										>
-											Your Profile
-										</Link>
-										<Link
-											to="#"
-											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-											role="menuitem"
-										>
-											Settings
-										</Link>
-										<Link
-											onClick={handleSignOUt}
-											to="#"
-											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-											role="menuitem"
-										>
-											Sign out
-										</Link>
-									</div>
-								)}
-							</div>
-						)}
+						<span className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm e">
+							<span className="sr-only">Open user menu</span>
+							<FaUserCircle className="h-8 w-8 rounded-full text-gray-400" />
+						</span>
 					</div>
 				</div>
 			</div>

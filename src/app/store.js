@@ -13,7 +13,17 @@ import wishlistReducer from '../features/wishlist/wishListSlice';
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['auth', 'brand', 'category', 'message', 'order', 'product', 'cart', 'wishlist'], // List of reducers to persist
+	whitelist: [
+		'auth',
+		'brand',
+		'category',
+		'message',
+		'order',
+		'product',
+		'cart',
+		'wishlist',
+		'settings',
+	], // List of reducers to persist
 };
 const persistedReducer = persistReducer(
 	persistConfig,

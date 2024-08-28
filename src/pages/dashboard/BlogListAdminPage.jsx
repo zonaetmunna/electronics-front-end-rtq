@@ -91,7 +91,7 @@ const BlogListAdminPage = () => {
 			<h2 className="text-2xl font-semibold mb-4">All Blogs</h2>
 
 			<div className="overflow-x-auto">
-				{isErrorBlogs && <p className="text-red-500">{errorBlogs.message}</p>}
+				{isErrorBlogs && <p className="text-red-500">{errorBlogs?.message}</p>}
 				{isLoadingBlogs ? (
 					<p className="text-gray-500">Loading blogs...</p>
 				) : (
@@ -106,7 +106,7 @@ const BlogListAdminPage = () => {
 						</thead>
 						<tbody>
 							{blogsData?.map((blog) => (
-								<tr key={blog.id}>
+								<tr key={blog?.id}>
 									<td className="px-4 py-2">{blog?.title}</td>
 									<td className="px-4 py-2">{blog?.author?.firstName}</td>
 									<td className="px-4 py-2">{blog?.category}</td>

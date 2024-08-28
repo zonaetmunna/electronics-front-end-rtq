@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 import DashboardLayout from '../layout/DashboardLayout';
+import AdminList from '../pages/dashboard/admin/AdminList';
 import PrivateRoutes from './PrivateRoutes';
 
 const ProductsListAdminPage = lazy(() => import('../pages/dashboard/ProductsListAdminPage'));
@@ -43,6 +44,7 @@ export const adminRoutes = {
 		{ path: 'vendor/:id', element: <VendorProfilePage /> },
 		{ path: 'order-list', element: <OrdersListAdminPage /> },
 		{ path: 'order/:id', element: <OrderDetailsAdminPage /> },
+		{ path: 'admin-list', element: <AdminList /> },
 		{ path: 'make-admin', element: <MakeAdminPage /> },
 		{ path: 'blogs', element: <BlogListAdminPage /> },
 		{ path: 'add-blog', element: <BlogAddAdminPage /> },
