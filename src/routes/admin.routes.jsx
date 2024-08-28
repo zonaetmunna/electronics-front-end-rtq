@@ -2,26 +2,36 @@ import { lazy } from 'react';
 
 import DashboardLayout from '../layout/DashboardLayout';
 import AdminList from '../pages/dashboard/admin/AdminList';
+import ManagerDetails from '../pages/dashboard/manager/ManagerDetails';
+import ManagerList from '../pages/dashboard/manager/ManagerList';
 import PrivateRoutes from './PrivateRoutes';
 
-const ProductsListAdminPage = lazy(() => import('../pages/dashboard/ProductsListAdminPage'));
-const ProductDetailsAdminPage = lazy(() => import('../pages/dashboard/ProductDetailsAdminPage'));
-const ProductAddAdminPage = lazy(() => import('../pages/dashboard/ProductAddAdminPage'));
-const OrdersListAdminPage = lazy(() => import('../pages/dashboard/OrdersListAdminPage'));
-const OrderDetailsAdminPage = lazy(() => import('../pages/dashboard/OrderDetailsAdminPage'));
-const CategoryListAdminPage = lazy(() => import('../pages/dashboard/CategoryListAdminPage'));
-const CategoryDetailsAdminPage = lazy(() => import('../pages/dashboard/CategoryDetailsAdminPage'));
-const BrandsListAdminPage = lazy(() => import('../pages/dashboard/BrandsListAdminPage'));
-const BrandDetailsAdminPage = lazy(() => import('../pages/dashboard/BrandDetailsAdminPage'));
-const CustomerListPage = lazy(() => import('../pages/dashboard/CustomerListPage'));
-const CustomerDetailsPage = lazy(() => import('../pages/dashboard/CustomerDetailsPage'));
-const VendorsListPage = lazy(() => import('../pages/dashboard/VendorsListPage'));
-const VendorProfilePage = lazy(() => import('../pages/dashboard/VendorProfilePage'));
-const MakeAdminPage = lazy(() => import('../pages/dashboard/MakeAdminPage'));
-const BlogListAdminPage = lazy(() => import('../pages/dashboard/BlogListAdminPage'));
-const BlogAddAdminPage = lazy(() => import('../pages/dashboard/BlogAddAdminPage'));
-const MessagesPage = lazy(() => import('../pages/dashboard/MessagesPage'));
-const InvoicePage = lazy(() => import('../pages/dashboard/InvoicePage'));
+const ProductsListAdminPage = lazy(
+	() => import('../pages/dashboard/products/ProductsListAdminPage')
+);
+const ProductDetailsAdminPage = lazy(
+	() => import('../pages/dashboard/products/ProductDetailsAdminPage')
+);
+const ProductAddAdminPage = lazy(() => import('../pages/dashboard/products/ProductAddAdminPage'));
+const OrdersListAdminPage = lazy(() => import('../pages/dashboard/order/OrdersListAdminPage'));
+const OrderDetailsAdminPage = lazy(() => import('../pages/dashboard/order/OrderDetailsAdminPage'));
+const CategoryListAdminPage = lazy(
+	() => import('../pages/dashboard/category/CategoryListAdminPage')
+);
+const CategoryDetailsAdminPage = lazy(
+	() => import('../pages/dashboard/category/CategoryDetailsAdminPage')
+);
+const BrandsListAdminPage = lazy(() => import('../pages/dashboard/brand/BrandsListAdminPage'));
+const BrandDetailsAdminPage = lazy(() => import('../pages/dashboard/brand/BrandDetailsAdminPage'));
+const CustomerListPage = lazy(() => import('../pages/dashboard/customer/CustomerListPage'));
+const CustomerDetailsPage = lazy(() => import('../pages/dashboard/customer/CustomerDetailsPage'));
+const VendorsListPage = lazy(() => import('../pages/dashboard/vendor/VendorsListPage'));
+const VendorProfilePage = lazy(() => import('../pages/dashboard/vendor/VendorProfilePage'));
+const MakeAdminPage = lazy(() => import('../pages/dashboard/admin/MakeAdminPage'));
+const BlogListAdminPage = lazy(() => import('../pages/dashboard/blog/BlogListAdminPage'));
+const BlogAddAdminPage = lazy(() => import('../pages/dashboard/blog/BlogAddAdminPage'));
+const MessagesPage = lazy(() => import('../pages/dashboard/message/MessagesPage'));
+const InvoicePage = lazy(() => import('../pages/dashboard/invoice/InvoicePage'));
 
 export const adminRoutes = {
 	path: '/dashboard',
@@ -42,6 +52,8 @@ export const adminRoutes = {
 		{ path: 'customer/:id', element: <CustomerDetailsPage /> },
 		{ path: 'vendor-list', element: <VendorsListPage /> },
 		{ path: 'vendor/:id', element: <VendorProfilePage /> },
+		{ path: 'manager-list', element: <ManagerList /> },
+		{ path: 'manager/:id', element: <ManagerDetails /> },
 		{ path: 'order-list', element: <OrdersListAdminPage /> },
 		{ path: 'order/:id', element: <OrderDetailsAdminPage /> },
 		{ path: 'admin-list', element: <AdminList /> },

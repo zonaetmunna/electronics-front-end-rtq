@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetBrandQuery } from '../../features/brand/brandApi';
+import { useGetBrandQuery } from '../../../features/brand/brandApi';
 
 const BrandDetailsAdminPage = () => {
 	const { id } = useParams();

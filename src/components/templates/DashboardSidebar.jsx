@@ -34,6 +34,7 @@ const DashboardSidebar = () => {
     isVendorOpen: false,
     isCustomerOpen: false,
     isAdminOpen: false,
+    isManagerOpen: false,
     isOrderOpen: false,
     isBlogOpen: false,
   });
@@ -96,6 +97,15 @@ const DashboardSidebar = () => {
       subMenuItems: [
         { to: 'admin-list', icon: <MdPeople />, label: 'Admin List' },
         { to: 'make-admin', icon: <FaPlus />, label: 'Make Admin' },
+      ],
+    },
+    {
+      label: 'Manager',
+      icon: <MdPerson />,
+      isOpen: menuState.isManagerOpen,
+      onClick: () => toggleMenu('isManagerOpen'),
+      subMenuItems: [
+        { to: 'manager-list', icon: <MdPeople />, label: 'Manager List' },
       ],
     },
     {

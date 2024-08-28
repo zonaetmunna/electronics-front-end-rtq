@@ -12,13 +12,13 @@ const EditProductModal = ({ product, isOpen, onClose, onSubmit }) => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			name: product.name,
-			description: product.description,
-			price: product.price,
-			category: product.category.name,
-			brand: product.brand.name,
-			stockQuantity: product.stockQuantity,
-			stock: product.stock,
+			name: product?.name,
+			description: product?.description,
+			price: product?.price,
+			category: product?.category?.name,
+			brand: product?.brand?.name,
+			stockQuantity: product?.stockQuantity,
+			stock: product?.stock,
 		},
 	});
 

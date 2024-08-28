@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 
-import Button from '../../components/atoms/Button';
-import Label from '../../components/atoms/Label';
+import Button from '../../../components/atoms/Button';
+import Label from '../../../components/atoms/Label';
+
 // import { useRegisterMutation } from '../../features/auth/authApi';
 
 const MakeAdminPage = () => {

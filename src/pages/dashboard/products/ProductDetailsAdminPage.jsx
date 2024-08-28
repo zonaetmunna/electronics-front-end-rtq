@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetSingleProductQuery } from '../../features/product/productApi';
+import { useGetSingleProductQuery } from '../../../features/product/productApi';
 
 const ProductDetailsAdminPage = () => {
 	const { id } = useParams();

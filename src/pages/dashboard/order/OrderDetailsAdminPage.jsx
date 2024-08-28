@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetSingleOrderQuery } from '../../features/order/orderApi';
+import { useGetSingleOrderQuery } from '../../../features/order/orderApi';
 
 const OrderDetailsAdminPage = () => {
 	const { id } = useParams(); // Get the orderId from URL parameter

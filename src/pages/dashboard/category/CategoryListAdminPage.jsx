@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import { Link } from 'react-router-dom';
 
-import Button from '../../components/atoms/Button';
-import { useGetCategoriesQuery } from '../../features/category/categoryApi';
+import Button from '../../../components/atoms/Button';
+import { useGetCategoriesQuery } from '../../../features/category/categoryApi';
 
 const CategoryListAdminPage = () => {
 	const { data, isLoading, isError, error } = useGetCategoriesQuery({});

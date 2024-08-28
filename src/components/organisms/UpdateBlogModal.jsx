@@ -37,7 +37,7 @@ const UpdateBlogModal = ({
 							<Controller
 								name="title"
 								control={control}
-								defaultValue={blogToUpdate.title}
+								defaultValue={blogToUpdate?.title}
 								render={({ field }) => (
 									<input
 										// eslint-disable-next-line react/jsx-props-no-spreading
@@ -57,7 +57,7 @@ const UpdateBlogModal = ({
 							<Controller
 								name="author"
 								control={control}
-								defaultValue={blogToUpdate.author}
+								defaultValue={blogToUpdate?.author}
 								render={({ field }) => (
 									<input
 										// eslint-disable-next-line react/jsx-props-no-spreading
@@ -77,7 +77,7 @@ const UpdateBlogModal = ({
 							<Controller
 								name="category"
 								control={control}
-								defaultValue={blogToUpdate.category}
+								defaultValue={blogToUpdate?.category}
 								render={({ field }) => (
 									<input
 										// eslint-disable-next-line react/jsx-props-no-spreading

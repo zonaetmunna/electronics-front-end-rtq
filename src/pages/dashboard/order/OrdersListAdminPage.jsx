@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import Button from '../../components/atoms/Button';
-import { useUpdateBrandMutation } from '../../features/brand/brandApi';
-import { useGetOrderQuery } from '../../features/order/orderApi';
+import Button from '../../../components/atoms/Button';
+import { useUpdateBrandMutation } from '../../../features/brand/brandApi';
+import { useGetOrderQuery } from '../../../features/order/orderApi';
 
 const OrdersListAdminPage = () => {
 	const { data, isLoading, isError } = useGetOrderQuery();

@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import { Link } from 'react-router-dom';
 
-import Button from '../../components/atoms/Button';
-import { useGetBrandsQuery } from '../../features/brand/brandApi';
+import Button from '../../../components/atoms/Button';
+import { useGetBrandsQuery } from '../../../features/brand/brandApi';
 
 const BrandsListAdminPage = () => {
 	const { data } = useGetBrandsQuery({});

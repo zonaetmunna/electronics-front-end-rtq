@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Button from '../../components/atoms/Button';
+import Button from '../../../components/atoms/Button';
 
 const NotificationSettingAdminPage = () => {
 	const [notifications, setNotifications] = useState({

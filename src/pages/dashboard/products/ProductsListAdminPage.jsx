@@ -4,22 +4,22 @@
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from '../../components/atoms/Button';
-import FilterProductDashboard from '../../components/features/product/FilterProductDashboard';
-import ProductPaginationDashboard from '../../components/features/product/ProductPaginationDashboard';
-import ProductTableDashboard from '../../components/features/product/ProductTableDashboard';
-import AddProductModal from '../../components/organisms/AddProductModal';
-import DeleteProductModel from '../../components/organisms/DeleteProductModel';
-import EditProductModal from '../../components/organisms/EditProductModal';
-import { useGetBrandsQuery } from '../../features/brand/brandApi';
-import { useGetCategoriesQuery } from '../../features/category/categoryApi';
+import Button from '../../../components/atoms/Button';
+import FilterProductDashboard from '../../../components/features/product/FilterProductDashboard';
+import ProductPaginationDashboard from '../../../components/features/product/ProductPaginationDashboard';
+import ProductTableDashboard from '../../../components/features/product/ProductTableDashboard';
+import AddProductModal from '../../../components/organisms/AddProductModal';
+import DeleteProductModel from '../../../components/organisms/DeleteProductModel';
+import EditProductModal from '../../../components/organisms/EditProductModal';
+import { useGetBrandsQuery } from '../../../features/brand/brandApi';
+import { useGetCategoriesQuery } from '../../../features/category/categoryApi';
 import {
   useAddProductMutation,
   useGetProductsQuery,
   useRemoveProductMutation,
   useUpdateProductMutation,
-} from '../../features/product/productApi';
-import { closeModal, openModal } from '../../features/theme/modalSlice';
+} from '../../../features/product/productApi';
+import { closeModal, openModal } from '../../../features/theme/modalSlice';
 
 const ProductsListAdminPage = () => {
 	const dispatch = useDispatch();

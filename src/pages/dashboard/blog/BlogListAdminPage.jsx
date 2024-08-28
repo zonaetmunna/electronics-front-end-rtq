@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
 
-import Button from '../../components/atoms/Button';
-import PaginationBlog from '../../components/molecules/PaginationBlog';
-import AddBlogModal from '../../components/organisms/AddBlogModal';
-import DeleteBlogModal from '../../components/organisms/DeleteBlogModal';
-import UpdateBlogModal from '../../components/organisms/UpdateBlogModal';
+import Button from '../../../components/atoms/Button';
+import PaginationBlog from '../../../components/molecules/PaginationBlog';
+import AddBlogModal from '../../../components/organisms/AddBlogModal';
+import DeleteBlogModal from '../../../components/organisms/DeleteBlogModal';
+import UpdateBlogModal from '../../../components/organisms/UpdateBlogModal';
 import {
   useAddBlogMutation,
   useDeleteBlogMutation,
   useGetBlogsQuery,
   useUpdateBlogMutation,
-} from '../../features/blog/blogApi';
+} from '../../../features/blog/blogApi';
 
 const BlogListAdminPage = () => {
 	const {

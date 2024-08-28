@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
-import Button from '../../components/atoms/Button';
-import Label from '../../components/atoms/Label';
-import { useAddProductMutation } from '../../features/product/productApi';
+import Button from '../../../components/atoms/Button';
+import Label from '../../../components/atoms/Label';
+import { useAddProductMutation } from '../../../features/product/productApi';
 
 const ProductAddAdminPage = () => {
 	const { register, handleSubmit, reset } = useForm();

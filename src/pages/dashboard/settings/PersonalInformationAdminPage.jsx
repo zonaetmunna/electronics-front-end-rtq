@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
-import Button from '../../components/atoms/Button';
-import Label from '../../components/atoms/Label';
+import Button from '../../../components/atoms/Button';
+import Label from '../../../components/atoms/Label';
 
 const PersonalInformationAdminPage = () => {
 	const { user } = useSelector((state) => state.auth);

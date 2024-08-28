@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
-import Button from '../../components/atoms/Button';
-import Label from '../../components/atoms/Label';
-import { useAddBlogMutation } from '../../features/blog/blogApi';
+import Button from '../../../components/atoms/Button';
+import Label from '../../../components/atoms/Label';
+import { useAddBlogMutation } from '../../../features/blog/blogApi';
 
 const BlogAddAdminPage = () => {
 	const {

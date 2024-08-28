@@ -42,7 +42,7 @@ const DeleteProductModel = ({ product, isOpen, onClose, onSubmit }) => {
 										Delete Product
 									</h3>
 									<p className="mt-2 text-gray-600">
-										Are you sure you want to delete the product {product.name}?
+										Are you sure you want to delete the product {product?.name}?
 									</p>
 								</div>
 							</div>

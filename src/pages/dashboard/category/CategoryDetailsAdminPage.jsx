@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetCategoryQuery } from '../../features/category/categoryApi';
+import { useGetCategoryQuery } from '../../../features/category/categoryApi';
 
 const CategoryDetailsAdminPage = () => {
 	const { id } = useParams();

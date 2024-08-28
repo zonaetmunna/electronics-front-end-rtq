@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import ConversationsList from '../../components/organisms/ConversationsList';
-import MessageForm from '../../components/organisms/MessageForm';
-import MessageList from '../../components/organisms/MessageList';
+import ConversationsList from '../../../components/organisms/ConversationsList';
+import MessageForm from '../../../components/organisms/MessageForm';
+import MessageList from '../../../components/organisms/MessageList';
 import {
   useGetConversationsQuery,
   useGetMessagesQuery,
   useSendMessageMutation,
-} from '../../features/message/messageApi';
+} from '../../../features/message/messageApi';
 
 const MessagesPage = () => {
 	const [selectedConversation, setSelectedConversation] = useState(null);

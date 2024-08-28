@@ -34,7 +34,7 @@ const DeleteBlogModal = ({
 							{isLoadingDeleteBlog ? 'Deleting...' : 'Delete Blog'}
 						</Button>
 					</div>
-					{isErrorDeleteBlog && <p className="text-red-500 mt-4">{errorDeleteBlog.message}</p>}
+					{isErrorDeleteBlog && <p className="text-red-500 mt-4">{errorDeleteBlog?.message}</p>}
 					{isSuccessDeleteBlog && <p className="text-green-500 mt-4">Blog deleted successfully!</p>}
 					<Button
 						onClick={onClose}
