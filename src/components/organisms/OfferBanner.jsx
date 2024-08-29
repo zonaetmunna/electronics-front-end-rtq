@@ -6,7 +6,7 @@ const OfferBanner = () => {
 	const navigate = useNavigate();
 	return (
 		<div className="my-10">
-			<div className="bg-gray-100 mx-auto container py-10 px-8 rounded-lg flex justify-center items-center">
+			<div className="bg-gray-200 mx-auto container py-10 px-8 rounded-lg flex justify-center items-center">
 				<img
 					src="https://live.staticflickr.com/65535/52521844202_dd853335c9_o.jpg"
 					alt="Offer Banner"

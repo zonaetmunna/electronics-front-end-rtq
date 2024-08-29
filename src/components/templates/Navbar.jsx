@@ -63,9 +63,9 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery, categories }) => {
 		<div className="bg-white shadow-sm">
 			<div className="container mx-auto px-4 py-3">
 				<div className="flex flex-wrap items-center justify-between">
-					<div className="flex items-center">
-						<Link to="/" className="text-gray-800 hover:text-gray-600">
-							<img src={logo} alt="Logo" className="h-12 w-12" />
+					<div className="flex items-center rounded-full">
+						<Link to="/" className="text-gray-800 hover:text-gray-600 rounded-full">
+							<img src={logo} alt="Logo" className="h-12 w-12 rounded-full" />
 						</Link>
 					</div>
 
