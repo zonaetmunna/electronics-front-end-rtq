@@ -4,20 +4,23 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+import gadget from '../../../assets/images/gadget.png';
+import women from '../../../assets/images/women.png';
+
 const BannerSection = () => {
 	const banners = [
 		{
 			id: 1,
 			title: 'Exclusive collection for everyone',
 			subtitle: 'In this season, find the best 🔥',
-			image: '/path/to/image1.png', // Replace with actual image path
+			image: gadget,
 			bgColor: 'bg-green-100',
 		},
 		{
 			id: 2,
 			title: 'Discover the trendiest styles',
 			subtitle: 'Find your perfect outfit today',
-			image: '/path/to/image2.png', // Replace with actual image path
+			image: women,
 			bgColor: 'bg-blue-100',
 		},
 		{

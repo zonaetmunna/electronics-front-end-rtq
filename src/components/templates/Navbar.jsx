@@ -69,15 +69,25 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery, categories }) => {
 						</Link>
 					</div>
 
-					<form onSubmit={handleSearchSubmit} className="w-full sm:w-auto mt-4 sm:mt-0">
-						<div className="relative">
+					<form
+						onSubmit={handleSearchSubmit}
+						className="w-full sm:w-auto mt-4 sm:mt-0 flex items-center space-x-2 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+					>
+						<Select
+							options={categoryOptions}
+							onChange={handleSelectChange}
+							className="w-full md:w-auto"
+							styles={customSelectStyles}
+							placeholder="Category"
+						/>
+						<div className="relative flex-1">
 							<input
 								type="search"
 								id="default-search"
 								placeholder="Search..."
 								value={searchQuery}
 								onChange={handleSearchQueryChange}
-								className="block w-full p-2 sm:p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+								className="block w-full p-2 sm:p-4 text-sm text-gray-900 focus:border-none focus:outline-none"
 								required
 							/>
 							<Button
@@ -88,13 +98,6 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery, categories }) => {
 							</Button>
 						</div>
 					</form>
-
-					<Select
-						options={categoryOptions}
-						onChange={handleSelectChange}
-						className="w-full md:w-1/4"
-						styles={customSelectStyles}
-					/>
 
 					<div className="ml-0 mt-3 md:ml-3 md:mt-0">
 						<ul className="flex flex-wrap md:flex-nowrap">
