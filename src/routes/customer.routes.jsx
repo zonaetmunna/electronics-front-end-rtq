@@ -3,11 +3,11 @@ import { lazy } from 'react';
 import ProfileLayout from '../layout/ProfileLayout';
 import PrivateRoutes from './PrivateRoutes';
 
-const ProfileInformationPage = lazy(() => import('../pages/main/ProfileInformationPage'));
-const ProfileOrdersPage = lazy(() => import('../pages/main/ProfileOrdersPage'));
-const ProfileMessagePage = lazy(() => import('../pages/main/ProfileMessagePage'));
-const ProfileNotificationPage = lazy(() => import('../pages/main/ProfileNotificationPage'));
-const ProfileSettingsPage = lazy(() => import('../pages/main/ProfileSettingsPage'));
+const ProfileInformationPage = lazy(() => import('../pages/main/profile/ProfileInformationPage'));
+const ProfileOrdersPage = lazy(() => import('../pages/main/profile/ProfileOrdersPage'));
+const ProfileMessagePage = lazy(() => import('../pages/main/profile/ProfileMessagePage'));
+const ProfileNotificationPage = lazy(() => import('../pages/main/profile/ProfileNotificationPage'));
+const ProfileSettingsPage = lazy(() => import('../pages/main/profile/ProfileSettingsPage'));
 
 export const customerRoutes = {
 	path: '/profile',

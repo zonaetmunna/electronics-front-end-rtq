@@ -4,20 +4,20 @@ import Error from '../layout/Error';
 import MainLayout from '../layout/MainLayout';
 import { customerRoutes } from './customer.routes';
 
-const HomePage = lazy(() => import('../pages/main/HomePage'));
-const ProductListPage = lazy(() => import('../pages/main/ProductListPage'));
-const ProductDetailsPage = lazy(() => import('../pages/main/ProductDetailsPage'));
-const CartPage = lazy(() => import('../pages/main/CartPage'));
-const CheckoutPage = lazy(() => import('../pages/main/CheckoutPage'));
-const WishListPage = lazy(() => import('../pages/main/WishListPage'));
+const HomePage = lazy(() => import('../pages/main/home/HomePage'));
+const ProductListPage = lazy(() => import('../pages/main/product/ProductListPage'));
+const ProductDetailsPage = lazy(() => import('../pages/main/product/ProductDetailsPage'));
+const CartPage = lazy(() => import('../pages/main/cart/CartPage'));
+const CheckoutPage = lazy(() => import('../pages/main/checkout/CheckoutPage'));
+const WishListPage = lazy(() => import('../pages/main/wishlist/WishListPage'));
 const AboutPage = lazy(() => import('../pages/main/AboutPage'));
 const ContactPage = lazy(() => import('../pages/main/ContactPage'));
-const BlogPage = lazy(() => import('../pages/main/BlogPage'));
-const BlogDetailsPage = lazy(() => import('../pages/main/BlogDetailsPage'));
+const BlogPage = lazy(() => import('../pages/main/blog/BlogPage'));
+const BlogDetailsPage = lazy(() => import('../pages/main/blog/BlogDetailsPage'));
 const PolicyPage = lazy(() => import('../pages/main/PolicyPage'));
 const TermsPage = lazy(() => import('../pages/main/TermsPage'));
-const LoginPage = lazy(() => import('../pages/main/LoginPage'));
-const SignupPage = lazy(() => import('../pages/main/SignupPage'));
+const LoginPage = lazy(() => import('../pages/main/auth/LoginPage'));
+const SignupPage = lazy(() => import('../pages/main/auth/SignupPage'));
 
 export const publicRoutes = {
 	path: '/',

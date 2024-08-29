@@ -2,18 +2,44 @@ import { useState } from 'react';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { VscAccount } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 import logo from '../../assets/logo/brand-logo.png';
 import { logout } from '../../features/auth/authSlice';
+import { setSelectedCategory } from '../../features/filter/filterSlice';
 import Button from '../atoms/Button';
 
-const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
+const Navbar = ({ onCartClick, searchQuery, setSearchQuery, categories }) => {
 	const { user } = useSelector((state) => state.auth);
 	const { cart } = useSelector((state) => state.cart);
 	const { wishlist } = useSelector((state) => state.wishlist);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	const location = useLocation();
+
+	const customSelectStyles = {
+		control: (base) => ({
+			...base,
+			backgroundColor: 'white',
+			border: 'none',
+			boxShadow: 'none',
+			cursor: 'pointer',
+			height: '36px',
+		}),
+	};
+
+	const categoryOptions = categories?.map((category) => ({
+		value: category.name,
+		label: category.name,
+	}));
+
+	const handleSelectChange = (selectedOption) => {
+		const selectedCategory = selectedOption.value;
+		dispatch(setSelectedCategory(selectedCategory));
+		navigate(`/shop/${selectedCategory}`);
+	};
 
 	const [showProfileMenu, setShowProfileMenu] = useState(false);
 	const handleSearchQueryChange = (event) => {
@@ -35,7 +61,7 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 
 	return (
 		<div className="bg-white shadow-sm">
-			<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+			<div className="container mx-auto px-4 py-3">
 				<div className="flex flex-wrap items-center justify-between">
 					<div className="flex items-center">
 						<Link to="/" className="text-gray-800 hover:text-gray-600">
@@ -62,6 +88,78 @@ const Navbar = ({ onCartClick, searchQuery, setSearchQuery }) => {
 							</Button>
 						</div>
 					</form>
+
+					<Select
+						options={categoryOptions}
+						onChange={handleSelectChange}
+						className="w-full md:w-1/4"
+						styles={customSelectStyles}
+					/>
+
+					<div className="ml-0 mt-3 md:ml-3 md:mt-0">
+						<ul className="flex flex-wrap md:flex-nowrap">
+							<li className="mr-6 mb-2 md:mb-0">
+								<Link
+									to="/"
+									className={`text-gray-800 hover:text-gray-600 transition duration-200 ${
+										location.pathname === '/' ? 'border-b-2 border-black' : ''
+									}`}
+								>
+									Home
+								</Link>
+							</li>
+							<li className="mr-6 mb-2 md:mb-0">
+								<Link
+									to="/products"
+									className={`text-gray-800 hover:text-gray-600 transition duration-200 ${
+										location.pathname === '/shop' ? 'border-b-2 border-black' : ''
+									}`}
+								>
+									Products
+								</Link>
+							</li>
+							<li className="mr-6">
+								<Link
+									to="contact"
+									className={`text-gray-800 hover:text-gray-600 transition duration-200 ${
+										location.pathname === '/contact' ? 'border-b-2 border-black' : ''
+									}`}
+								>
+									Contact
+								</Link>
+							</li>
+							<li className="mr-6">
+								<Link
+									to="privacy-policy"
+									className={`text-gray-800 hover:text-gray-600 transition duration-200 ${
+										location.pathname === '/privacy-policy' ? 'border-b-2 border-black' : ''
+									}`}
+								>
+									Privacy-Policy
+								</Link>
+							</li>
+							<li className="mr-6">
+								<Link
+									to="terms"
+									className={`text-gray-800 hover:text-gray-600 transition duration-200 ${
+										location.pathname === '/terms' ? 'border-b-2 border-black' : ''
+									}`}
+								>
+									Terms&Condition
+								</Link>
+							</li>
+							<li className="mr-6">
+								<Link
+									to="blog"
+									className={`text-gray-800 hover:text-gray-600 transition duration-200 ${
+										location.pathname === '/blog' ? 'border-b-2 border-black' : ''
+									}`}
+								>
+									Our-Blog
+								</Link>
+							</li>
+						</ul>
+					</div>
 
 					<div className="flex items-center space-x-4 mt-4 sm:mt-0">
 						<Link to="/wishlist" className="text-gray-800 hover:text-gray-600">
