@@ -67,7 +67,7 @@ const PopularProducts = ({ products }) => {
 				<h2 className="text-2xl font-semibold text-center">Popular Products</h2>
 				<div className="flex space-x-4 mb-4 bg-white items-center justify-center w-full md:w-1/2 rounded-full py-2 mt-5">
 					<Button
-						className={`px-4 py-2 rounded shadow-md ${
+						className={`px-4 py-2  ${
 							selectedTab === 'topRated' ? 'bg-black text-white rounded-full' : ''
 						}`}
 						onClick={() => handleTabClick('topRated')}
@@ -75,7 +75,7 @@ const PopularProducts = ({ products }) => {
 						Top Rated
 					</Button>
 					<Button
-						className={`px-4 py-2 rounded ${
+						className={`px-4 py-2 ${
 							selectedTab === 'bestSelling' ? 'bg-black text-white rounded-full' : ''
 						}`}
 						onClick={() => handleTabClick('bestSelling')}
