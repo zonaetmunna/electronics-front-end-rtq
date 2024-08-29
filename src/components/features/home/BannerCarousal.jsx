@@ -23,7 +23,7 @@ const BannerCarousal = ({ products }) => {
 	};
 
 	useEffect(() => {
-		const cardWidth = carouselRef.current.firstChild.offsetWidth;
+		const cardWidth = carouselRef.current.firstChild?.offsetWidth;
 		carouselRef.current.scrollTo({
 			left: cardWidth * currentIndex,
 			behavior: 'smooth',

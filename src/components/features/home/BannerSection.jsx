@@ -56,9 +56,9 @@ const BannerSection = () => {
 					{banners?.map((banner) => (
 						<motion.div
 							key={banner.id}
-							className={`min-w-full h-full flex items-center justify-between ${banner.bgColor} p-8`}
+							className={`min-w-full h-full flex items-center justify-between ${banner.bgColor} px-40`}
 						>
-							<div className="flex-1 px-10">
+							<div className="flex-1 px-10 ">
 								<h4 className="text-lg font-medium text-gray-600">{banner.subtitle}</h4>
 								<h2 className="text-5xl font-bold text-gray-900 my-4">{banner.title}</h2>
 								<button
@@ -68,7 +68,7 @@ const BannerSection = () => {
 									Explore now <FaChevronRight className="ml-2" />
 								</button>
 							</div>
-							<div className="flex-1 flex justify-end px-10">
+							<div className="flex-1 flex justify-end px-10 container mx-auto">
 								<img
 									src={banner.image}
 									alt={banner.title}
